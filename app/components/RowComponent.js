@@ -49,7 +49,7 @@ class RowComponent extends Component {
         ]
       )
     }
-  }s
+  }
 
   borrar = () => {
     this.props.borrar(this.props.item)
