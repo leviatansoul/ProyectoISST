@@ -3,6 +3,7 @@ import { Container, Content, List, ListItem, Text, Icon, Badge, Left, Body, Righ
 import RowComponent from './RowComponent';
 
 
+
 class ListComponent extends Component {
   render() {
     return (

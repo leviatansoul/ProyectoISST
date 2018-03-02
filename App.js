@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { DrawerNavigator, DrawerItems} from 'react-navigation'
 import {
   Container,
   Header,
@@ -18,139 +19,54 @@ import Expo from 'expo'
 import * as firebase from 'firebase'
 import ListComponent from './app/components/ListComponent'
 
-export default class App extends React.Component {
 
-  constructor (props) {
-    super(props)
-    this.state = {
-      nuevo: '',
-      loading: true,
-      lista: []
-    }
-  }
+import ConfigurationScreen from './app/components/ConfigurationScreen'
+import PublicarScreen from './app/components/PublicarScreen'
+import HomeScreen from './app/components/HomeScreen'
 
-  agregarItem = () => {
-    let nuevo = this.state.nuevo
-    nuevo = {id: nuevo, name: nuevo, done: false}
-    firebase.database().ref('items').push(nuevo)
-    this.state.lista.push(nuevo)
-    this.setState({lista: this.state.lista})
-    console.log(nuevo)
-  }
+ class App extends React.Component {
 
-  changeDone = (item) => {
-    console.log(item)
-    let updates = {}
-    updates['/items/' + item.id] = item
-    firebase.database().ref().update(updates)
-  }
 
-  borrar = (item) => {
-    let updates = {}
-    updates['/items/' + item.id] = null
-    firebase.database().ref().update(updates)
-
-  }
-
-  listenForItems = (itemsRef) => { //No entiendo bien que hace esto
-    itemsRef.on('value', (snap) => {
-
-      // get children as an array
-      var lista = []
-      snap.forEach((child) => {
-        lista.push({
-          name: child.val().name,
-          done: child.val().done,
-          id: child.key
-        })
-      })
-
-      this.setState({
-        lista: lista
-      })
-
-    })
-  }
-
-  async componentWillMount () {
-    await Expo.Font.loadAsync({
-      'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
-
-    const itemsRef = firebase.database().ref('items')
-    this.listenForItems(itemsRef)
-
-    this.setState({loading: false})
-  }
 
   render () {
-    if (this.state.loading) {
-      return <Expo.AppLoading />
-    }
     return (
-      <Container>
-        <Header style={styles.header}>
-          <Left>
-            <Button transparent>
-              <Icon name='menu'/>
-            </Button>
-          </Left>
-          <Body>
-          <Title>Header</Title>
-          </Body>
-          <Right />
-        </Header>
-
-        <Content>
-
-          <Input
-            value={this.state.nuevo}
-            placeholder='Que otra cosa necesitas?'
-            onChangeText={nuevo => this.setState({nuevo})}
-          />
-
-
-          <View style={styles.container}>
-            <ListComponent
-              lista={this.state.lista}
-              changeDone={this.changeDone}
-              borrar={this.borrar}
-            />
-          </View>
-        </Content>
-
-        <Footer>
-          <FooterTab>
-            <Button full
-                    onPress={this.agregarItem}>
-              <Text>Agregar</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
-      </Container>
+  <MyApp />
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'stretch'
-  },
-  header: {
-    marginTop: 25
-  }
-})
+const CustomDrawerContentComponent = (props) => (
+  <Container>
+    <Header style={{height: 200, backgroundColor: 'white'}}>
+    <Body>
+<Text>Elige donde quieres ir</Text>
+  </Body>
+</Header>
+<Content>
+  <DrawerItems {...props}/>
 
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: 'AIzaSyBC6qHY8rQhUK14ObU59JJOrEjtoQls9mM',
-  authDomain: 'proyectoisst.firebaseapp.com',
-  databaseURL: 'https://proyectoisst.firebaseio.com',
-  projectId: 'proyectoisst',
-  storageBucket: 'proyectoisst.appspot.com',
-  messagingSenderId: '586417651847'
-}
-const firebaseApp = firebase.initializeApp(firebaseConfig)
+
+</Content>
+
+</Container>
+);
+const MyApp = DrawerNavigator({
+  Home: {
+    screen: HomeScreen
+  },
+  Publicar: {
+    screen: PublicarScreen
+  },
+  Configuracion: {
+    screen: ConfigurationScreen
+  }
+}, {
+    initialRouteName:'Home',
+    drawerPosition: 'left',
+    contentComponent: CustomDrawerContentComponent,
+    drawerOpenRoute: 'DrawerOpen',
+    drawerCloseRoute: 'DrawerClose',
+    drawerToggleRoute: 'DrawerToggle'
+  });
+
+export default App;
