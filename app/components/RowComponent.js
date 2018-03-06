@@ -8,7 +8,6 @@ class RowComponent extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      done: false,
       pressAction: new Animated.Value(0),
       item: null
     }
@@ -19,11 +18,6 @@ class RowComponent extends Component {
     this.state.pressAction.addListener((v) => this._value = v.value)
   }
 
-  changeDone = (item) => {
-//        this.setState({done:!this.state.done});
-    console.log(item)
-
-  }
   pressIn = () => {
     Animated.timing(this.state.pressAction, {
       duration: ACTION_TIMER,
@@ -70,10 +64,7 @@ class RowComponent extends Component {
           </Body>
 
           <Right>
-            <Switch onValueChange={() => {
-              this.props.item.done = !this.props.item.done
-              this.props.changeDone(this.props.item)
-            }} value={this.props.item.done}/>
+
           </Right>
         </ListItem>
       </TouchableWithoutFeedback>

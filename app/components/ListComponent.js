@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Text, Icon, Badge, Left, Body, Right, Switch } from 'native-base';
-import RowComponent from './RowComponent';
-
-
+import React, { Component } from 'react'
+import { Container, Content, List, ListItem, Text, Icon, Badge, Left, Body, Right, Switch } from 'native-base'
+import RowComponent from './RowComponent'
 
 class ListComponent extends Component {
-  render() {
+  render () {
     return (
       <Container>
         <Content>
@@ -13,14 +11,13 @@ class ListComponent extends Component {
             item => <RowComponent
               key={item.id}
               item={item}
-              changeDone={this.props.changeDone}
               borrar={this.props.borrar}
             />
           )}
         </Content>
       </Container>
-    );
+    )
   }
 }
 
-export default ListComponent;
+export default ListComponent
