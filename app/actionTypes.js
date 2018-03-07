@@ -1,0 +1,2 @@
+export const DATA_AVAILABLE = 'DATA_AVAILABLE';
+export const COUNTER_INC = 'COUNTER_INC';
