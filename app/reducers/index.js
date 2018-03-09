@@ -1,11 +1,37 @@
 import { combineReducers } from 'redux';
 
-import { DATA_AVAILABLE, COUNTER_INC, LOCATION_UPDATE } from "../actions/" //Import the actions types constant we defined in our actions
+import { DATA_AVAILABLE, COUNTER_INC, LOCATION_UPDATE, PUT_DATA} from "../actions/" //Import the actions types constant we defined in our actions
 
 let dataState = { data: [], loading:true, counter:0 };
 
 let locationState = { latitude: 0, longitude: 0, error: null };
 
+let pensamientosState = {data: ["yo", "tu", "el"], loading:true};
+
+let pensamientosLocState = {data: ["primera", "segunda", "tercera", "primera", "segunda", "tercera", "primera", "segunda", "tercera", "primera", "segunda", "tercera", "primera", "segunda", "tercera"], loading:true};
+
+const pensamientosReducer = (state = pensamientosState, action) => {
+    switch (action.type) {
+
+       case PUT_DATA:
+           newState = state.data;
+           newState.push(action.item);
+           state = Object.assign({}, state, { data: newState, loading:false});
+          return state;
+        //case REMOVE_DATA:
+          //  state = Object.assign({}, state, { data: {state.filter(elemento => indexOf(elemento)!=action.id); }, loading:false });
+              //  return state;
+        default:
+            return state;
+    }
+};
+const pensamientosLocReducer = (state = pensamientosLocState, action) => {
+    switch (action.type) {
+
+        default:
+            return state;
+    }
+};
 const dataReducer = (state = dataState, action) => {
     switch (action.type) {
         case DATA_AVAILABLE:
@@ -48,7 +74,9 @@ const locationReducer = (state = locationState, action) => {
 const rootReducer = combineReducers({
     dataReducer,
     counterReducer,
-    locationReducer
+    locationReducer,
+    pensamientosReducer,
+    pensamientosLocReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
 
