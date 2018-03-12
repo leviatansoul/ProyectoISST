@@ -22,11 +22,11 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
 
   }
-  deleteRow(data, secId, rowId, rowMap) {
+  deleteRow(secId, rowId, rowMap) {
    rowMap[`${secId}${rowId}`].props.closeRow();
-  // const newData = [...this.props.visitas];
-  // newData.splice(rowId, 1);
-  // this.props.removeData(data);
+   const newData = [...this.props.pensamientos];
+   newData.splice(rowId, 1);
+  this.props.removeData(newData);
  }
 
   async componentWillMount () {
@@ -38,7 +38,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
 
 render () {
-
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
         <Header>
@@ -55,15 +55,25 @@ render () {
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
                       renderRow={data =>
-                        <ListItem>
-                          <Text> {data} </Text>
+
+                          //hay que hacer algo si no hay nada guardado
+                          <ListItem Rr>
+
+                          <Body>
+                            <Text>{data.text}</Text>
+                              </Body>
+                            <Right>
+                              <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
+                            </Right>
+
+
                         </ListItem>}
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />
                         //</Button>}
                       renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                        <Button full danger onPress={_ => this.deleteRow(data, secId, rowId, rowMap)}>
+                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
                           <Icon active name="trash" />
                         </Button>}
                       //leftOpenValue={75}

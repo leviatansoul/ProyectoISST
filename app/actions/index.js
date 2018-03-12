@@ -1,6 +1,6 @@
 export const DATA_AVAILABLE = 'DATA_AVAILABLE';
 export const COUNTER_INC = 'COUNTER_INC';
-//export const REMOVE_DATA = 'REMOVE_DATA';
+export const REMOVE_DATA = 'REMOVE_DATA';
 export const PUT_DATA = 'PUT_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
 
@@ -34,18 +34,18 @@ export function incCounter(){
   };
 }
 
-//export function removeData(id){
-//  return (dispatch) => {
+export function removeData(data){
+  return (dispatch) => {
 
     //Make API Call
     //For this example, I will be using the sample data in the json file
     //delay the retrieval [Sample reasons only]
 
-    //  dispatch({type: REMOVE_DATA, id: id});
+     dispatch({type: REMOVE_DATA, data: data});
 
 
-//  };
-//}
+ };
+}
 export function putData(item){
 return (dispatch) => {
 

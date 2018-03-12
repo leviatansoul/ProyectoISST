@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, ListView} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
+import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 
@@ -54,9 +54,18 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   <List
               dataSource={this.ds.cloneWithRows(this.props.pensamientosLoc)}
               renderRow={data =>
-                <ListItem>
-                  <Text> {data} </Text>
-                </ListItem>}
+                <ListItem Rr>
+
+                <Body>
+                  <Text>{data.text}</Text>
+                    </Body>
+                  <Right>
+                    <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
+                  </Right>
+
+
+              </ListItem>
+              }
               renderRightHiddenRow={data =>
                 <Button full light onPress={() => this.appClick(data)}>
                   <Icon active name="download" />
