@@ -55,9 +55,9 @@ return (dispatch) => {
   };
 }
 
-export function updateLocation(){
+export function updateLocation(latitude,longitude){
   return (dispatch) => {
-    dispatch({type: LOCATION_UPDATE});
+    dispatch({type: LOCATION_UPDATE, latitude: latitude, longitude: longitude});
 
   };
 }

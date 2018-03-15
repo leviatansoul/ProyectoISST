@@ -6,7 +6,7 @@ let dataState = { data: [], loading:true, counter:0 };
 
 let locationState = { latitude: 0, longitude: 0, error: null };
 
-let pensamientosState = {data: [], loading:true};
+let pensamientosState = {id: 1, data: [], loading:true};
 
 let pensamientosLocState = {data:[
   {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018'},
@@ -33,8 +33,10 @@ const pensamientosReducer = (state = pensamientosState, action) => {
 
        case PUT_DATA:
            newState = state.data;
-           newState.push(action.item);
-           state = Object.assign({}, state, { data: newState, loading:false});
+           pensamiento = action.item;
+           pensamiento.id = state.id;
+           newState.push(pensamiento);
+           state = Object.assign({}, state, { id: state.id++, data: newState, loading:false});
            console.log(state);
           return state;
         case REMOVE_DATA:
@@ -76,15 +78,9 @@ const counterReducer = (state = dataState, action) => {
 const locationReducer = (state = locationState, action) => {
   switch (action.type) {
     case LOCATION_UPDATE:
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-        state = Object.assign({}, state, { latitude: position.coords.latitude,
-        longitude: position.coords.longitude, error: null,});
-        },
-        (error) => {
-        state = Object.assign({}, state, { error: error.message,});
-      },
-        );
+
+        state = Object.assign({}, state, { latitude: action.latitude, longitude: action.longitude, error: null,});
+
       return state;
     default:
       return state;

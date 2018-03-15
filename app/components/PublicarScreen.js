@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title } from 'native-base'
+import { View, Text, TextInput, Button } from 'react-native'
+import { Icon, Container, Header, Content, Left, Right, Body, Title } from 'native-base'
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -14,12 +14,27 @@ class PublicarScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      pensamiento: null,
+      autor: 'Autor'
+    };
 }
 
 
   componentDidMount() {
 
-  this.props.updateLocation();
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      //console.log(position.coords.latitude);
+      //console.log(position.coords.longitude);
+      this.props.updateLocation(position.coords.latitude, position.coords.longitude);
+      console.log(position);
+    },
+    (error) => {
+      console.log(error);
+  },
+    );
+
 
   }
 
@@ -37,7 +52,17 @@ class PublicarScreen extends Component {
           </Body>
           <Right />
         </Header>
-
+        <Text>{this.props.latitude}</Text>
+        <Text>{this.props.longitude}</Text>
+        <Text>{this.props.error}</Text>
+        <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({pensamiento: text})}
+        placeholder='Escribe un pensamiento'/>
+      <Button onPress={() => {
+          pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
+          this.props.putData(pensamiento);
+        }} title="Publicar"
+  />
       </Container>
     )
   }
@@ -47,9 +72,9 @@ class PublicarScreen extends Component {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
-        loading: state.dataReducer.loading,
-        data: state.dataReducer.data,
-        counter: state.counterReducer.counter
+      latitude: state.locationReducer.latitude,
+      longitude: state.locationReducer.longitude,
+      error: state.locationReducer.error
     }
 }
 
