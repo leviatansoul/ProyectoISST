@@ -1,16 +1,15 @@
 import { combineReducers } from 'redux';
 
-import { DATA_AVAILABLE, COUNTER_INC, LOCATION_UPDATE, PUT_DATA, REMOVE_DATA} from "../actions/" //Import the actions types constant we defined in our actions
+import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA} from "../actions/" //Import the actions types constant we defined in our actions
 
-let dataState = { data: [], loading:true, counter:0 };
+
 
 let locationState = { latitude: 0, longitude: 0, error: null };
 
 let pensamientosState = {id: 1, data: [], loading:true};
-
 let pensamientosLocState = {data:[
-  {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018'},
-  {id: 2, text: 'Mi segundo pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' },
+  {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude:40.3385100, longitude: -3.38045, date: '01/03/2018'},
+  {id: 2, text: 'Mi segundo pensamiento', autor: 'Mirella', latitude: 45.333333, longitude:-10.30000, date: '01/03/2018' },
   {id: 3, text: 'Mi tercer pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' },
   {id: 4, text: 'Mi cuarto pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' },
   {id: 5, text: 'Mi quinto pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018'},
@@ -28,6 +27,7 @@ let pensamientosLocState = {data:[
   {id: 17, text: 'Mi 17 pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' }
 ], loading:true};
 
+//ESTOS SON LOS QUE GUARDO Y LOS QUE ESCRIBO
 const pensamientosReducer = (state = pensamientosState, action) => {
     switch (action.type) {
 
@@ -48,6 +48,9 @@ const pensamientosReducer = (state = pensamientosState, action) => {
             return state;
     }
 };
+
+
+//ESTOS LOS GENERALES, QUE FILTRO POR LOCALIZACION
 const pensamientosLocReducer = (state = pensamientosLocState, action) => {
     switch (action.type) {
 
@@ -55,25 +58,8 @@ const pensamientosLocReducer = (state = pensamientosLocState, action) => {
             return state;
     }
 };
-const dataReducer = (state = dataState, action) => {
-    switch (action.type) {
-        case DATA_AVAILABLE:
-            state = Object.assign({}, state, { data: action.data, loading:false });
-            return state;
-        default:
-            return state;
-    }
-};
 
-const counterReducer = (state = dataState, action) => {
-  switch (action.type) {
-    case COUNTER_INC:
-      state = Object.assign({}, state, { counter: dataState.counter++ });
-      return state;
-    default:
-      return state;
-  }
-};
+
 
 const locationReducer = (state = locationState, action) => {
   switch (action.type) {
@@ -89,8 +75,6 @@ const locationReducer = (state = locationState, action) => {
 
 // Combine all the reducers
 const rootReducer = combineReducers({
-    dataReducer,
-    counterReducer,
     locationReducer,
     pensamientosReducer,
     pensamientosLocReducer

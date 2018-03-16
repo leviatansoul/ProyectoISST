@@ -47,7 +47,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
               this.props.navigation.navigate('DrawerOpen')}/>
           </Left>
           <Body>
-          <Title>Pensamientos</Title>
+          <Title>Mis pensamientos</Title>
           </Body>
           <Right />
         </Header>

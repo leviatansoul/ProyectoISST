@@ -3,15 +3,19 @@ import { View, Text, ListView} from 'react-native'
 import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import haversine from 'haversine-distance';
 
 import * as Actions from '../actions'; //Import your actions
 import Expo from 'expo'
 
 class HomeScreen extends Component {
 
+//haversine es un paquete para calcular distancias a partir de coordenadas npm install haversine-distance
+
+
   constructor (props) {
     super(props)
-    this.state = {
+    this.state = {pensamientosLoc: [],
       loading: true };
 this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
@@ -25,11 +29,34 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 
   async componentWillMount () {
+  await  navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+        this.props.updateLocation(position.coords.latitude, position.coords.longitude);
+        var pens = [];
+
+        this.props.pensamientosLoc.map((pensamiento) => {
+      if(haversine({lat: this.props.latitude, lon: this.props.longitude}, {lat: pensamiento.latitude, lon: pensamiento.longitude}) < 20000){
+      pens.push(pensamiento);
+        this.setState({pensamientosLoc: pens, loading: false});
+      }
+    })
+      },
+      (error) => {
+        console.log(error);
+    },
+      )
+
     await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
-    this.setState({loading: false})
+    //vemos que pensamientos estan a menos de 20 km (20000 metros) y los metemos en el estado de esta clase
+    //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
+    //probar a cambiar las latitudes y longitudes de los pensamientos definidos a unas cercanas a las vuestras para ver q os funciona
+
+
   }
 
 
@@ -52,7 +79,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         </Header>
 <Content scrollEnabled={true}>
   <List
-              dataSource={this.ds.cloneWithRows(this.props.pensamientosLoc)}
+              dataSource={this.ds.cloneWithRows(this.state.pensamientosLoc)}
               renderRow={data =>
                 <ListItem Rr>
 
@@ -85,8 +112,9 @@ function mapStateToProps(state, props) {
     return {
         loading: state.pensamientosLocReducer.loading,
         pensamientosLoc: state.pensamientosLocReducer.data,
-        pensamientos: state.pensamientosReducer.data
-
+        pensamientos: state.pensamientosReducer.data,
+        latitude: state.locationReducer.latitude,
+        longitude: state.locationReducer.longitude
     }
 }
 

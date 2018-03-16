@@ -4,14 +4,12 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import {  Container,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  Left,  Right,  Body,  Icon,  Input} from 'native-base'
 import store from './app/store'; //Import the store
-import PruebaRedux from './app/components/PruebaRedux' //Import the component file
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
 
 import ConfigurationScreen from './app/components/ConfigurationScreen'
 import PublicarScreen from './app/components/PublicarScreen'
 import HomeScreen from './app/components/HomeScreen'
 import PensamientosScreen from './app/components/PensamientosScreen'
-
 
 export default class App extends Component {
     render() {
@@ -39,10 +37,8 @@ const CustomDrawerContentComponent = (props) => (
 )
 
 const MyApp = DrawerNavigator({
-  PruebaRedux: {
-    screen: PruebaRedux
-  },
-  Home: {
+
+  Todos: {
     screen: HomeScreen
   },
   Publicar: {
@@ -51,12 +47,12 @@ const MyApp = DrawerNavigator({
   Configuracion: {
     screen: ConfigurationScreen
   },
-  Pensamientos: {
+  Guardados: {
     screen: PensamientosScreen
   },
 
 }, {
-  initialRouteName: 'PruebaRedux',
+  initialRouteName: 'Todos',
   drawerPosition: 'left',
   contentComponent: CustomDrawerContentComponent,
   drawerOpenRoute: 'DrawerOpen',
