@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux';
 
-import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA} from "../actions/" //Import the actions types constant we defined in our actions
+import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA} from "../actions/" //Import the actions types constant we defined in our actions
 
 
 
 let locationState = { latitude: 0, longitude: 0, error: null };
 
-let pensamientosState = {id: 1, data: [], loading:true};
-let pensamientosLocState = {data:[
+let misPensamientosState = {id: 1, data: [], loading:true};
+let pensamientosGuardadosState = {id: 1, data: [], loading:true};
+
+let pensamientosLocState = {id: 18, data:[
   {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude:40.3385100, longitude: -3.38045, date: '01/03/2018'},
   {id: 2, text: 'Mi segundo pensamiento', autor: 'Mirella', latitude: 45.333333, longitude:-10.30000, date: '01/03/2018' },
   {id: 3, text: 'Mi tercer pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' },
@@ -27,8 +29,8 @@ let pensamientosLocState = {data:[
   {id: 17, text: 'Mi 17 pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' }
 ], loading:true};
 
-//ESTOS SON LOS QUE GUARDO Y LOS QUE ESCRIBO
-const pensamientosReducer = (state = pensamientosState, action) => {
+//ESTOS SON LOS QUE ESCRIBO
+const misPensamientosReducer = (state = misPensamientosState, action) => {
     switch (action.type) {
 
        case PUT_DATA:
@@ -48,12 +50,40 @@ const pensamientosReducer = (state = pensamientosState, action) => {
             return state;
     }
 };
+//ESTOS SON LOS QUE GUARDO
+const pensamientosGuardadosReducer = (state = pensamientosGuardadosState, action) => {
+    switch (action.type) {
+
+       case SAVE_DATA:
+           newState = state.data;
+           pensamiento = action.item;
+           pensamiento.id = state.id;
+           newState.push(pensamiento);
+           state = Object.assign({}, state, { id: state.id++, data: newState, loading:false});
+           console.log(state);
+          return state;
+        case REMOVE_SAVED_DATA:
+
+        //newState = state.filter(elemento => state.indexOf(elemento)!=action.id);
+           state = Object.assign({}, state, { data: action.data, loading:false });
+              return state;
+        default:
+            return state;
+    }
+};
 
 
 //ESTOS LOS GENERALES, QUE FILTRO POR LOCALIZACION
 const pensamientosLocReducer = (state = pensamientosLocState, action) => {
     switch (action.type) {
-
+      case PUT_DATA:
+          newState = state.data;
+          pensamiento = action.item;
+          pensamiento.id = state.id;
+          newState.push(pensamiento);
+          state = Object.assign({}, state, { id: state.id++, data: newState, loading:false});
+          console.log(state);
+         return state;
         default:
             return state;
     }
@@ -76,7 +106,8 @@ const locationReducer = (state = locationState, action) => {
 // Combine all the reducers
 const rootReducer = combineReducers({
     locationReducer,
-    pensamientosReducer,
+    pensamientosGuardadosReducer,
+    misPensamientosReducer,
     pensamientosLocReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })

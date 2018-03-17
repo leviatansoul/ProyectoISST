@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
 
-class PensamientosScreen extends Component {
+class GuardadosScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -26,7 +26,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
    rowMap[`${secId}${rowId}`].props.closeRow();
    const newData = [...this.props.pensamientos];
    newData.splice(rowId, 1);
-  this.props.removeData(newData);
+  this.props.removeSavedData(newData);
  }
 
   async componentWillMount () {
@@ -47,7 +47,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
               this.props.navigation.navigate('DrawerOpen')}/>
           </Left>
           <Body>
-          <Title>Mis pensamientos</Title>
+          <Title>Guardados</Title>
           </Body>
           <Right />
         </Header>
@@ -89,8 +89,8 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
-        loading: state.misPensamientosReducer.loading,
-        pensamientos: state.misPensamientosReducer.data
+        loading: state.pensamientosGuardadosReducer.loading,
+        pensamientos: state.pensamientosGuardadosReducer.data
 
     }
 }
@@ -103,4 +103,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 //Connect everything
-export default connect(mapStateToProps, mapDispatchToProps)(PensamientosScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(GuardadosScreen);

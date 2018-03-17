@@ -10,6 +10,7 @@ import ConfigurationScreen from './app/components/ConfigurationScreen'
 import PublicarScreen from './app/components/PublicarScreen'
 import HomeScreen from './app/components/HomeScreen'
 import PensamientosScreen from './app/components/PensamientosScreen'
+import GuardadosScreen from './app/components/GuardadosScreen'
 
 export default class App extends Component {
     render() {
@@ -47,8 +48,13 @@ const MyApp = DrawerNavigator({
   Configuracion: {
     screen: ConfigurationScreen
   },
+  MisPensamientos: {
+    screen: PensamientosScreen,
+    navigationOptions: {
+    title: 'Mis Pensamientos'}
+  },
   Guardados: {
-    screen: PensamientosScreen
+    screen: GuardadosScreen
   },
 
 }, {

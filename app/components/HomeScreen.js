@@ -23,7 +23,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   appClick(visita) {
       let indice = this.props.pensamientosLoc.indexOf(visita);
       console.log(indice);
-      this.props.putData(visita);
+      this.props.saveData(visita);
 
   }
 
@@ -112,7 +112,7 @@ function mapStateToProps(state, props) {
     return {
         loading: state.pensamientosLocReducer.loading,
         pensamientosLoc: state.pensamientosLocReducer.data,
-        pensamientos: state.pensamientosReducer.data,
+//        pensamientos: state.pensamientosReducer.data,
         latitude: state.locationReducer.latitude,
         longitude: state.locationReducer.longitude
     }
