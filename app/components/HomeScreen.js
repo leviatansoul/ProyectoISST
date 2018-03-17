@@ -56,7 +56,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
     //probar a cambiar las latitudes y longitudes de los pensamientos definidos a unas cercanas a las vuestras para ver q os funciona
 
-
+    this.setState({loading: false})
   }
 
 
