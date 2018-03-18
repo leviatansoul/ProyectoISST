@@ -5,63 +5,38 @@ import { StyleSheet, Text, View } from 'react-native'
 import {  Container,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  Left,  Right,  Body,  Icon,  Input} from 'native-base'
 import store from './app/store'; //Import the store
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
+import { StackNavigator } from 'react-navigation';
 
 import ConfigurationScreen from './app/components/ConfigurationScreen'
 import PublicarScreen from './app/components/PublicarScreen'
 import HomeScreen from './app/components/HomeScreen'
 import PensamientosScreen from './app/components/PensamientosScreen'
 import GuardadosScreen from './app/components/GuardadosScreen'
+import SignInUp from './app/components/SignInUp';
+import MyDrawerNavigator from './app/components/MyDrawerNavigator';
+import Authentication from './app/components/Authentication';
+import Registration from './app/components/Registration';
 
 export default class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <MyApp />
+                <PrimaryNav />
             </Provider>
-        );
+    );
     }
 }
-const CustomDrawerContentComponent = (props) => (
-  <Container>
-      <Header style={{height: 200, backgroundColor: 'white'}}>
-          <Body>
-          <Text>Elige donde quieres ir</Text>
-          </Body>
-      </Header>
-      <Content>
-          <DrawerItems {...props}/>
 
 
-      </Content>
-
-  </Container>
-)
-
-const MyApp = DrawerNavigator({
-
-  Todos: {
-    screen: HomeScreen
-  },
-  Publicar: {
-    screen: PublicarScreen
-  },
-  Configuracion: {
-    screen: ConfigurationScreen
-  },
-  MisPensamientos: {
-    screen: PensamientosScreen,
-    navigationOptions: {
-    title: 'Mis Pensamientos'}
-  },
-  Guardados: {
-    screen: GuardadosScreen
-  },
-
+const PrimaryNav = StackNavigator({
+    signInUpStack: { screen: SignInUp },
+    authenticationShow: { screen: Authentication },
+    registrationShow: { screen: Registration },
+    navigatorStack: { screen: MyDrawerNavigator }
 }, {
-  initialRouteName: 'Todos',
-  drawerPosition: 'left',
-  contentComponent: CustomDrawerContentComponent,
-  drawerOpenRoute: 'DrawerOpen',
-  drawerCloseRoute: 'DrawerClose',
-  drawerToggleRoute: 'DrawerToggle'
+    // Default config for all screens
+    headerMode: 'none',
+    //title: 'Main',
+    initialRouteName: 'signInUpStack',
+    //transitionConfig: noTransitionConfig
 })
