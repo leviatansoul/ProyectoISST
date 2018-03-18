@@ -38,11 +38,11 @@ class Registration extends Component {
                         </Item>
                         <Item floatingLabel>
                             <Label>Contraseña</Label>
-                            <Input/>
+                            <Input secureTextEntry={true}/>
                         </Item>
                         <Item floatingLabel>
                             <Label>Repetir contraseña</Label>
-                            <Input/>
+                            <Input secureTextEntry={true}/>
                         </Item>
                         <Item floatingLabel>
                             <Label>Facebook (opcional)</Label>

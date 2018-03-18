@@ -27,7 +27,7 @@ class Authentication extends Component {
                         </Item>
                         <Item floatingLabel last>
                             <Label>Contraseña</Label>
-                            <Input />
+                            <Input secureTextEntry={true}/>
                         </Item>
                     </Form>
                 </Content>
