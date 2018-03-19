@@ -53,7 +53,7 @@ class PublicarScreen extends Component {
           </Body>
           <Right />
         </Header>
-
+        <Content padder>
         <Text>{this.props.latitude}</Text>
         <Text>{this.props.longitude}</Text>
         <Text>{this.props.error}</Text>
@@ -76,6 +76,7 @@ class PublicarScreen extends Component {
           this.props.putData(pensamiento);
         }}} title="Publicar"
   />
+</Content>
       <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 
