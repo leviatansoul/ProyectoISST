@@ -122,7 +122,8 @@ const rootReducer = combineReducers({
     locationReducer,
     pensamientosGuardadosReducer,
     misPensamientosReducer,
-    pensamientosLocReducer
+    pensamientosLocReducer,
+    footerReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
 

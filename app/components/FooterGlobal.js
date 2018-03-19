@@ -21,23 +21,23 @@ class FooterGlobal extends Component {
              this.props.updateFooter(1, this.props.navigation)
             }  active ={this.props.itemSelected === 1}>
 
-              <Icon name="eye" />
+              <Icon name="eye" active ={this.props.itemSelected === 1}/>
               <Text>Home</Text>
             </Button>
 
 
             <Button vertical onPress={() =>
               this.props.updateFooter(2, this.props.navigation)
-              }  active >
-              <Icon  name="chatboxes" active />
+            }  active ={this.props.itemSelected === 2} >
+              <Icon  name="chatboxes" active ={this.props.itemSelected === 2} />
               <Text>Publicar</Text>
             </Button>
 
             <Button vertical onPress={() =>
               this.props.updateFooter(3, this.props.navigation)}
               active ={this.props.itemSelected === 3}>
-              <Icon name="star-half" />
-              <Text>Pensamientos-</Text>
+              <Icon name="star-half" active ={this.props.itemSelected === 3} />
+              <Text>Pensamientos</Text>
             </Button>
 
 
@@ -53,7 +53,7 @@ class FooterGlobal extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    itemSelected: state.itemSelected
+    itemSelected: state.footerReducer.itemSelected
   }
 }
 
