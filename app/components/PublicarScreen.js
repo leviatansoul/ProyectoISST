@@ -76,8 +76,9 @@ class PublicarScreen extends Component {
           this.props.putData(pensamiento);
         }}} title="Publicar"
   />
-
+      <FooterGlobal navigation={this.props.navigation}/>
       </Container>
+
     )
   }
 }
