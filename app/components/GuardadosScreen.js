@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, ListView} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
+import { View, ListView} from 'react-native'
+import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -41,16 +41,7 @@ render () {
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
-        <Header>
-          <Left>
-            <Icon name="menu" onPress={() =>
-              this.props.navigation.navigate('DrawerOpen')}/>
-          </Left>
-          <Body>
-          <Title>Guardados</Title>
-          </Body>
-          <Right />
-        </Header>
+
         <Content scrollEnabled={true}>
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}

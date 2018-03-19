@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 
-import {  Container,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  Left,  Right,  Body,  Icon,  Input} from 'native-base'
+import {  Container, Text,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  Left,  Right,  Body,  Icon,  Input, Badge } from 'native-base'
 
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
 
@@ -15,7 +14,11 @@ import GuardadosScreen from './GuardadosScreen'
 export default class MyDrawerNavigator extends Component {
     render() {
         return (
-            <MyNavigator />
+          <Container>
+              <MyNavigator />
+
+          </Container>
+
     );
     }
 }
@@ -34,7 +37,7 @@ const CustomDrawerContentComponent = (props) => (
 )
 
 const MyNavigator = DrawerNavigator({
-    Todos: {
+    Home: {
         screen: HomeScreen
     },
     Publicar: {
@@ -43,14 +46,11 @@ const MyNavigator = DrawerNavigator({
     Configuracion: {
         screen: ConfigurationScreen
     },
-    MisPensamientos: {
+    Pensamientos: {
         screen: PensamientosScreen
-    },
-    Guardados: {
-        screen: GuardadosScreen
-    },
+    }
 }, {
-    initialRouteName: 'Todos',
+    initialRouteName: 'Home',
     drawerPosition: 'left',
     contentComponent: CustomDrawerContentComponent,
     drawerOpenRoute: 'DrawerOpen',

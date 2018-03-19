@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA} from "../actions/" //Import the actions types constant we defined in our actions
+import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER} from "../actions/" //Import the actions types constant we defined in our actions
 
 
 
@@ -8,6 +8,7 @@ let locationState = { latitude: 0, longitude: 0, error: null };
 
 let misPensamientosState = {id: 1, data: [], loading:true};
 let pensamientosGuardadosState = {id: 1, data: [], loading:true};
+let footerState = {itemSelected:1, badgeHome:0};
 
 let pensamientosLocState = {id: 18, data:[
   {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude:40.3385100, longitude: -3.38045, date: '01/03/2018'},
@@ -96,6 +97,19 @@ const locationReducer = (state = locationState, action) => {
     case LOCATION_UPDATE:
 
         state = Object.assign({}, state, { latitude: action.latitude, longitude: action.longitude, error: null,});
+
+      return state;
+    default:
+      return state;
+  }
+};
+
+
+const footerReducer = (state = footerState, action) => {
+  switch (action.type) {
+    case UPDATE_FOOTER:
+
+      state = Object.assign({}, state, { itemSelected: action.itemSelected});
 
       return state;
     default:

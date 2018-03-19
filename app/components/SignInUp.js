@@ -1,18 +1,37 @@
 import React, { Component } from 'react'
-import {View, Text, Alert, BackHandler} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, Form } from 'native-base'
+import {View,  Alert, BackHandler} from 'react-native'
+import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form } from 'native-base'
+import Expo from 'expo'
+
 
 class SignInUp extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      loading: true };
+  }
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
     }
 
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-    }
 
-    handleBackButton() {
+  async componentWillMount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+    })
+    //vemos que pensamientos estan a menos de 20 km (20000 metros) y los metemos en el estado de esta clase
+    //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
+    //probar a cambiar las latitudes y longitudes de los pensamientos definidos a unas cercanas a las vuestras para ver q os funciona
+
+    this.setState({loading: false})
+  }
+
+
+  handleBackButton() {
         Alert.alert(
             '¿Quieres salir de la aplicación?',
             '',
@@ -26,7 +45,9 @@ class SignInUp extends Component {
     }
 
     render () {
-
+      if (this.state.loading ) {
+        return <Expo.AppLoading />
+      }
         return (
             <Container>
                 <Header>

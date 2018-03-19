@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title } from 'native-base'
+import { View } from 'react-native'
+import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title } from 'native-base'
 
 class ConfigurationScreen extends Component {
   render () {

@@ -4,6 +4,7 @@ import { Icon, Container, Header,  Content, Left, Right, Body, Title} from 'nati
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
+import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions'; //Import your actions
 
@@ -45,8 +46,7 @@ class PublicarScreen extends Component {
       <Container>
         <Header>
           <Left>
-            <Icon name="menu" onPress={() =>
-              this.props.navigation.navigate('DrawerOpen')}/>
+
           </Left>
           <Body>
           <Title>Publicar</Title>
@@ -54,19 +54,23 @@ class PublicarScreen extends Component {
           <Right />
         </Header>
 
-        <Text>{this.props.latitude}</Text>
-        <Text>{this.props.longitude}</Text>
-        <Text>{this.props.error}</Text>
-        <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(text) => this.setState({pensamiento: text})}
-        placeholder='Escribe un pensamiento'/>
-      <Button onPress={() => {
-          pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
-          console.log(pensamiento);
-          this.props.putData(pensamiento);
-        }} title="Publicar"
-  />
+        <Content padder>
+          <Text>{this.props.latitude}</Text>
+          <Text>{this.props.longitude}</Text>
+          <Text>{this.props.error}</Text>
+          <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                     onChangeText={(text) => this.setState({pensamiento: text})}
+                     placeholder='Escribe un pensamiento'/>
+          <Button onPress={() => {
+            pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
+            console.log(pensamiento);
+            this.props.putData(pensamiento);
+          }} title="Publicar"
+          />
+        </Content>
 
+
+        <FooterGlobal navigation={this.props.navigation}/>
       </Container>
     )
   }
