@@ -4,6 +4,7 @@ export const PUT_DATA = 'PUT_DATA';
 export const SAVE_DATA = 'SAVE_DATA';
 export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
+export const UPDATE_FOOTER = "UPDATE_FOOTER";
 
 
 export function removeData(data){
@@ -51,6 +52,26 @@ return (dispatch) => {
 export function updateLocation(latitude,longitude){
   return (dispatch) => {
     dispatch({type: LOCATION_UPDATE, latitude: latitude, longitude: longitude});
+
+  };
+}
+
+export function updateFooter(itemSelected, navigation){
+  return (dispatch) => {
+
+    if(itemSelected === 1){
+      navigation.navigate('Home');
+    }
+
+    if(itemSelected === 2){
+      navigation.navigate('Publicar');
+    }
+
+    if(itemSelected === 3){
+      navigation.navigate('Pensamientos');
+    }
+
+    dispatch({type: UPDATE_FOOTER, itemSelected: itemSelected});
 
   };
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, ListView} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
+import { View,  ListView} from 'react-native'
+import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import haversine from 'haversine-distance';
+import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions'; //Import your actions
 import Expo from 'expo'
@@ -68,10 +69,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
         <Header>
-          <Left>
-            <Icon name="menu" onPress={() =>
-              this.props.navigation.navigate('DrawerOpen')}/>
-          </Left>
+
           <Body>
           <Title>HomeScreen</Title>
           </Body>
@@ -100,6 +98,8 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
               rightOpenValue={-75}
             />
 </Content>
+
+        <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 
     )

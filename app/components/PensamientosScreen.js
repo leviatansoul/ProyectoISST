@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, ListView} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List,Segment, ListItem } from 'native-base'
+import { View,  ListView} from 'react-native'
+import { Icon, Button, Text, Container, Header,  Content, Left, Right, Body, Title, List,Segment, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions'; //Import your actions
 import MisPensamientos from "./MisPensamientosScreen"
 import Guardados from "./GuardadosScreen"
+import FooterGlobal from "./FooterGlobal"
 
 
 class PensamientosScreen extends Component {
@@ -28,17 +29,13 @@ if(this.state.active === "1"){
 
     <Container>
       <Header>
-        <Left>
-          <Icon name="menu" onPress={() =>
-            this.props.navigation.navigate('DrawerOpen')}/>
-        </Left>
-        <Body>
+
         <Segment>
           <Button
             first active={this.state.active === "1"}
             onPress={() => this.setState({active:"1"})}
           >
-            <Text>MisPensamientos</Text>
+            <Text >Propios</Text>
           </Button>
           <Button
             last active={this.state.active === "2"}
@@ -47,16 +44,13 @@ if(this.state.active === "1"){
             <Text>Guardados</Text>
           </Button>
         </Segment>
-        </Body>
-        <Right>
-          <Button transparent>
-            <Icon name="search" />
-          </Button>
-        </Right>
+
+
       </Header>
       <Content >
         <MisPensamientos />
       </Content>
+      <FooterGlobal navigation={this.props.navigation}/>
     </Container>
   );
 }else {
@@ -65,17 +59,13 @@ if(this.state.active === "1"){
 
     <Container>
       <Header>
-        <Left>
-          <Icon name="menu" onPress={() =>
-            this.props.navigation.navigate('DrawerOpen')}/>
-        </Left>
-        <Body>
+
         <Segment>
           <Button
             first active={this.state.active === "1"}
             onPress={() => this.setState({active:"1"})}
           >
-            <Text>MisPensamientos</Text>
+            <Text>Propios</Text>
           </Button>
           <Button
             last active={this.state.active === "2"}
@@ -84,16 +74,11 @@ if(this.state.active === "1"){
             <Text>Guardados</Text>
           </Button>
         </Segment>
-        </Body>
-        <Right>
-          <Button transparent>
-            <Icon name="search" />
-          </Button>
-        </Right>
       </Header>
       <Content >
         <Guardados />
       </Content>
+      <FooterGlobal navigation={this.props.navigation}/>
     </Container>
   );
 }

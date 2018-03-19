@@ -31,11 +31,9 @@ class Authentication extends Component {
                         </Item>
                     </Form>
                 </Content>
-                <Footer>
-                    <Button transparent onPress={() => this.props.navigation.navigate('navigatorStack')}>
+                    <Button block onPress={() => this.props.navigation.navigate('navigatorStack')}>
                         <Text style={{color: 'white'}}>IDENTIFICARSE</Text>
                     </Button>
-                </Footer>
             </Container>
         );
     }
