@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
-import { View, Text } from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
+import { View } from 'react-native'
+import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 
 class Registration extends Component {

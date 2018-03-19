@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, ListView} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
+import { View, ListView} from 'react-native'
+import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
