@@ -4,7 +4,7 @@ import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA} fr
 
 
 
-let locationState = { latitude: 0, longitude: 0, error: null };
+let locationState = { latitude: null, longitude: null, error: null };
 
 let misPensamientosState = {id: 1, data: [], loading:true};
 let pensamientosGuardadosState = {id: 1, data: [], loading:true};

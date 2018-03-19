@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, ListView, Button } from 'react-native'
+import { View, Text, TextInput, ListView, Button, Alert } from 'react-native'
 import { Icon, Container, Header,  Content, Left, Right, Body, Title} from 'native-base'
 
 import {bindActionCreators} from 'redux';
@@ -61,10 +61,20 @@ class PublicarScreen extends Component {
         onChangeText={(text) => this.setState({pensamiento: text})}
         placeholder='Escribe un pensamiento'/>
       <Button onPress={() => {
+          if (this.props.latitude === null || this.props.longitude === null){
+              Alert.alert(
+                'Error',
+                'No se ha podido obtener la localización, comprueba que tienes el GPS activado.',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              )
+          } else {
           pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
           console.log(pensamiento);
           this.props.putData(pensamiento);
-        }} title="Publicar"
+        }}} title="Publicar"
   />
 
       </Container>
