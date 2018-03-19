@@ -41,16 +41,7 @@ render () {
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
-        <Header>
-          <Left>
-            <Icon name="menu" onPress={() =>
-              this.props.navigation.navigate('DrawerOpen')}/>
-          </Left>
-          <Body>
-          <Title>Guardados</Title>
-          </Body>
-          <Right />
-        </Header>
+
         <Content scrollEnabled={true}>
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}

@@ -1,87 +1,104 @@
 import React, { Component } from 'react'
 import { View, Text, ListView} from 'react-native'
-import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
+import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, List,Segment, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
+import MisPensamientos from "./MisPensamientosScreen"
+import Guardados from "./GuardadosScreen"
+
 
 class PensamientosScreen extends Component {
-  constructor (props) {
-    super(props)
+
+
+  constructor(props) {
+    super(props);
     this.state = {
-      loading: true};
-this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.appClick = this.appClick.bind(this);
-    this.deleteRow = this.deleteRow.bind(this);
-  }
-  appClick(visita) {
-      let indice = this.props.pensamientos.indexOf(visita);
-      console.log(indice);
-    //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
-
-  }
-  deleteRow(secId, rowId, rowMap) {
-   rowMap[`${secId}${rowId}`].props.closeRow();
-   const newData = [...this.props.pensamientos];
-   newData.splice(rowId, 1);
-  this.props.removeData(newData);
- }
-
-  async componentWillMount () {
-    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
-      'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
-    this.setState({loading: false})
+      active: '1'
+    };
   }
 
 render () {
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    return (
-      <Container>
-        <Header>
-          <Left>
-            <Icon name="menu" onPress={() =>
-              this.props.navigation.navigate('DrawerOpen')}/>
-          </Left>
-          <Body>
-          <Title>Mis pensamientos</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content scrollEnabled={true}>
-          <List
-                      dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
-                      renderRow={data =>
 
-                          //hay que hacer algo si no hay nada guardado
-                          <ListItem Rr>
-
-                          <Body>
-                            <Text>{data.text}</Text>
-                              </Body>
-                            <Right>
-                              <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
-                            </Right>
+if(this.state.active === "1"){
+  return (
 
 
-                        </ListItem>}
-                    //  renderLeftHiddenRow={data =>
-                      //  <Button full onPress={() => alert(data)}>
-                      //    <Icon active name="information-circle" />
-                        //</Button>}
-                      renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
-                          <Icon active name="trash" />
-                        </Button>}
-                      //leftOpenValue={75}
-                      rightOpenValue={-75}
-                    />
-        </Content>
-      </Container>
-    )
+    <Container>
+      <Header>
+        <Left>
+          <Icon name="menu" onPress={() =>
+            this.props.navigation.navigate('DrawerOpen')}/>
+        </Left>
+        <Body>
+        <Segment>
+          <Button
+            first active={this.state.active === "1"}
+            onPress={() => this.setState({active:"1"})}
+          >
+            <Text>MisPensamientos</Text>
+          </Button>
+          <Button
+            last active={this.state.active === "2"}
+            onPress={() => this.setState({active:"2"})}
+          >
+            <Text>Guardados</Text>
+          </Button>
+        </Segment>
+        </Body>
+        <Right>
+          <Button transparent>
+            <Icon name="search" />
+          </Button>
+        </Right>
+      </Header>
+      <Content >
+        <MisPensamientos />
+      </Content>
+    </Container>
+  );
+}else {
+  return (
+
+
+    <Container>
+      <Header>
+        <Left>
+          <Icon name="menu" onPress={() =>
+            this.props.navigation.navigate('DrawerOpen')}/>
+        </Left>
+        <Body>
+        <Segment>
+          <Button
+            first active={this.state.active === "1"}
+            onPress={() => this.setState({active:"1"})}
+          >
+            <Text>MisPensamientos</Text>
+          </Button>
+          <Button
+            last active={this.state.active === "2"}
+            onPress={() => this.setState({active:"2"})}
+          >
+            <Text>Guardados</Text>
+          </Button>
+        </Segment>
+        </Body>
+        <Right>
+          <Button transparent>
+            <Icon name="search" />
+          </Button>
+        </Right>
+      </Header>
+      <Content >
+        <Guardados />
+      </Content>
+    </Container>
+  );
+}
+
+
   }
 }
 // The function takes data from the app current state,

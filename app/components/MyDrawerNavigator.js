@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-import {  Container,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  Left,  Right,  Body,  Icon,  Input} from 'native-base'
+import {  Container,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  Left,  Right,  Body,  Icon,  Input, Badge } from 'native-base'
 
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
 
@@ -15,7 +15,36 @@ import GuardadosScreen from './GuardadosScreen'
 export default class MyDrawerNavigator extends Component {
     render() {
         return (
-            <MyNavigator />
+          <Container>
+              <MyNavigator />
+              <Footer>
+                  <FooterTab>
+
+
+                      <Button vertical badge >
+                          <Badge><Text>2</Text></Badge>
+                          <Icon name="eye" />
+                          <Text>Home</Text>
+                      </Button>
+
+
+                      <Button vertical>
+                          <Icon name="chatboxes" />
+                          <Text>Publicar</Text>
+                      </Button>
+
+                      <Button vertical>
+                          <Icon name="star-half" />
+                          <Text>Pensamientos-</Text>
+                      </Button>
+
+
+
+
+                  </FooterTab>
+              </Footer>
+          </Container>
+
     );
     }
 }
@@ -43,12 +72,9 @@ const MyNavigator = DrawerNavigator({
     Configuracion: {
         screen: ConfigurationScreen
     },
-    MisPensamientos: {
+    Pensamientos: {
         screen: PensamientosScreen
-    },
-    Guardados: {
-        screen: GuardadosScreen
-    },
+    }
 }, {
     initialRouteName: 'Todos',
     drawerPosition: 'left',
