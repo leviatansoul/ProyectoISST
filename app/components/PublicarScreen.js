@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, ListView, Button, Alert } from 'react-native'
-import { Icon, Container, Header,  Content, Left, Right, Body, Title} from 'native-base'
+import { View, TextInput, ListView, Alert } from 'react-native'
+import { Icon, Container, Header,  Content, Left, Right, Body, Title, Text, Button, Input} from 'native-base'
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -57,10 +57,9 @@ class PublicarScreen extends Component {
         <Text>{this.props.latitude}</Text>
         <Text>{this.props.longitude}</Text>
         <Text>{this.props.error}</Text>
-        <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(text) => this.setState({pensamiento: text})}
+        <Input onChangeText={(text) => this.setState({pensamiento: text})}
         placeholder='Escribe un pensamiento'/>
-      <Button onPress={() => {
+      <Button block onPress={() => {
           if (this.props.latitude === null || this.props.longitude === null){
               Alert.alert(
                 'Error',
@@ -74,8 +73,9 @@ class PublicarScreen extends Component {
           pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
           console.log(pensamiento);
           this.props.putData(pensamiento);
-        }}} title="Publicar"
-  />
+        }}}>
+        <Text>Publicar</Text>
+      </Button>
 </Content>
       <FooterGlobal navigation={this.props.navigation}/>
       </Container>

@@ -32,7 +32,7 @@ class Registration extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Text  style={{fontSize:20, color: 'white'}}>Registro</Text>
+                        <Title>Registro</Title>
                     </Body>
                 </Header>
                 <Content>
