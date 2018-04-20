@@ -16,7 +16,7 @@ class Authentication extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Text style={{fontSize:20, color: 'white'}}>Inicio de sesión</Text>
+                        <Title>Inicio de sesión</Title>
                     </Body>
                 </Header>
                 <Content>

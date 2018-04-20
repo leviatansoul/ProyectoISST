@@ -52,7 +52,7 @@ class SignInUp extends Component {
             <Container>
                 <Header>
                     <Body >
-                    <Text style={{fontSize:20, color: 'white'}}>PCG</Text>
+                    <Title>PCG</Title>
                     </Body>
                 </Header>
                 <View style={{flex:1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', paddingTop:40}}>
