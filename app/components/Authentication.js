@@ -22,7 +22,7 @@ class Authentication extends Component {
                 <Content>
                     <Form>
                         <Item floatingLabel>
-                            <Label>Usuario o correo electrónico</Label>
+                            <Label>Nick</Label>
                             <Input />
                         </Item>
                         <Item floatingLabel last>

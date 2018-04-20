@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+﻿import React, {Component, Fragment} from 'react'
 import { View } from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
@@ -18,8 +18,25 @@ class Registration extends Component {
             whatsapp: '',
 
         };
+        this.registrarUsuario = this.registrarUsuario.bind(this)
     }
+registrarUsuario(nickname, password){
 
+      var url = "http://192.168.1.49/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          console.log(data);
+          this.props.navigation.navigate('NavigatorStack');
+      });
+}
 
     render () {
 
@@ -71,7 +88,7 @@ class Registration extends Component {
                         </Item>
                     </Form>
                 </Content>
-                    <Button block onPress={() => this.props.navigation.navigate('signInUpStack')}>
+                    <Button block onPress={() => this.registrarUsuario(this.state.nickname, this.state.password)}>
                         <Text style={{color: 'white'}}>REGISTRARSE</Text>
                     </Button>
             </Container>

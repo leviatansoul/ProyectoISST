@@ -4,7 +4,7 @@ import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Titl
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import haversine from 'haversine-distance';
-import FooterGlobal from "./FooterGlobal"
+import FooterGlobal from "./FooterGlobal";
 
 import * as Actions from '../actions'; //Import your actions
 import Expo from 'expo'
@@ -88,8 +88,9 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
                     <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
                   </Right>
 
+                            </ListItem>
 
-              </ListItem>
+
               }
               renderRightHiddenRow={data =>
                 <Button full light onPress={() => this.appClick(data)}>
