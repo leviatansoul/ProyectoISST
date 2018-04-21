@@ -5,6 +5,37 @@ import PasswordInputText from 'react-native-hide-show-password-input';
 
 class Authentication extends Component {
 
+ constructor(props) {
+        super(props);
+         this.state = {
+            nickname: '',
+            password: '',};
+     this.autenticarUsuario = this.autenticarUsuario.bind(this)
+    }
+
+autenticarUsuario(nickname, password){
+
+      var url = "http://192.168.1.49/PCG/LoginServlet?nick="+nickname+"&password="+password;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          console.log(data);
+          if (data == "ok"){
+             
+         this.props.navigation.navigate('navigatorStack')
+      }
+      else
+      this.props.navigation.navigate('authenticationShow')
+      });
+}
+
     render () {
 
         return (
@@ -23,15 +54,15 @@ class Authentication extends Component {
                     <Form>
                         <Item floatingLabel>
                             <Label>Nick</Label>
-                            <Input />
+                            <Input onChangeText={(text) => this.setState({nickname: text})} />
                         </Item>
                         <Item floatingLabel last>
                             <Label>Contraseña</Label>
-                            <Input secureTextEntry={true}/>
+                            <Input secureTextEntry={true} onChangeText={(text) => this.setState({password: text})}/>
                         </Item>
                     </Form>
                 </Content>
-                    <Button block onPress={() => this.props.navigation.navigate('navigatorStack')}>
+                    <Button block onPress={() => this.autenticarUsuario(this.state.nickname, this.state.password)}>
                         <Text style={{color: 'white'}}>IDENTIFICARSE</Text>
                     </Button>
             </Container>

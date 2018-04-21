@@ -1,6 +1,6 @@
 ﻿import React, {Component, Fragment} from 'react'
-import { View } from 'react-native'
-import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
+import { View, ToastAndroid } from 'react-native'
+import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast} from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 
 class Registration extends Component {
@@ -16,12 +16,20 @@ class Registration extends Component {
             contraseña2: '',
             facebook: '',
             whatsapp: '',
+            showToast: false,
 
         };
         this.registrarUsuario = this.registrarUsuario.bind(this)
     }
-registrarUsuario(nickname, password){
+registrarUsuario(){
+    if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
+        this.setState({showToast: true});
+        
 
+    } 
+    else{ 
+password = this.state.contraseña1
+nickname = this.state.nickname
       var url = "http://192.168.1.49/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 console.log(url);
 
@@ -34,12 +42,21 @@ console.log(url);
       })
       .then((data)=> {
           console.log(data);
-          this.props.navigation.navigate('NavigatorStack');
+           if (data == "hello from server"){
+             
+         this.props.navigation.navigate('navigatorStack')
+      }
+       if (data == "already exists"){
+         console.log("ya esxiste el usuario")    
+         this.props.navigation.navigate('registrationShow')
+      }
+      else
+      this.props.navigation.navigate('registrationShow')
       });
-}
+}}
 
     render () {
-
+ 
         return (
             <Container>
                 <Header>
@@ -53,6 +70,7 @@ console.log(url);
                     </Body>
                 </Header>
                 <Content>
+                  
                     <Form>
                         <Item floatingLabel>
                             <Label>Nombre</Label>
@@ -87,10 +105,19 @@ console.log(url);
                             <Input onChangeText={(text) => this.setState({whatsapp: text})}/>
                         </Item>
                     </Form>
+<Toast
+            showToast={this.state.showToast}
+            buttonText="Okay"
+            buttonPress={()=> this.setState({
+              showToast: !this.state.showToast
+            })}
+            position="center">
+            <Text>Wrong password!</Text>
+          </Toast>
                 </Content>
-                    <Button block onPress={() => this.registrarUsuario(this.state.nickname, this.state.password)}>
-                        <Text style={{color: 'white'}}>REGISTRARSE</Text>
-                    </Button>
+                   <Button block onPress={() =>  this.registrarUsuario()}> 
+                    <Text style={{color: 'white'}}>REGISTRARSE</Text>
+                    </Button>   
             </Container>
         );
     }
