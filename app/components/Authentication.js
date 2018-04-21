@@ -15,11 +15,14 @@ class Authentication extends Component {
 
 autenticarUsuario(nickname, password){
 
-      var url = "http://192.168.1.49/PCG/LoginServlet?nick="+nickname+"&password="+password;
+  this.props.navigation.navigate('navigatorStack'); //BORRAR
+  /*
+      var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
 
   fetch(url)
       .then((response)=> {
+
           if (response.status >= 400) {
               throw new Error("Bad response from server");
           }
@@ -33,7 +36,7 @@ console.log(url);
       }
       else
       this.props.navigation.navigate('authenticationShow')
-      });
+      }); */
 }
 
     render () {

@@ -9,6 +9,7 @@ import PublicarScreen from './PublicarScreen'
 import HomeScreen from './HomeScreen'
 import PensamientosScreen from './PensamientosScreen'
 import GuardadosScreen from './GuardadosScreen'
+import ContactosScreen from './ContactosScreen'
 
 
 export default class MyDrawerNavigator extends Component {
@@ -48,6 +49,9 @@ const MyNavigator = DrawerNavigator({
     },
     Pensamientos: {
         screen: PensamientosScreen
+    },
+    Contactos: {
+        screen: ContactosScreen
     }
 }, {
     initialRouteName: 'Home',

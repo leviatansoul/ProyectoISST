@@ -5,6 +5,7 @@ export const SAVE_DATA = 'SAVE_DATA';
 export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
 export const UPDATE_FOOTER = "UPDATE_FOOTER";
+export const CONTACTOS_UPDATE = "CONTACTOS_UPDATE";
 
 
 export function removeData(data){
@@ -56,6 +57,33 @@ export function updateLocation(latitude,longitude){
   };
 }
 
+export function updateContactos(){
+
+  //Hacer peticiones asíncronas
+ /* var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
+  console.log(url);
+
+  fetch(url)
+    .then((response)=> {
+
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+    }) */
+
+
+
+  var data = [
+    {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'},{id: 2, nick: 'Diego Gallu', img: 'xxxx'}
+  ];
+
+  return (dispatch) => {
+    dispatch({type: CONTACTOS_UPDATE, data: data});
+
+  };
+}
+
 export function updateFooter(itemSelected, navigation){
   return (dispatch) => {
 
@@ -69,6 +97,10 @@ export function updateFooter(itemSelected, navigation){
 
     if(itemSelected === 3){
       navigation.navigate('Pensamientos');
+    }
+
+    if(itemSelected === 4){
+      navigation.navigate('Contactos');
     }
 
     dispatch({type: UPDATE_FOOTER, itemSelected: itemSelected});

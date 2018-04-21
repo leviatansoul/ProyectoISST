@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER} from "../actions/" //Import the actions types constant we defined in our actions
+import {LOCATION_UPDATE, PUT_DATA, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER, CONTACTOS_UPDATE} from "../actions/" //Import the actions types constant we defined in our actions
 
 
 
@@ -28,6 +28,10 @@ let pensamientosLocState = {id: 18, data:[
   {id: 15, text: 'Mi 15 pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' },
   {id: 16, text: 'Mi 16 pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' },
   {id: 17, text: 'Mi 17 pensamiento', autor: 'Mirella', latitude: 0, longitude: 0, date: '01/03/2018' }
+], loading:true};
+
+let ContactosState = {id: 18, data:[
+  {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'}
 ], loading:true};
 
 //ESTOS SON LOS QUE ESCRIBO
@@ -91,6 +95,20 @@ const pensamientosLocReducer = (state = pensamientosLocState, action) => {
 };
 
 
+//contactos
+const contactosReducer = (state = ContactosState, action) => {
+  switch (action.type) {
+    case CONTACTOS_UPDATE:
+
+      state = Object.assign({}, state, { id: state.id++, data: action.data, loading:false});
+      console.log(state);
+      return state;
+    default:
+      return state;
+  }
+};
+
+
 
 const locationReducer = (state = locationState, action) => {
   switch (action.type) {
@@ -123,6 +141,7 @@ const rootReducer = combineReducers({
     pensamientosGuardadosReducer,
     misPensamientosReducer,
     pensamientosLocReducer,
+    contactosReducer,
     footerReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
