@@ -9,8 +9,8 @@ let locationState = { latitude: null, longitude: null, error: null };
 let misPensamientosState = {id: 1, data: [], loading:true};
 let pensamientosGuardadosState = {id: 1, data: [], loading:true};
 let footerState = {itemSelected:1, badgeHome:0};
-let nicknameState = {nickname: "default"};
-let pensamientosLocState = { data:[ {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude:40.3385100, longitude: -3.38045, date: '01/03/2018'}]};
+let nicknameState = {nickname: ""};
+let pensamientosLocState = { data:[ {date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
 
 let ContactosState = {id: 18, data:[
   {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'}

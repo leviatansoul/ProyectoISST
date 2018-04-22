@@ -32,6 +32,7 @@ console.log(url);
       .then((data)=> {
           console.log(data);
           if (data == "ok"){
+            this.props.putNickname(nickname);
          this.props.navigation.navigate('navigatorStack')
       }
       else{

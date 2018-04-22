@@ -41,6 +41,7 @@ class PublicarScreen extends Component {
   }
 
   putData (pensamiento){
+    console.log("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic=default");
 fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic=default")
 
 .then((response)=> {

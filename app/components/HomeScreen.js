@@ -50,13 +50,12 @@ console.log(url);
       })
       .then((data)=> {
           console.log(data);
-          if (data == "ok"){
+         
+
           this.props.putData(data);
           this.setState({pensamientosLoc: this.props.pensamientosLoc, loading: false});
-      }
-      else
-      Console.log("error");
-      }); 
+     }
+      ); 
         /*var pens = [];
 
         this.props.pensamientosLoc.map((pensamiento) => {
@@ -129,6 +128,7 @@ console.log(url);
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+        nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosLocReducer.loading,
         pensamientosLoc: state.pensamientosLocReducer.data,
 //        pensamientos: state.pensamientosReducer.data,
