@@ -36,14 +36,37 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
         this.props.updateLocation(position.coords.latitude, position.coords.longitude);
-        var pens = [];
+
+          var url = "http://192.168.1.40/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          console.log(data);
+          if (data == "ok"){
+          this.props.putData(data);
+          this.setState({pensamientosLoc: this.props.pensamientosLoc, loading: false});
+      }
+      else
+      Console.log("error");
+      }); 
+        /*var pens = [];
 
         this.props.pensamientosLoc.map((pensamiento) => {
       if(haversine({lat: this.props.latitude, lon: this.props.longitude}, {lat: pensamiento.latitude, lon: pensamiento.longitude}) < 20000){
       pens.push(pensamiento);
         this.setState({pensamientosLoc: pens, loading: false});
       }
-    })
+    })*/
+
+
       },
       (error) => {
         console.log(error);

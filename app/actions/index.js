@@ -1,6 +1,7 @@
 
 export const REMOVE_DATA = 'REMOVE_DATA';
 export const PUT_DATA = 'PUT_DATA';
+export const PUT_NICKNAME = 'PUT_NICKNAME';
 export const SAVE_DATA = 'SAVE_DATA';
 export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
@@ -40,6 +41,14 @@ return (dispatch) => {
 
   };
 }
+export function putNickname(item){
+return (dispatch) => {
+
+ dispatch( {type: PUT_NICKNAME, item: item});
+
+
+  };
+  }
 export function saveData(item){
 return (dispatch) => {
 

@@ -1,5 +1,5 @@
 ﻿import React, {Component, Fragment} from 'react'
-import { View, ToastAndroid } from 'react-native'
+import { View, Alert  } from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast} from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 
@@ -30,18 +30,10 @@ registrarUsuario(){
     else{
 password = this.state.contraseña1
 nickname = this.state.nickname
-      /*var url = "http://192.168.1.49/PCG/RegistroServlet?nick="+nickname+"&password="+password;
-console.log(url);
-*/
 
-const requestOptions = {
-       method: 'POST',
-       headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({ nickname, password })
-   };
+ url = "http://192.168.1.40/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 
-/*  fetch(url) */
-fetch("http://192.168.1.49/PCG/RegistroServlet", requestOptions)
+ fetch(url)   
       .then((response)=> {
           if (response.status >= 400) {
               throw new Error("Bad response from server");
@@ -52,14 +44,18 @@ fetch("http://192.168.1.49/PCG/RegistroServlet", requestOptions)
           console.log(data);
            if (data == "hello from server"){
 
-         this.props.navigation.navigate('navigatorStack')
+             
+         this.props.navigation.navigate('authenticationShow')
       }
-       if (data == "already exists"){
-         console.log("ya esxiste el usuario")
+      else if (data == "already exists"){
+         console.log("ya esxiste el usuario")    
+
          this.props.navigation.navigate('registrationShow')
       }
-      else
-      this.props.navigation.navigate('registrationShow')
+      else {
+        this.props.navigation.navigate('registrationShow')
+      }
+      
       });
 }}
 
@@ -113,17 +109,23 @@ fetch("http://192.168.1.49/PCG/RegistroServlet", requestOptions)
                             <Input onChangeText={(text) => this.setState({whatsapp: text})}/>
                         </Item>
                     </Form>
-<Toast
-            showToast={this.state.showToast}
-            buttonText="Okay"
-            buttonPress={()=> this.setState({
-              showToast: !this.state.showToast
-            })}
-            position="center">
-            <Text>Wrong password!</Text>
-          </Toast>
+
                 </Content>
-                   <Button block onPress={() =>  this.registrarUsuario()}>
+
+                   <Button block onPress={() => {
+                  if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
+                   Alert.alert(
+                'Error',
+                'Nickname o campos de contraseñas sin rellenar',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              ) }
+                  else {
+                   this.registrarUsuario()} 
+                  }}> 
+
                     <Text style={{color: 'white'}}>REGISTRARSE</Text>
                     </Button>
             </Container>

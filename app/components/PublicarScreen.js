@@ -20,6 +20,7 @@ class PublicarScreen extends Component {
       autor: 'Autor',
       tema:"General"
     };
+   this.putData = this.putData.bind(this)
 }
 
 onValueChange(value: string) {
@@ -42,6 +43,19 @@ onValueChange(value: string) {
   },
     );
 
+
+  }
+
+  putData (pensamiento){
+fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+
+.then((response)=> {
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          console.log(response.json())
+
+      });
 
   }
 
@@ -108,6 +122,7 @@ onValueChange(value: string) {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+      nickname: state.nicknameReducer.nickname,
       latitude: state.locationReducer.latitude,
       longitude: state.locationReducer.longitude,
       error: state.locationReducer.error

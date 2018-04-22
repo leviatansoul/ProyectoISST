@@ -1,6 +1,7 @@
 
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
 export const PUT_DATA = 'PUT DATA';
+export const PUT_NICKNAME = "PUT_NICKNAME";
 export const REMOVE_DATA = 'REMOVE_DATA';
 export const PUT_MI_DATA = 'PUT_MI_DATA';
 export const REMOVE_MI_DATA = 'REMOVE_MI_DATA';
