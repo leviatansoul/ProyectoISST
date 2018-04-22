@@ -104,9 +104,8 @@ fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="
             { cancelable: false }
           )
       } else {
-      pensamiento = {text: this.state.pensamiento, autor: this.state.autor, tema: this.state.tema, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
-      console.log(pensamiento);
-      this.props.putData(pensamiento);
+      pensamiento = {text: this.state.pensamiento, autor: this.props.nickname, tema: this.state.tema, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
+      this.putData(pensamiento);
     }}}>
     <Text>Publicar</Text>
   </Button>
