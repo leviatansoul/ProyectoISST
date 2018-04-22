@@ -50,7 +50,7 @@ class MisPensamientosScreen extends Component {
 
               //hay que hacer algo si no hay nada guardado
 
-              <Pensamiento autor={data.autor} text={data.text}/>
+              <Pensamiento autor={data.autor} text={data.text} enabled={true} like={false}/>
             }
             //  renderLeftHiddenRow={data =>
             //  <Button full onPress={() => alert(data)}>

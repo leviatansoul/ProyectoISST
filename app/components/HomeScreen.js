@@ -60,12 +60,12 @@ console.log(url);
       })
       .then((data)=> {
           console.log(data);
-         
+
 
           this.props.putData(data);
           this.setState({pensamientosLoc: this.props.pensamientosLoc, loading: false});
      }
-      ); 
+      );
         /*var pens = [];
 
         this.props.pensamientosLoc.map((pensamiento) => {
@@ -114,7 +114,7 @@ console.log(url);
               renderRow={data =>
 
 
-                <Pensamiento autor={data.autor} text={data.text}/>
+                <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={false}/>
 
 
 

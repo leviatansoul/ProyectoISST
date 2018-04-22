@@ -19,6 +19,7 @@ class Authentication extends Component {
 
 
 autenticarUsuario(nickname, password){
+ // this.props.navigation.navigate('navigatorStack'); POR SI NO FUNCIONA EL FETCH
 
       var url = "http://192.168.1.49/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);

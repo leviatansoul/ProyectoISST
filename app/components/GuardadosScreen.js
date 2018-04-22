@@ -70,7 +70,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
                           //hay que hacer algo si no hay nada guardado
 
-                        <Pensamiento autor={data.autor} text={data.text}/>
+                        <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={true}/>
                       }
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
