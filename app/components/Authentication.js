@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 import {bindActionCreators} from 'redux';
@@ -19,7 +19,7 @@ class Authentication extends Component {
 
 
 autenticarUsuario(nickname, password){
-  
+
       var url = "http://192.168.1.40/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
   fetch(url)
@@ -35,10 +35,10 @@ console.log(url);
          this.props.navigation.navigate('navigatorStack')
       }
       else{
-       this.props.navigation.navigate('authenticationShow') 
+       this.props.navigation.navigate('authenticationShow')
       }
-      
-      }); 
+
+      });
       }
       /*const requestOptions = {
               method: 'POST',
@@ -61,9 +61,9 @@ console.log(url);
              this.props.navigation.navigate('navigatorStack')
           }
           else
-          this.props.navigation.navigate('authenticationShow') 
+          this.props.navigation.navigate('authenticationShow')
               });*/
-        
+
 
     render () {
 
@@ -100,7 +100,7 @@ console.log(url);
                   {text: 'OK', onPress: () => console.log('OK Pressed')},
                 ],
                 { cancelable: false }
-              ) 
+              )
                       }
                       else {
                         this.autenticarUsuario(this.state.nickname, this.state.password)
