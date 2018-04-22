@@ -49,6 +49,8 @@ onValueChange(value: string) {
   putData (pensamiento){
 
 
+//this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
+    
 fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
 
 
