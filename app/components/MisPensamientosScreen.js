@@ -5,7 +5,8 @@ import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 
-import * as Actions from '../actions'; //Import your actions
+import * as Actions from '../actions';
+import Pensamiento from './Pensamiento' //Import your actions
 
 class MisPensamientosScreen extends Component {
   constructor (props) {
@@ -48,17 +49,9 @@ class MisPensamientosScreen extends Component {
             renderRow={data =>
 
               //hay que hacer algo si no hay nada guardado
-              <ListItem Rr>
 
-                <Body>
-                <Text>{data.text}</Text>
-                </Body>
-                <Right>
-                  <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
-                </Right>
-
-
-              </ListItem>}
+              <Pensamiento autor={data.autor} text={data.text}/>
+            }
             //  renderLeftHiddenRow={data =>
             //  <Button full onPress={() => alert(data)}>
             //    <Icon active name="information-circle" />

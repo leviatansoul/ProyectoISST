@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
 
+import Pensamiento from './Pensamiento'
+
 class GuardadosScreen extends Component {
   constructor (props) {
     super(props)
@@ -48,17 +50,9 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
                       renderRow={data =>
 
                           //hay que hacer algo si no hay nada guardado
-                          <ListItem Rr>
 
-                          <Body>
-                            <Text>{data.text}</Text>
-                              </Body>
-                            <Right>
-                              <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
-                            </Right>
-
-
-                        </ListItem>}
+                        <Pensamiento autor={data.autor} text={data.text}/>
+                      }
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />
