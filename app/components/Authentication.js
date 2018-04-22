@@ -17,10 +17,10 @@ class Authentication extends Component {
      this.autenticarUsuario = this.autenticarUsuario.bind(this)
     }
 
-autenticarUsuario(nickname, password){
 
-  /*
-      var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
+autenticarUsuario(nickname, password){
+  
+      var url = "http://192.168.1.40/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
   fetch(url)
       .then((response)=> {
@@ -34,13 +34,16 @@ console.log(url);
           if (data == "ok"){
          this.props.navigation.navigate('navigatorStack')
       }
-      else
-      this.props.navigation.navigate('authenticationShow')
-      }); */
-      const requestOptions = {
+      else{
+       this.props.navigation.navigate('authenticationShow') 
+      }
+      
+      }); 
+      }
+      /*const requestOptions = {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ nickname, password })
+              body: { 'nickname': nickname, 'password': password }
           };
 
           return fetch('http://192.168.1.40/PCG/LoginServlet', requestOptions)
@@ -58,8 +61,9 @@ console.log(url);
              this.props.navigation.navigate('navigatorStack')
           }
           else
-          this.props.navigation.navigate('authenticationShow')
-              });
+          this.props.navigation.navigate('authenticationShow') 
+              });*/
+        
 
     render () {
 
@@ -87,7 +91,22 @@ console.log(url);
                         </Item>
                     </Form>
                 </Content>
-                    <Button block onPress={() => this.autenticarUsuario(this.state.nickname, this.state.password)}>
+                    <Button block onPress={() =>{
+                      if (this.state.nickname == "" || this.state.password == ""){
+                         Alert.alert(
+                'Error',
+                'Nickname o password sin rellenar',
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              ) 
+                      }
+                      else {
+                        this.autenticarUsuario(this.state.nickname, this.state.password)
+                      }
+
+                    } }>
                         <Text style={{color: 'white'}}>IDENTIFICARSE</Text>
                     </Button>
             </Container>

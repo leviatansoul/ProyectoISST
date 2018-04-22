@@ -31,15 +31,9 @@ registrarUsuario(){
 password = this.state.contraseña1
 nickname = this.state.nickname
 
+ url = "http://192.168.1.40/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 
-const requestOptions = {
-       method: 'POST',
-       headers: { 'Content-Type': 'application/json' },
-       body: JSON.stringify({ nickname, password })
-   };
-
-/*  fetch(url) */
-fetch("http://192.168.1.40/PCG/RegistroServlet", requestOptions)
+ fetch(url)   
       .then((response)=> {
           if (response.status >= 400) {
               throw new Error("Bad response from server");

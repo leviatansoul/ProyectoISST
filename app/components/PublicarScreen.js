@@ -41,23 +41,9 @@ class PublicarScreen extends Component {
   }
 
   putData (pensamiento){
-fetch("http://192.168.1.40/PCG/PublicarServlet", {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    'nickname': pensamiento.autor,
-     'text': pensamiento.text,
-     'lat': pensamiento.latitude,
-     'lon': pensamiento.longitude,
-     'topic': "VACIO",
-     'date': String.valueOf(pensamiento.date),
-  }),
+fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic=default")
 
-}).then((response)=> {
-    console.log(body)
+.then((response)=> {
           if (response.status >= 400) {
               throw new Error("Bad response from server");
           }
