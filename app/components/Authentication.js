@@ -31,12 +31,36 @@ console.log(url);
       .then((data)=> {
           console.log(data);
           if (data == "ok"){
-             
+
          this.props.navigation.navigate('navigatorStack')
       }
       else
       this.props.navigation.navigate('authenticationShow')
       }); */
+      const requestOptions = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ nickname, password })
+          };
+
+          return fetch('http://192.168.1.137/PCG/LoginServlet', requestOptions)
+          .then((response)=> {
+
+              if (response.status >= 400) {
+                  throw new Error("Bad response from server");
+              }
+              return response.json();
+          })
+          .then((data)=> {
+              console.log(data);
+              if (data == "ok"){
+
+             this.props.navigation.navigate('navigatorStack')
+          }
+          else
+          this.props.navigation.navigate('authenticationShow')
+              });
+
 }
 
     render () {
