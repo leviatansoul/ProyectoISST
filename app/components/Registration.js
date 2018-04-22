@@ -24,16 +24,22 @@ class Registration extends Component {
 registrarUsuario(){
     if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
         this.setState({showToast: true});
-        
 
-    } 
-    else{ 
+
+    }
+    else{
 password = this.state.contraseña1
 nickname = this.state.nickname
-      var url = "http://192.168.1.40/PCG/RegistroServlet?nick="+nickname+"&password="+password;
-console.log(url);
 
-  fetch(url)
+
+const requestOptions = {
+       method: 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ nickname, password })
+   };
+
+/*  fetch(url) */
+fetch("http://192.168.1.40/PCG/RegistroServlet", requestOptions)
       .then((response)=> {
           if (response.status >= 400) {
               throw new Error("Bad response from server");
@@ -43,11 +49,13 @@ console.log(url);
       .then((data)=> {
           console.log(data);
            if (data == "hello from server"){
+
              
          this.props.navigation.navigate('authenticationShow')
       }
       else if (data == "already exists"){
          console.log("ya esxiste el usuario")    
+
          this.props.navigation.navigate('registrationShow')
       }
       else {
@@ -58,7 +66,7 @@ console.log(url);
 }}
 
     render () {
- 
+
         return (
             <Container>
                 <Header>
@@ -72,7 +80,7 @@ console.log(url);
                     </Body>
                 </Header>
                 <Content>
-                  
+
                     <Form>
                         <Item floatingLabel>
                             <Label>Nombre</Label>
@@ -109,6 +117,7 @@ console.log(url);
                     </Form>
 
                 </Content>
+
                    <Button block onPress={() => {
                   if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
                    Alert.alert(
@@ -122,8 +131,9 @@ console.log(url);
                   else {
                    this.registrarUsuario()} 
                   }}> 
+
                     <Text style={{color: 'white'}}>REGISTRARSE</Text>
-                    </Button>   
+                    </Button>
             </Container>
         );
     }
