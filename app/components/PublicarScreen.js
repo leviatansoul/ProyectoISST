@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, TextInput, ListView, Alert } from 'react-native'
-import { Icon, Container, Header,  Content, Left, Right, Body, Title, Text, Button, Input} from 'native-base'
+import { View, TextInput, ListView, Alert, Picker } from 'react-native'
+import { Icon, Container, Header,  Content, Left, Right, Body, Title, Text, Button, Input, Footer} from 'native-base'
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -17,10 +17,16 @@ class PublicarScreen extends Component {
     super(props);
     this.state = {
       pensamiento: null,
-      autor: 'Autor'
+      autor: 'Autor',
+      tema:"General"
     };
 }
 
+onValueChange(value: string) {
+  this.setState({
+    tema: value
+  });
+}
 
   componentDidMount() {
 
@@ -54,29 +60,43 @@ class PublicarScreen extends Component {
           <Right />
         </Header>
         <Content padder>
-        <Text>{this.props.latitude}</Text>
-        <Text>{this.props.longitude}</Text>
-        <Text>{this.props.error}</Text>
+      <Text>{this.props.latitude}</Text>
+      <Text>{this.props.longitude}</Text>
+      <Text>{this.props.error}</Text>
+          <Picker
+                iosHeader="Temas"
+                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                headerBackButtonText="Volver"
+                mode="dropdown"
+                selectedValue={this.state.tema}
+                onValueChange={this.onValueChange.bind(this)}
+              >
+                <Picker.Item label="General" value="General" />
+                <Picker.Item label="Humor" value="Humor" />
+                <Picker.Item label="Aficiones" value="Aficiones" />
+                <Picker.Item label="Tecnología" value="Tecnología" />
+              </Picker>
         <Input onChangeText={(text) => this.setState({pensamiento: text})}
         placeholder='Escribe un pensamiento'/>
-      <Button block onPress={() => {
-          if (this.props.latitude === null || this.props.longitude === null){
-              Alert.alert(
-                'Error',
-                'No se ha podido obtener la localización, comprueba que tienes el GPS activado.',
-                [
-                  {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ],
-                { cancelable: false }
-              )
-          } else {
-          pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
-          console.log(pensamiento);
-          this.props.putData(pensamiento);
-        }}}>
-        <Text>Publicar</Text>
-      </Button>
 </Content>
+  <Button block onPress={() => {
+      if (this.props.latitude === null || this.props.longitude === null){
+          Alert.alert(
+            'Error',
+            'No se ha podido obtener la localización, comprueba que tienes el GPS activado.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+      } else {
+      pensamiento = {text: this.state.pensamiento, autor: this.state.autor, tema: this.state.tema, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
+      console.log(pensamiento);
+      this.props.putData(pensamiento);
+    }}}>
+    <Text>Publicar</Text>
+  </Button>
+
       <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 
