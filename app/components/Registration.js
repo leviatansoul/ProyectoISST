@@ -31,7 +31,7 @@ registrarUsuario(){
 password = this.state.contraseña1
 nickname = this.state.nickname
 
- url = "http://192.168.1.40/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+ url = "http://192.168.1.49/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 
  fetch(url)   
       .then((response)=> {

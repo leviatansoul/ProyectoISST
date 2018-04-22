@@ -36,6 +36,25 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
+
+      var url = "http://192.168.1.49/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          console.log(data);
+         
+
+          this.props.saveData(data);
+         }
+      ); 
     this.setState({loading: false})
   }
 
@@ -74,6 +93,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+        nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosGuardadosReducer.loading,
         pensamientos: state.pensamientosGuardadosReducer.data
 

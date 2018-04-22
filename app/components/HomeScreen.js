@@ -22,10 +22,20 @@ class HomeScreen extends Component {
 this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
   }
-  appClick(visita) {
-      let indice = this.props.pensamientosLoc.indexOf(visita);
-      console.log(indice);
-      this.props.saveData(visita);
+  appClick(data) {
+
+    fetch("http://192.168.1.49/PCG/GuardarPensamientoServlet?nick="+this.props.nickname+"&pensId="+data.id)
+
+
+.then((response)=> {
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          console.log("ok")
+      });
+
+  
+      
 
   }
 
@@ -37,7 +47,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         console.log(position.coords.longitude);
         this.props.updateLocation(position.coords.latitude, position.coords.longitude);
 
-          var url = "http://192.168.1.40/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
+          var url = "http://192.168.1.49/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
 console.log(url);
 
   fetch(url)

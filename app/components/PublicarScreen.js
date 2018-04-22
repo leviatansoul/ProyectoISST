@@ -49,7 +49,7 @@ onValueChange(value: string) {
   putData (pensamiento){
 
 
-fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+fetch("http://192.168.1.49/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
 
 
 .then((response)=> {

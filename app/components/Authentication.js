@@ -20,7 +20,7 @@ class Authentication extends Component {
 
 autenticarUsuario(nickname, password){
 
-      var url = "http://192.168.1.40/PCG/LoginServlet?nick="+nickname+"&password="+password;
+      var url = "http://192.168.1.49/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
   fetch(url)
       .then((response)=> {

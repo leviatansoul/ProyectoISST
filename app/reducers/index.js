@@ -6,11 +6,11 @@ import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA, SAVE_DATA, REMOVE_
 
 let locationState = { latitude: null, longitude: null, error: null };
 
-let misPensamientosState = {id: 1, data: [], loading:true};
-let pensamientosGuardadosState = {id: 1, data: [], loading:true};
+let misPensamientosState = { data:[{id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
+let pensamientosGuardadosState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
 let footerState = {itemSelected:1, badgeHome:0};
 let nicknameState = {nickname: ""};
-let pensamientosLocState = { data:[ {date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
+let pensamientosLocState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
 
 let ContactosState = {id: 18, data:[
   {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'}
@@ -35,11 +35,8 @@ const misPensamientosReducer = (state = misPensamientosState, action) => {
     switch (action.type) {
 
        case PUT_DATA:
-           newState = state.data;
-           pensamiento = action.item;
-           pensamiento.id = state.id;
-           newState.push(pensamiento);
-           state = Object.assign({}, state, { id: state.id++, data: newState, loading:false});
+           newState = action.item;
+          state = Object.assign({}, state, { data: newState});
            console.log(state);
           return state;
         case REMOVE_DATA:
@@ -56,11 +53,9 @@ const pensamientosGuardadosReducer = (state = pensamientosGuardadosState, action
     switch (action.type) {
 
        case SAVE_DATA:
-           newState = state.data;
-           pensamiento = action.item;
-           pensamiento.id = state.id;
-           newState.push(pensamiento);
-           state = Object.assign({}, state, { id: state.id++, data: newState, loading:false});
+           
+           newState = action.item;
+           state = Object.assign({}, state, { data: newState});
            console.log(state);
           return state;
         case REMOVE_SAVED_DATA:
