@@ -19,6 +19,7 @@ class PublicarScreen extends Component {
       pensamiento: null,
       autor: 'Autor'
     };
+   this.putData = this.putData.bind(this)
 }
 
 
@@ -36,6 +37,33 @@ class PublicarScreen extends Component {
   },
     );
 
+
+  }
+
+  putData (pensamiento){
+fetch("http://192.168.1.40/PCG/PublicarServlet", {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    'nickname': pensamiento.autor,
+     'text': pensamiento.text,
+     'lat': pensamiento.latitude,
+     'lon': pensamiento.longitude,
+     'topic': "VACIO",
+     'date': String.valueOf(pensamiento.date),
+  }),
+
+}).then((response)=> {
+    console.log(body)
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          console.log(response.json())
+          
+      });
 
   }
 
@@ -70,9 +98,9 @@ class PublicarScreen extends Component {
                 { cancelable: false }
               )
           } else {
-          pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
-          console.log(pensamiento);
-          this.props.putData(pensamiento);
+          pensamiento = {text: this.state.pensamiento, autor: this.props.nickname, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
+          
+          this.putData(pensamiento);
         }}}>
         <Text>Publicar</Text>
       </Button>
@@ -88,6 +116,7 @@ class PublicarScreen extends Component {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+      nickname: state.nicknameReducer.nickname,
       latitude: state.locationReducer.latitude,
       longitude: state.locationReducer.longitude,
       error: state.locationReducer.error

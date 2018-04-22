@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions'; //Import your actions
+
 
 class Authentication extends Component {
 
@@ -15,9 +19,8 @@ class Authentication extends Component {
 
 autenticarUsuario(nickname, password){
 
-  this.props.navigation.navigate('navigatorStack'); //BORRAR
-  /*
-      var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
+ 
+      var url = "http://192.168.1.40/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
 
   fetch(url)
@@ -31,12 +34,12 @@ console.log(url);
       .then((data)=> {
           console.log(data);
           if (data == "ok"){
-             
+           this.props.putNickname(this.state.nickname)  
          this.props.navigation.navigate('navigatorStack')
       }
       else
       this.props.navigation.navigate('authenticationShow')
-      }); */
+      }); 
 }
 
     render () {
@@ -73,4 +76,18 @@ console.log(url);
     }
 }
 
-export default Authentication
+function mapStateToProps(state, props) {
+    return {
+      nickname: state.nicknameReducer.nickname
+    }
+}
+
+// Doing this merges our actions into the component’s props,
+// while wrapping them in dispatch() so that they immediately dispatch an Action.
+// Just by doing this, we will have access to the actions defined in out actions file (action/PruebaRedux.js)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Actions, dispatch);
+}
+
+//Connect everything
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication);
