@@ -24,11 +24,26 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
 
   }
-  deleteRow(secId, rowId, rowMap) {
+  deleteRow(secId, rowId, rowMap, data) {
    rowMap[`${secId}${rowId}`].props.closeRow();
    const newData = [...this.props.pensamientos];
    newData.splice(rowId, 1);
   this.props.removeSavedData(newData);
+
+  fetch("http://192.168.56.101:8080/PCG/BorrarPensamientosGuardadosServlet?nick="+this.props.nickname+"&pensId="+data.id)
+
+
+.then((response)=> {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        console.log("ok")
+    });
+
+
+
+
+
  }
 
   async componentWillMount () {
@@ -77,7 +92,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
                       //    <Icon active name="information-circle" />
                         //</Button>}
                       renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap, data)}>
                           <Icon active name="trash" />
                         </Button>}
                       //leftOpenValue={75}
