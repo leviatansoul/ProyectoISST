@@ -42,7 +42,7 @@ const misPensamientosReducer = (state = misPensamientosState, action) => {
         case REMOVE_DATA:
 
         //newState = state.filter(elemento => state.indexOf(elemento)!=action.id);
-           state = Object.assign({}, state, { data: action.data, loading:false });
+           state = Object.assign({}, state, { data: action.data });
               return state;
         default:
             return state;
@@ -61,7 +61,7 @@ const pensamientosGuardadosReducer = (state = pensamientosGuardadosState, action
         case REMOVE_SAVED_DATA:
 
         //newState = state.filter(elemento => state.indexOf(elemento)!=action.id);
-           state = Object.assign({}, state, { data: action.data, loading:false });
+           state = Object.assign({}, state, { data: action.data});
               return state;
         default:
             return state;
