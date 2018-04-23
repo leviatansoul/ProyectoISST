@@ -31,9 +31,9 @@ registrarUsuario(){
 password = this.state.contraseña1
 nickname = this.state.nickname
 
- url = "http://192.168.1.49/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+ url = "http://192.168.56.101:8080/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 
- fetch(url)   
+ fetch(url)
       .then((response)=> {
           if (response.status >= 400) {
               throw new Error("Bad response from server");
@@ -44,18 +44,18 @@ nickname = this.state.nickname
           console.log(data);
            if (data == "hello from server"){
 
-             
+
          this.props.navigation.navigate('authenticationShow')
       }
       else if (data == "already exists"){
-         console.log("ya esxiste el usuario")    
+         console.log("ya esxiste el usuario")
 
          this.props.navigation.navigate('registrationShow')
       }
       else {
         this.props.navigation.navigate('registrationShow')
       }
-      
+
       });
 }}
 
@@ -123,8 +123,8 @@ nickname = this.state.nickname
                 { cancelable: false }
               ) }
                   else {
-                   this.registrarUsuario()} 
-                  }}> 
+                   this.registrarUsuario()}
+                  }}>
 
                     <Text style={{color: 'white'}}>REGISTRARSE</Text>
                     </Button>

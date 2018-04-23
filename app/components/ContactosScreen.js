@@ -15,14 +15,35 @@ class ContactosScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    };
+      loading: true};
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
     this.deleteRow = this.deleteRow.bind(this);
   }
 
   async componentWillMount () {
-    this.props.updateContactos();
+
+    var url = "http://192.168.56.101:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+    console.log(url);
+
+    fetch(url)
+    .then((response)=> {
+
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+    })
+    .then((data)=> {
+        console.log(data);
+
+        this.props.updateContactos(data);
+
+       }
+     );
+     this.setState({loading: false})
+
+
   }
 
   appClick(visita) {

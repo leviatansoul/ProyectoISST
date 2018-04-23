@@ -24,7 +24,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
   appClick(data) {
 
-    fetch("http://192.168.1.49/PCG/GuardarPensamientoServlet?nick="+this.props.nickname+"&pensId="+data.id)
+    fetch("http://192.168.56.101:8080/PCG/GuardarPensamientoServlet?nick="+this.props.nickname+"&pensId="+data.id)
 
 
 .then((response)=> {
@@ -34,8 +34,8 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
           console.log("ok")
       });
 
-  
-      
+
+
 
   }
 
@@ -47,7 +47,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         console.log(position.coords.longitude);
         this.props.updateLocation(position.coords.latitude, position.coords.longitude);
 
-          var url = "http://192.168.1.49/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
+          var url = "http://192.168.56.101:8080/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
 console.log(url);
 
   fetch(url)

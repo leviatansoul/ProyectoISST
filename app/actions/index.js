@@ -66,7 +66,7 @@ export function updateLocation(latitude,longitude){
   };
 }
 
-export function updateContactos(){
+export function updateContactos(data){
 
   //Hacer peticiones asíncronas
  /* var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
@@ -82,11 +82,11 @@ export function updateContactos(){
     }) */
 
 
-
+/*
   var data = [
     {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'},{id: 2, nick: 'Diego Gallu', img: 'xxxx'}
   ];
-
+*/
   return (dispatch) => {
     dispatch({type: CONTACTOS_UPDATE, data: data});
 

@@ -37,7 +37,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
 
-      var url = "http://192.168.1.49/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+      var url = "http://192.168.56.101:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
 console.log(url);
 
   fetch(url)
@@ -50,11 +50,11 @@ console.log(url);
       })
       .then((data)=> {
           console.log(data);
-         
+
 
           this.props.saveData(data);
          }
-      ); 
+      );
     this.setState({loading: false})
   }
 
