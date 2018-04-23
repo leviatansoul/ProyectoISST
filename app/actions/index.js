@@ -7,6 +7,7 @@ export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
 export const UPDATE_FOOTER = "UPDATE_FOOTER";
 export const CONTACTOS_UPDATE = "CONTACTOS_UPDATE";
+export const PUT_MI_DATA = "PUT_MI_DATA";
 
 
 export function removeData(data){
@@ -37,6 +38,14 @@ export function putData(item){
 return (dispatch) => {
 
  dispatch( {type: PUT_DATA, item: item});
+
+
+  };
+}
+export function putMiData(item){
+return (dispatch) => {
+
+ dispatch( {type: PUT_MI_DATA, item: item});
 
 
   };
@@ -82,13 +91,13 @@ export function updateContactos(data){
     }) */
 
 
-/*
-  var data = [
+
+  var data2 = [
     {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'},{id: 2, nick: 'Diego Gallu', img: 'xxxx'}
   ];
-*/
+
   return (dispatch) => {
-    dispatch({type: CONTACTOS_UPDATE, data: data});
+    dispatch({type: CONTACTOS_UPDATE, data: data2});
 
   };
 }

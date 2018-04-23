@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER, CONTACTOS_UPDATE} from "../actions/" //Import the actions types constant we defined in our actions
+import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER, CONTACTOS_UPDATE, PUT_MI_DATA} from "../actions/" //Import the actions types constant we defined in our actions
 
 
 
@@ -34,7 +34,7 @@ const nicknameReducer = (state = nicknameState, action) => {
 const misPensamientosReducer = (state = misPensamientosState, action) => {
     switch (action.type) {
 
-       case PUT_DATA:
+       case PUT_MI_DATA:
            newState = action.item;
           state = Object.assign({}, state, { data: newState});
            console.log(state);
@@ -53,7 +53,7 @@ const pensamientosGuardadosReducer = (state = pensamientosGuardadosState, action
     switch (action.type) {
 
        case SAVE_DATA:
-           
+
            newState = action.item;
            state = Object.assign({}, state, { data: newState});
            console.log(state);
