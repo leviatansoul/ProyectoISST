@@ -30,7 +30,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
    newData.splice(rowId, 1);
   this.props.removeSavedData(newData);
 
-  fetch("http://192.168.56.101:8080/PCG/BorrarPensamientosGuardadosServlet?nick="+this.props.nickname+"&pensId="+data.id)
+  fetch("http://192.168.1.130:8080/PCG/BorrarPensamientosGuardadosServlet?nick="+this.props.nickname+"&pensId="+data.id)
 
 
 .then((response)=> {
@@ -52,7 +52,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
 
-      var url = "http://192.168.56.101:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+      var url = "http://192.168.1.130:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
 console.log(url);
 
   fetch(url)

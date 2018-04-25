@@ -10,6 +10,7 @@ import HomeScreen from './HomeScreen'
 import PensamientosScreen from './PensamientosScreen'
 import GuardadosScreen from './GuardadosScreen'
 import ContactosScreen from './ContactosScreen'
+import ChatLogin from './ChatLogin'
 
 
 export default class MyDrawerNavigator extends Component {
@@ -52,7 +53,10 @@ const MyNavigator = DrawerNavigator({
     },
     Contactos: {
         screen: ContactosScreen
-    }
+    },
+  ChatLogin: {
+    screen: ChatLogin
+  }
 }, {
     initialRouteName: 'Home',
     drawerPosition: 'left',

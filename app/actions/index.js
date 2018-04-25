@@ -120,6 +120,9 @@ export function updateFooter(itemSelected, navigation){
     if(itemSelected === 4){
       navigation.navigate('Contactos');
     }
+    if(itemSelected === 5){
+      navigation.navigate('ChatLogin');
+    }
 
     dispatch({type: UPDATE_FOOTER, itemSelected: itemSelected});
 

@@ -37,7 +37,7 @@ class MisPensamientosScreen extends Component {
     })
     this.setState({loading: false})
 
-    var url = "http://192.168.56.101:8080/PCG/PensamientosPropiosServlet?nick="+this.props.nickname;
+    var url = "http://192.168.1.130:8080/PCG/PensamientosPropiosServlet?nick="+this.props.nickname;
 console.log(url);
 
 fetch(url)
