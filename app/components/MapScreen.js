@@ -1,12 +1,34 @@
 import React, { Component } from 'react'
-import { View, ListView} from 'react-native'
+import { View, ListView, ActivityIndicator, StyleSheet } from 'react-native'
 import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
+import { MapView } from 'expo';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions';
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+});
+
+
 
 class MapScreen extends Component {
   constructor (props) {
@@ -42,15 +64,6 @@ class MapScreen extends Component {
           this.setState({pensamientosLoc: this.props.pensamientosLoc, loading: false});
      }
       );
-        /*var pens = [];
-
-        this.props.pensamientosLoc.map((pensamiento) => {
-      if(haversine({lat: this.props.latitude, lon: this.props.longitude}, {lat: pensamiento.latitude, lon: pensamiento.longitude}) < 20000){
-      pens.push(pensamiento);
-        this.setState({pensamientosLoc: pens, loading: false});
-      }
-    })*/
-
 
       },
       (error) => {
@@ -71,35 +84,27 @@ class MapScreen extends Component {
 
   render () {
 
-    if (this.state.loading && this.props.loading) {
+    if (this.state.loading || this.props.loading) {
       return <Expo.AppLoading />
     }
 
 return (
-  <Container>
-    <Header>
+<View style= {styles.container}>
 
-      <Body>
-      <Title>MapScreen</Title>
-      </Body>
-      <Right />
-    </Header>
+  <MapView style={styles.map} initialRegion={{
+      latitude: this.props.latitude,
+      longitude: this.props.longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }}
+  />
 
-<Content>
+  <FooterGlobal navigation={this.props.navigation}/>
 
-
-
-
-
-
-</Content>
+</View>
+);
 
 
-
-    <FooterGlobal navigation={this.props.navigation}/>
-
-  </Container>
-)
 
 
   }
@@ -115,7 +120,9 @@ function mapStateToProps(state, props) {
       nickname: state.nicknameReducer.nickname,
       latitude: state.locationReducer.latitude,
       longitude: state.locationReducer.longitude,
-      error: state.locationReducer.error
+      error: state.locationReducer.error,
+      pensamientosLoc: state.pensamientosLocReducer.data,
+      loading: state.pensamientosLocReducer.loading
     }
 }
 
