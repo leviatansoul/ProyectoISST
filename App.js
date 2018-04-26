@@ -15,6 +15,7 @@ import SignInUp from './app/components/SignInUp';
 import MyDrawerNavigator from './app/components/MyDrawerNavigator';
 import Authentication from './app/components/Authentication';
 import Registration from './app/components/Registration';
+import MapScreen from './app/components/MapScreen';
 
 
 export default class App extends Component {

@@ -1,44 +1,20 @@
 import React, { Component } from 'react'
-import { View,  ListView} from 'react-native'
-import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
+import { View, ListView} from 'react-native'
+import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
+import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import haversine from 'haversine-distance';
-import FooterGlobal from "./FooterGlobal";
-import Pensamiento from "./Pensamiento"
+import FooterGlobal from "./FooterGlobal"
 
-import * as Actions from '../actions'; //Import your actions
-import Expo from 'expo'
+import * as Actions from '../actions';
 
-class HomeScreen extends Component {
-
-//haversine es un paquete para calcular distancias a partir de coordenadas npm install haversine-distance
-
-
+class MapScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {pensamientosLoc: [],
       loading: true };
-this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.appClick = this.appClick.bind(this);
-  }
-  appClick(data) {
-
-    fetch("http://192.168.1.130:8080/PCG/GuardarPensamientoServlet?nick="+this.props.nickname+"&pensId="+data.id)
-
-
-.then((response)=> {
-          if (response.status >= 400) {
-              throw new Error("Bad response from server");
-          }
-          console.log("ok")
-      });
-
-
-
 
   }
-
 
   async componentWillMount () {
   await  navigator.geolocation.getCurrentPosition(
@@ -48,7 +24,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.props.updateLocation(position.coords.latitude, position.coords.longitude);
 
           var url = "http://192.168.1.130:8080/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
-console.log(url);
+  console.log(url);
 
   fetch(url)
       .then((response)=> {
@@ -93,57 +69,53 @@ console.log(url);
     this.setState({loading: false})
   }
 
-
   render () {
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
     if (this.state.loading && this.props.loading) {
       return <Expo.AppLoading />
     }
-    return (
-      <Container>
-        <Header>
 
-          <Body>
-          <Title>HomeScreen</Title>
-          </Body>
-          <Right />
-        </Header>
-<Content scrollEnabled={true}>
-  <List
-              dataSource={this.ds.cloneWithRows(this.state.pensamientosLoc)}
-              renderRow={data =>
+return (
+  <Container>
+    <Header>
 
+      <Body>
+      <Title>MapScreen</Title>
+      </Body>
+      <Right />
+    </Header>
 
-                <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={false}/>
+<Content>
 
 
 
-              }
-              renderRightHiddenRow={data =>
-                <Button full light onPress={() => this.appClick(data)}>
-                  <Icon active name="download" />
-                </Button>}
-              rightOpenValue={-75}
-            />
+
+
+
 </Content>
 
-        <FooterGlobal navigation={this.props.navigation}/>
-      </Container>
 
-    )
+
+    <FooterGlobal navigation={this.props.navigation}/>
+
+  </Container>
+)
+
+
   }
+
+
+
 }
 // The function takes data from the app current state,
 // and insert/links it into the props of our component.
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
-        nickname: state.nicknameReducer.nickname,
-        loading: state.pensamientosLocReducer.loading,
-        pensamientosLoc: state.pensamientosLocReducer.data,
-//        pensamientos: state.pensamientosReducer.data,
-        latitude: state.locationReducer.latitude,
-        longitude: state.locationReducer.longitude
+      nickname: state.nicknameReducer.nickname,
+      latitude: state.locationReducer.latitude,
+      longitude: state.locationReducer.longitude,
+      error: state.locationReducer.error
     }
 }
 
@@ -155,4 +127,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 //Connect everything
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MapScreen);

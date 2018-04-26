@@ -23,7 +23,7 @@ class ContactosScreen extends Component {
 
   async componentWillMount () {
 /*
-    var url = "http://192.168.56.101:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+    var url = "http://192.168.1.130:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
     console.log(url);
 
     fetch(url)

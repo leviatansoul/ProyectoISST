@@ -10,6 +10,7 @@ import HomeScreen from './HomeScreen'
 import PensamientosScreen from './PensamientosScreen'
 import GuardadosScreen from './GuardadosScreen'
 import ContactosScreen from './ContactosScreen'
+import MapScreen from './MapScreen'
 
 
 export default class MyDrawerNavigator extends Component {
@@ -52,6 +53,9 @@ const MyNavigator = DrawerNavigator({
     },
     Contactos: {
         screen: ContactosScreen
+    },
+    Mapa: {
+        screen: MapScreen
     }
 }, {
     initialRouteName: 'Home',
@@ -61,4 +65,3 @@ const MyNavigator = DrawerNavigator({
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle'
 })
-

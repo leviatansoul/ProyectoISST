@@ -118,6 +118,10 @@ export function updateFooter(itemSelected, navigation){
     }
 
     if(itemSelected === 4){
+      navigation.navigate('Mapa');
+    }
+
+    if(itemSelected === 5){
       navigation.navigate('Contactos');
     }
 
