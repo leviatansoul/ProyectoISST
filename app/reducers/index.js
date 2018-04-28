@@ -1,7 +1,25 @@
 import { combineReducers } from 'redux';
 
-import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA, SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER, CONTACTOS_UPDATE, PUT_MI_DATA} from "../actions/" //Import the actions types constant we defined in our actions
+import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA,
+  SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER,
+  CONTACTOS_UPDATE, PUT_MI_DATA, LOGIN_SUCCESS,
+  LOGIN_FAIL, INIT_MENU, DISCONNECT_SUCCESS, OPEN_CHANNEL_LIST_SUCCESS, OPEN_CHANNEL_LIST_FAIL} from "../actions/" //Import the actions types constant we defined in our actions
 
+import {
+  INIT_CHAT_SCREEN,
+  CREATE_CHAT_HANDLER_SUCCESS,
+  CREATE_CHAT_HANDLER_FAIL,
+  MESSAGE_LIST_SUCCESS,
+  MESSAGE_LIST_FAIL,
+  SEND_MESSAGE_TEMPORARY,
+  SEND_MESSAGE_SUCCESS,
+  SEND_MESSAGE_FAIL,
+  CHANNEL_EXIT_SUCCESS,
+  CHANNEL_EXIT_FAIL,
+  MESSAGE_RECEIVED,
+  MESSAGE_UPDATED,
+  MESSAGE_DELETED
+} from '../actions/';
 
 
 let locationState = { latitude: null, longitude: null, error: null };
@@ -127,6 +145,128 @@ const footerReducer = (state = footerState, action) => {
   }
 };
 
+
+//SendBird
+const INITIAL_STATE = {
+  error: '',
+  user: null
+}
+
+const MENU_STATE = {
+  isDisconnected: false
+}
+
+const OPENCHANNELLIST_STATE = {
+  list: []
+}
+
+const CHAT_STATE = {
+  list: [],
+  exit:false
+}
+
+const sendBirdReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case LOGIN_SUCCESS:
+      state = Object.assign({}, state, { user: action.payload});
+
+      return state;
+    case LOGIN_FAIL:
+      state = Object.assign({}, state, {  error: action.payload});
+      return state;
+    default:
+      return state;
+  }
+};
+
+const menuReducer = (state = MENU_STATE, action) => {
+  switch (action.type) {
+    case INIT_MENU:
+      state = Object.assign({}, state, { isDisconnected: false});
+      return state;
+    case DISCONNECT_SUCCESS:
+      state = Object.assign({}, state, { isDisconnected: true});
+      return state;
+    default:
+      return state;
+  }
+};
+
+const openChannelListReducer = (state = OPENCHANNELLIST_STATE, action) => {
+  switch (action.type) {
+    case OPEN_CHANNEL_LIST_SUCCESS:
+      state = Object.assign({}, state, { list: action.list});
+      console.log("Ha descargado algo");
+      return state;
+    case OPEN_CHANNEL_LIST_FAIL:
+      return state;
+    default:
+      return state;
+  }
+};
+
+const chatReducer = (state = CHAT_STATE, action) => {
+  switch(action.type) {
+    case INIT_CHAT_SCREEN:
+      return state;
+    case CREATE_CHAT_HANDLER_SUCCESS:
+      return state;
+    case CREATE_CHAT_HANDLER_FAIL:
+      return state;
+    case MESSAGE_LIST_SUCCESS:
+      state = Object.assign({}, state, { list: action.list});
+      return state;
+    case MESSAGE_LIST_FAIL:
+      return state;
+    case SEND_MESSAGE_TEMPORARY:
+      state = Object.assign({}, state, { list: [[action.message], state.list]});
+      return state;
+    case SEND_MESSAGE_SUCCESS:
+      const newMessage = action.message;
+      const sendSuccessList = state.list.map((message) => {
+        if (message.reqId.toString() === newMessage.reqId.toString()) {
+          return newMessage;
+        } else {
+          return message;
+        }
+      })
+      state = Object.assign({}, state, { list: sendSuccessList});
+      return state
+    case SEND_MESSAGE_FAIL:
+      const newChatList = state.list.slice(1);
+      state = Object.assign({}, state, { list: newChatList});
+      return state
+    case CHANNEL_EXIT_SUCCESS:
+      state = Object.assign({}, state, { exit: true});
+      return state;
+    case CHANNEL_EXIT_FAIL:
+      state = Object.assign({}, state, { exit: false});
+      return state;
+    case MESSAGE_RECEIVED:
+      state = Object.assign({}, state, { list: [[action.payload], state.list]});
+      return state;
+    case MESSAGE_UPDATED:
+      const updatedMessage = action.payload;
+      const updatedList = state.list.map((message) => {
+        if (message.messageId === updatedMessage.messageId) {
+          message = updatedMessage
+        }
+        return message
+      });
+      state = Object.assign({}, state, { list: updatedList});
+      return state
+    case MESSAGE_DELETED:
+      const deletedList = state.list.filter((message) => {
+        return message.messageId.toString() !== action.payload.toString();
+      });
+      state = Object.assign({}, state, { list: deletedList});
+      return state;
+    default:
+      return state;
+  }
+};
+
+
 // Combine all the reducers
 const rootReducer = combineReducers({
   nicknameReducer,
@@ -135,7 +275,11 @@ const rootReducer = combineReducers({
     misPensamientosReducer,
     pensamientosLocReducer,
     contactosReducer,
-    footerReducer
+    footerReducer,
+    sendBirdReducer,
+    menuReducer,
+    openChannelListReducer,
+    chatReducer
     // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
 })
 

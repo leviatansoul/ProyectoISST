@@ -17,7 +17,7 @@ class ContactosScreen extends Component {
     this.state = {
       loading: true};
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.appClick = this.appClick.bind(this);
+
     this.deleteRow = this.deleteRow.bind(this);
   }
 
@@ -49,12 +49,7 @@ this.props.updateContactos();
 
   }
 
-  appClick(visita) {
-    let indice = this.props.contactos.indexOf(visita);
-    console.log(indice);
-    //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
 
-  }
 
   deleteRow(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
@@ -84,7 +79,9 @@ this.props.updateContactos();
               <ListItem Rr>
 
                 <Body>
+
                 <Text>{data.nick}</Text>
+
                 </Body>
                 <Right>
                   <Text note style={{color:'lightgrey'}}>{data.img}</Text>

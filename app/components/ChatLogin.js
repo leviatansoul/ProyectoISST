@@ -18,8 +18,7 @@ class ChatLogin extends Component {
     super(props);
     this.state = {
       userId: '',
-      nickname: '',
-      error: ''
+      nickname: ''
     }
     this._nicknameChanged = this._nicknameChanged.bind(this);
     this._onButtonPress = this._onButtonPress.bind(this);
@@ -30,10 +29,31 @@ class ChatLogin extends Component {
     this.setState({ userId: userId });
   }
 
+
   _nicknameChanged (nickname)  {
     this.setState({ nickname: nickname });
   }
 
+  _onButtonPress = () => {
+    const { userId, nickname } = this.state;
+    this.props.sendbirdLogin( userId, nickname, this.props.navigation );
+  }
+
+
+  componentWillReceiveProps(props) {
+    const user = props.user;
+    const error = props.error;
+    console.log("entra");
+    console.log(user);
+    console.log(error);
+    if (user !== '') {
+      this.setState({ userId: '', nickname: '' }, () => {
+        this.props.navigation.navigate('Publicar');
+      })
+    }
+  }
+
+/*
   _onButtonPress ()  {
     console.log('ENTER');
     var userId = this.state.userId;
@@ -59,7 +79,7 @@ class ChatLogin extends Component {
       }
     });
   }
-
+*/
 
 
   render () {
@@ -116,8 +136,8 @@ class ChatLogin extends Component {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
   return {
-    loading: state.contactosReducer.loading,
-    contactos: state.contactosReducer.data
+    user: state.sendBirdReducer.user,
+    error: state.sendBirdReducer.error
 
   }
 }

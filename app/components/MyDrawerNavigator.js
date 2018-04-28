@@ -11,6 +11,8 @@ import PensamientosScreen from './PensamientosScreen'
 import GuardadosScreen from './GuardadosScreen'
 import ContactosScreen from './ContactosScreen'
 import ChatLogin from './ChatLogin'
+import Menu from './Menu'
+import OpenChannel from './OpenChannel'
 
 
 export default class MyDrawerNavigator extends Component {
@@ -56,6 +58,12 @@ const MyNavigator = DrawerNavigator({
     },
   ChatLogin: {
     screen: ChatLogin
+  },
+  Menu: {
+      screen: Menu
+  },
+  OpenChannel: {
+      screen: OpenChannel
   }
 }, {
     initialRouteName: 'Home',
