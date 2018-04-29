@@ -228,6 +228,8 @@ export function createChatHandler (channelUrl)  {
         sbOpenChannelEnter(channel)
           .then((channel) => {
             registerHandler(channelUrl, dispatch);
+
+            console.log("crea el handler succes");
             dispatch({ type: CREATE_CHAT_HANDLER_SUCCESS });
           })
           .catch( (error) => dispatch({ type: CREATE_CHAT_HANDLER_FAIL }) );
@@ -239,6 +241,8 @@ export function createChatHandler (channelUrl)  {
 export function registerHandler  (channelUrl, dispatch) {
   const sb = SendBird.getInstance();
   let channelHandler = new sb.ChannelHandler();
+
+  console.log("Entra al registro hanler");
 
   channelHandler.onMessageReceived = (channel, message) => {
     if (channel.url === channelUrl) {
@@ -273,6 +277,8 @@ export function getPrevMessageList (previousMessageListQuery) {
     if (previousMessageListQuery.hasMore) {
       sbGetMessageList(previousMessageListQuery)
         .then((messages) => {
+
+          console.log("success prev message list");
           dispatch({
             type: MESSAGE_LIST_SUCCESS,
             list: messages
@@ -293,6 +299,7 @@ export function onSendButtonPress  (channelUrl, textMessage) {
           if (error) {
             dispatch({ type: SEND_MESSAGE_FAIL });
           } else {
+            console.log("ole");
             dispatch({
               type: SEND_MESSAGE_SUCCESS,
               message: message

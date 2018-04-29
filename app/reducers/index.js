@@ -161,7 +161,8 @@ const OPENCHANNELLIST_STATE = {
 }
 
 const CHAT_STATE = {
-  list: [],
+  list: [
+    { message: 'holi'}],
   exit:false
 }
 
@@ -214,28 +215,44 @@ const chatReducer = (state = CHAT_STATE, action) => {
     case CREATE_CHAT_HANDLER_FAIL:
       return state;
     case MESSAGE_LIST_SUCCESS:
-      state = Object.assign({}, state, { list: action.list});
+
+      console.log("pasa lista a listl");
+    action.list.forEach(function (elemento, indice, array) {
+      //console.log(elemento, indice);
+
+    });
+      const sendSuccessListaa = action.list;
+      state = Object.assign({}, state, { list: sendSuccessListaa});
       return state;
     case MESSAGE_LIST_FAIL:
       return state;
     case SEND_MESSAGE_TEMPORARY:
-      state = Object.assign({}, state, { list: [[action.message], state.list]});
+      //state = Object.assign({}, state, { list: [[action.message], state.list]});
       return state;
     case SEND_MESSAGE_SUCCESS:
-      const newMessage = action.message;
+      /*const newMessage = action.message;
+      console.log("buh");
       const sendSuccessList = state.list.map((message) => {
-        if (message.reqId.toString() === newMessage.reqId.toString()) {
+        if (message.reqId && newMessage.reqId && message.reqId.toString() === newMessage.reqId.toString()) {
           return newMessage;
         } else {
           return message;
         }
-      })
+      });
+      console.log("no ha petado");
+      console.log(sendSuccessList);
+      //console.log(message.messageId)
+      state = Object.assign({}, state, { list: sendSuccessList});*/
+      const sendSuccessList = state.list.slice();
+      sendSuccessList.reverse();
+      sendSuccessList.push(action.message);
+      sendSuccessList.reverse();
       state = Object.assign({}, state, { list: sendSuccessList});
-      return state
+      return state;
     case SEND_MESSAGE_FAIL:
       const newChatList = state.list.slice(1);
       state = Object.assign({}, state, { list: newChatList});
-      return state
+      return state;
     case CHANNEL_EXIT_SUCCESS:
       state = Object.assign({}, state, { exit: true});
       return state;
@@ -243,7 +260,8 @@ const chatReducer = (state = CHAT_STATE, action) => {
       state = Object.assign({}, state, { exit: false});
       return state;
     case MESSAGE_RECEIVED:
-      state = Object.assign({}, state, { list: [[action.payload], state.list]});
+      const sendSuccessLista = [{message: "xxxxx"}];
+     state = Object.assign({}, state, { list: sendSuccessLista});
       return state;
     case MESSAGE_UPDATED:
       const updatedMessage = action.payload;

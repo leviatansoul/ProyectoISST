@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { MessageContainer } from './messageParts/MessageContainer';
+import { MessageContainer } from './messageParts/messageContainer';
 
 class Message extends Component {
   constructor(props) {

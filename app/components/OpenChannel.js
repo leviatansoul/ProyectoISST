@@ -62,10 +62,10 @@ class OpenChannel extends Component {
     console.log("vamonos")
     console.log(channelUrl)
    // this.props.navigation.navigate('Chat');
-    /*this.props.navigation.navigate(
+    this.props.navigation.navigate(
       'Chat',
       { channelUrl: channelUrl }
-    );*/
+    );
   }
 
   deleteRow(secId, rowId, rowMap) {
@@ -114,6 +114,7 @@ class OpenChannel extends Component {
 
 
         </Content>
+
 
         <FooterGlobal navigation={this.props.navigation}/>
       </Container>
