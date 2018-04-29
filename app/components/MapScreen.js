@@ -6,6 +6,7 @@ import { MapView } from 'expo';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
+//import {Marker} from 'react-native-maps'
 
 import * as Actions from '../actions';
 
@@ -25,6 +26,10 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  loading: {
+    flex: 2,
+    justifyContent: 'center'
   },
 });
 
@@ -75,18 +80,24 @@ class MapScreen extends Component {
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
-    //vemos que pensamientos estan a menos de 20 km (20000 metros) y los metemos en el estado de esta clase
-    //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
-    //probar a cambiar las latitudes y longitudes de los pensamientos definidos a unas cercanas a las vuestras para ver q os funciona
-
-    this.setState({loading: false})
   }
 
   render () {
 
-    if (this.state.loading || this.props.loading) {
-      return <Expo.AppLoading />
-    }
+    if (this.state.loading) {
+      return (
+
+<View style= {styles.container}>
+
+  <ActivityIndicator size="large" color="#0000ff" style= {styles.loading}/>
+
+  <FooterGlobal navigation={this.props.navigation}/>
+
+
+</View>
+
+);
+} else {
 
 return (
 <View style= {styles.container}>
@@ -97,7 +108,19 @@ return (
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     }}
-  />
+  >
+  <MapView.Circle center={{latitude: this.props.latitude, longitude: this.props.longitude}} radius={20000} strokeColor={'#0000ff'} />
+  {this.state.pensamientosLoc.map(marker => (
+    <MapView.Marker
+      coordinate={{latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude)}}
+      title={marker.text}
+      description={marker.autor}
+      key={marker.id}
+      />
+  )
+)}
+
+  </MapView>
 
   <FooterGlobal navigation={this.props.navigation}/>
 
@@ -105,7 +128,7 @@ return (
 );
 
 
-
+}
 
   }
 
