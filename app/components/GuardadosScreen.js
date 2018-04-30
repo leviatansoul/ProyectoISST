@@ -38,6 +38,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
             throw new Error("Bad response from server");
         }
         console.log("ok")
+        console.log(response)
     });
 
 
