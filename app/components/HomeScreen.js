@@ -23,7 +23,11 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
   }
   appClick(visita) {
-      let indice = this.props.pensamientosLoc.indexOf(visita);
+      let indice = this.props.
+
+
+
+      .indexOf(visita);
       console.log(indice);
       this.props.saveData(visita);
 
@@ -56,7 +60,7 @@ console.log(url);
       }
       else
       Console.log("error");
-      }); 
+      });
         /*var pens = [];
 
         this.props.pensamientosLoc.map((pensamiento) => {
