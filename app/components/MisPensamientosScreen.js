@@ -23,12 +23,29 @@ class MisPensamientosScreen extends Component {
     //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
 
   }
-  deleteRow(secId, rowId, rowMap) {
-    rowMap[`${secId}${rowId}`].props.closeRow();
-    const newData = [...this.props.pensamientos];
-    newData.splice(rowId, 1);
-    this.props.removeData(newData);
-  }
+  deleteRow(secId, rowId, rowMap, data) {
+  
+
+  fetch("http://"+this.props.url+"/PCG/BorrarPensamientosPropiosServlet?nick="+this.props.nickname+"&pensId="+data.id)
+
+
+.then((response)=> {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+       else {
+         rowMap[`${secId}${rowId}`].props.closeRow();
+   const newData = [...this.props.pensamientos];
+   newData.splice(rowId, 1);
+  this.props.removeData(newData);
+       }
+    });
+
+
+
+
+
+ }
 
   async componentWillMount () {
     await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
@@ -37,7 +54,7 @@ class MisPensamientosScreen extends Component {
     })
     this.setState({loading: false})
 
-    var url = "http://192.168.1.130:8080/PCG/PensamientosPropiosServlet?nick="+this.props.nickname;
+    var url = "http://"+this.props.url+"/PCG/PensamientosPropiosServlet?nick="+this.props.nickname;
 console.log(url);
 
 fetch(url)
@@ -77,7 +94,7 @@ fetch(url)
             //    <Icon active name="information-circle" />
             //</Button>}
             renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap, data)}>
                 <Icon active name="trash" />
               </Button>}
             //leftOpenValue={75}
@@ -95,7 +112,8 @@ function mapStateToProps(state, props) {
   return {
     loading: state.misPensamientosReducer.loading,
     pensamientos: state.misPensamientosReducer.data,
-    nickname: state.nicknameReducer.nickname
+    nickname: state.nicknameReducer.nickname,
+    url: state.urlReducer.url
 
   }
 }

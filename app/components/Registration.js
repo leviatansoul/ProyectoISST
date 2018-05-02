@@ -3,6 +3,10 @@ import { View, Alert  } from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast} from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions'; //Import your actions
+
 class Registration extends Component {
 
     constructor(props) {
@@ -31,7 +35,7 @@ registrarUsuario(){
 password = this.state.contraseña1
 nickname = this.state.nickname
 
- url = "http://192.168.1.130:8080/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+ url = "http://"+this.props.url+"/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 
  fetch(url)
       .then((response)=> {
@@ -133,4 +137,20 @@ nickname = this.state.nickname
     }
 }
 
-export default Registration
+function mapStateToProps(state, props) {
+    return {
+        url: state.urlReducer.url
+
+    }
+}
+
+// Doing this merges our actions into the component’s props,
+// while wrapping them in dispatch() so that they immediately dispatch an Action.
+// Just by doing this, we will have access to the actions defined in out actions file (action/PruebaRedux.js)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Actions, dispatch);
+}
+
+//Connect everything
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
+

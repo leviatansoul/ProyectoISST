@@ -52,7 +52,7 @@ onValueChange(value: string) {
 
 //this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
 
-fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
 
 
 
@@ -131,7 +131,8 @@ function mapStateToProps(state, props) {
       nickname: state.nicknameReducer.nickname,
       latitude: state.locationReducer.latitude,
       longitude: state.locationReducer.longitude,
-      error: state.locationReducer.error
+      error: state.locationReducer.error,
+      url: state.urlReducer.url
     }
 }
 

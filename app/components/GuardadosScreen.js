@@ -25,20 +25,21 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
   }
   deleteRow(secId, rowId, rowMap, data) {
-   rowMap[`${secId}${rowId}`].props.closeRow();
-   const newData = [...this.props.pensamientos];
-   newData.splice(rowId, 1);
-  this.props.removeSavedData(newData);
+  
 
-  fetch("http://192.168.1.130:8080/PCG/BorrarPensamientosGuardadosServlet?nick="+this.props.nickname+"&pensId="+data.id)
+  fetch("http://"+this.props.url+"/PCG/BorrarValoracionServlet?nick="+this.props.nickname+"&pens="+data.id)
 
 
 .then((response)=> {
         if (response.status >= 400) {
             throw new Error("Bad response from server");
         }
-        console.log("ok")
-        console.log(response)
+       else {
+         rowMap[`${secId}${rowId}`].props.closeRow();
+   const newData = [...this.props.pensamientos];
+   newData.splice(rowId, 1);
+  this.props.removeSavedData(newData);
+       }
     });
 
 
@@ -53,7 +54,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
 
-      var url = "http://192.168.1.130:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+      var url = "http://"+this.props.url+"/PCG/PensamientosValoradosServlet?nick="+this.props.nickname;
 console.log(url);
 
   fetch(url)
@@ -111,7 +112,8 @@ function mapStateToProps(state, props) {
     return {
         nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosGuardadosReducer.loading,
-        pensamientos: state.pensamientosGuardadosReducer.data
+        pensamientos: state.pensamientosGuardadosReducer.data,
+        url: state.urlReducer.url
 
     }
 }

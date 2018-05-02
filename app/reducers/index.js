@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA,
-  SAVE_DATA, REMOVE_SAVED_DATA, UPDATE_FOOTER,
+  SAVE_DATA, REMOVE_SAVED_DATA, REMOVE_LOC_DATA, UPDATE_FOOTER,
   CONTACTOS_UPDATE, PUT_MI_DATA, LOGIN_SUCCESS,
   LOGIN_FAIL, INIT_MENU, DISCONNECT_SUCCESS, OPEN_CHANNEL_LIST_SUCCESS, OPEN_CHANNEL_LIST_FAIL} from "../actions/" //Import the actions types constant we defined in our actions
 
@@ -28,12 +28,20 @@ let misPensamientosState = { data:[{id: 0, date: "", idPens: 0, latitude:40.3385
 let pensamientosGuardadosState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
 let footerState = {itemSelected:1, badgeHome:0};
 let nicknameState = {nickname: ""};
+let urlState = {url: "192.168.0.102"};
 let pensamientosLocState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
 
 let ContactosState = {id: 18, data:[
   {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'}
 ], loading:true};
 
+const urlReducer = (state = urlState, action) => {
+    switch (action.type) {
+
+        default:
+            return state;
+    }
+};
 
 //LA CLAVE QUE ME VA A PERMITIR ACCEDER AL SERVER
 const nicknameReducer = (state = nicknameState, action) => {
@@ -99,6 +107,11 @@ const pensamientosLocReducer = (state = pensamientosLocState, action) => {
           state = Object.assign({}, state, { data: newState});
           console.log(state);
          return state;
+         case REMOVE_LOC_DATA:
+
+        //newState = state.filter(elemento => state.indexOf(elemento)!=action.id);
+           state = Object.assign({}, state, { data: action.data});
+              return state;
         default:
             return state;
     }
@@ -293,6 +306,7 @@ const rootReducer = combineReducers({
     misPensamientosReducer,
     pensamientosLocReducer,
     contactosReducer,
+    urlReducer,
     footerReducer,
     sendBirdReducer,
     menuReducer,

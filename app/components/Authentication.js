@@ -22,7 +22,7 @@ autenticarUsuario(nickname, password){
 //  this.props.navigation.navigate('navigatorStack'); //POR SI NO FUNCIONA EL FETCH
 
 
-      var url = "http://192.168.1.130:8080/PCG/LoginServlet?nick="+nickname+"&password="+password;
+      var url = "http://"+this.props.url+"/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
   fetch(url)
       .then((response)=> {
@@ -127,7 +127,8 @@ console.log(url);
 
 function mapStateToProps(state, props) {
     return {
-      nickname: state.nicknameReducer.nickname
+      nickname: state.nicknameReducer.nickname,
+      url: state.urlReducer.url
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View,  ListView} from 'react-native'
-import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
+import { Icon, Segment, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import haversine from 'haversine-distance';
@@ -18,9 +18,12 @@ class HomeScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {pensamientosLoc: [],
-      loading: true };
+      loading: true, active: 3 };
 this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
+    this.actualizaLista = this.actualizaLista.bind(this);
+    this.putLike = this.putLike.bind(this);
+    this.putDislike = this.putDislike.bind(this);
   }
   appClick(data) {
 
@@ -38,16 +41,81 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 
   }
+ async putLike (data, secId, rowId, rowMap){
+    var url = "http://"+this.props.url+"/PCG/ValorarServlet?nick="+this.props.nickname+"&pens="+data.id+"&valor=true";
+console.log(url);
 
+  fetch(url)
+      .then((response)=> {
 
-  async componentWillMount () {
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          else {
+             rowMap[`${secId}${rowId}`].props.closeRow();
+    const newData = [...this.props.pensamientosLoc];
+    newData.splice(rowId, 1);
+    this.props.removeLocData(newData);
+          }
+      });
+ }
+
+ async putDislike (data, secId, rowId, rowMap){
+    var url = "http://"+this.props.url+"/PCG/ValorarServlet?nick="+this.props.nickname+"&pens="+data.id+"&valor=false";
+
+  fetch(url)
+      .then((response)=> {
+
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          else {
+             rowMap[`${secId}${rowId}`].props.closeRow();
+    const newData = [...this.props.pensamientosLoc];
+    newData.splice(rowId, 1);
+    this.props.removeLocData(newData);
+          }
+      });
+ }
+
+  async actualizaLista (dis) {
+    if (dis === 1){
+      this.setState({active: 1});
+    }
+    else if (dis === 5){
+      this.setState({active: 2});
+    }
+    else {
+      this.setState({active: 3});
+    }
+ console.log(this.props.url);
+ var url = "http://"+this.props.url+"/PCG/PensamientosCercanosServlet?lat="+this.props.latitude+"&lon="+this.props.longitude+"&dist="+dis+"&nick="+this.props.nickname;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          this.props.putData(data);
+          this.setState({pensamientosLoc: this.props.pensamientosLoc});
+     }
+      );
+      
+}
+
+  async componentWillMount() {
   await  navigator.geolocation.getCurrentPosition(
       (position) => {
         console.log(position.coords.latitude);
         console.log(position.coords.longitude);
         this.props.updateLocation(position.coords.latitude, position.coords.longitude);
 
-          var url = "http://192.168.1.130:8080/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
+          var url = "http://"+this.props.url+"/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&dist=20&nick="+this.props.nickname;
 console.log(url);
 
   fetch(url)
@@ -104,13 +172,24 @@ console.log(url);
         <Header>
 
           <Body>
-          <Title>HomeScreen</Title>
+          <Title>CERCA DE TI</Title>
           </Body>
           <Right />
         </Header>
+        <Segment>
+          <Button first active={this.state.active === 1} onPress={() => this.actualizaLista(1)}>
+            <Text>1 km</Text>
+          </Button>
+          <Button active={this.state.active === 2} onPress={() => this.actualizaLista(5)}>
+            <Text>5 km</Text>
+          </Button>
+          <Button last active={this.state.active === 3} onPress={() => this.actualizaLista(20)}>
+            <Text>20 km</Text>
+          </Button>
+        </Segment>
 <Content scrollEnabled={true}>
   <List
-              dataSource={this.ds.cloneWithRows(this.state.pensamientosLoc)}
+              dataSource={this.ds.cloneWithRows(this.props.pensamientosLoc)}
               renderRow={data =>
 
 
@@ -119,11 +198,16 @@ console.log(url);
 
 
               }
-              renderRightHiddenRow={data =>
-                <Button full light onPress={() => this.appClick(data)}>
-                  <Icon active name="download" />
+              renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                <Button full light onPress={_ => this.putLike(data, secId, rowId, rowMap)}>
+                  <Icon active name="ios-thumbs-up" />
                 </Button>}
               rightOpenValue={-75}
+               renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
+                <Button full light onPress={_ => this.putDislike(data, secId, rowId, rowMap)}>
+                  <Icon active name="ios-thumbs-down" />
+                </Button>}
+              leftOpenValue={75}
             />
 </Content>
 
@@ -141,7 +225,7 @@ function mapStateToProps(state, props) {
         nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosLocReducer.loading,
         pensamientosLoc: state.pensamientosLocReducer.data,
-//        pensamientos: state.pensamientosReducer.data,
+        url: state.urlReducer.url,
         latitude: state.locationReducer.latitude,
         longitude: state.locationReducer.longitude
     }
