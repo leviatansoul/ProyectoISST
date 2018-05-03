@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ListView} from 'react-native'
+import { View, ListView, FlatList} from 'react-native'
 import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
@@ -78,27 +78,27 @@ fetch(url)
   render () {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
-      <Container>
+      <Container scrollEnabled={true}>
 
-        <Content scrollEnabled={true}>
-          <List
-            dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
-            renderRow={data =>
+        <Content scrollEnabled={true} >
+          <List 
+            DataSource={this.ds.cloneWithRows(this.props.pensamientos)}
+            renderRow={(data) =>
 
               //hay que hacer algo si no hay nada guardado
 
-              <Pensamiento autor={data.autor} text={data.text} enabled={true} like={false}/>
-            }
+              <Pensamiento autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
+}
             //  renderLeftHiddenRow={data =>
-            //  <Button full onPress={() => alert(data)}>
-            //    <Icon active name="information-circle" />
+             //<Button full onPress={() => alert(data)}>
+              // <Icon active name="information-circle" />
             //</Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap, data)}>
-                <Icon active name="trash" />
-              </Button>}
-            //leftOpenValue={75}
-            rightOpenValue={-75}
+           renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+             <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap, data)}>
+               <Icon active name="trash" />
+             </Button>}
+            leftOpenValue={75}
+           rightOpenValue={-75}
           />
         </Content>
       </Container>

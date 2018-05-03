@@ -193,7 +193,7 @@ console.log(url);
               renderRow={data =>
 
 
-                <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={false}/>
+            <Pensamiento autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
 
 
 

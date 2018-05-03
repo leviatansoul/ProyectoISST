@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { View, TextInput, ListView, Alert, Picker } from 'react-native'
 import { Icon, Container, Header,  Content, Left, Right, Body, Title, Text, Button, Input, Footer} from 'native-base'
-
+import ImagePicker from 'react-native-image-picker';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions'; //Import your actions
+
 
 
 class PublicarScreen extends Component {
@@ -18,9 +19,12 @@ class PublicarScreen extends Component {
     this.state = {
       pensamiento: null,
       autor: 'Autor',
-      tema:"General"
+      tema:"General",
+      image: ""
     };
    this.putData = this.putData.bind(this)
+this.uploadImage = this.uploadImage.bind(this)
+
 }
 
 onValueChange(value: string) {
@@ -66,6 +70,28 @@ fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&
 
   }
 
+uploadImage(){
+var options = {
+  title: 'Select Avatar',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+}
+  ImagePicker.showImagePicker(options, (response) => {
+    if(response.didCancel){
+
+    }else if(response.error){
+
+    }else if (response.customButton){
+
+    }else{
+      this.setState({image: response.uri})
+    }
+  })
+}
+
+
   render () {
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -84,6 +110,7 @@ fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&
       <Text>{this.props.latitude}</Text>
       <Text>{this.props.longitude}</Text>
       <Text>{this.props.error}</Text>
+      <Button onPress={this.uploadImage}><Text>Imagen</Text></Button>
           <Picker
                 iosHeader="Temas"
                 iosIcon={<Icon name="ios-arrow-down-outline" />}
@@ -99,6 +126,9 @@ fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&
               </Picker>
         <Input onChangeText={(text) => this.setState({pensamiento: text})}
         placeholder='Escribe un pensamiento'/>
+        
+       
+
 </Content>
   <Button block onPress={() => {
       if (this.props.latitude === null || this.props.longitude === null){

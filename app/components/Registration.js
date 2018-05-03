@@ -15,7 +15,7 @@ class Registration extends Component {
             nombre: '',
             apellidos: '',
             correo: '',
-            nickname: '',
+
             contraseña1: '',
             contraseña2: '',
             facebook: '',
