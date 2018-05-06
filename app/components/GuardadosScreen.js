@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, ListView} from 'react-native'
+import { View, ListView, ScrollView} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
+import FooterGlobal from "./FooterGlobal";
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
@@ -25,20 +26,21 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
   }
   deleteRow(secId, rowId, rowMap, data) {
-   rowMap[`${secId}${rowId}`].props.closeRow();
-   const newData = [...this.props.pensamientos];
-   newData.splice(rowId, 1);
-  this.props.removeSavedData(newData);
 
-  fetch("http://192.168.1.130:8080/PCG/BorrarPensamientosGuardadosServlet?nick="+this.props.nickname+"&pensId="+data.id)
+
+  fetch("http://"+this.props.url+"/PCG/BorrarValoracionServlet?nick="+this.props.nickname+"&pens="+data.id)
 
 
 .then((response)=> {
         if (response.status >= 400) {
             throw new Error("Bad response from server");
         }
-        console.log("ok")
-        console.log(response)
+       else {
+         rowMap[`${secId}${rowId}`].props.closeRow();
+   const newData = [...this.props.pensamientos];
+   newData.splice(rowId, 1);
+  this.props.removeSavedData(newData);
+       }
     });
 
 
@@ -53,7 +55,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
 
-      var url = "http://192.168.1.130:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+      var url = "http://"+this.props.url+"/PCG/PensamientosValoradosServlet?nick="+this.props.nickname;
 console.log(url);
 
   fetch(url)
@@ -77,17 +79,30 @@ console.log(url);
 render () {
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
-      <Container>
 
+      <Container>
+<Header>
+
+      <Body>
+      <Title>TUS FAVORITOS</Title>
+      </Body>
+      <Right />
+    </Header>
         <Content scrollEnabled={true}>
+        <ScrollView>
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
                       renderRow={data =>
 
                           //hay que hacer algo si no hay nada guardado
 
+<<<<<<< HEAD
                         <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={true}/>
                       }
+=======
+                        <Pensamiento likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={true}/>
+}
+>>>>>>> e3b1eccaa1aa1f2c3a63d280ee18b4f39ead721c
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />
@@ -99,7 +114,23 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
                       //leftOpenValue={75}
                       rightOpenValue={-75}
                     />
+                    </ScrollView>
         </Content>
+        <View style={{
+   position: 'absolute',
+   bottom: 30,
+   right: 10,
+   width: 100,
+   height: 100
+
+}}>
+<Button style={{marginRight:0, backgroundColor: '#5067FF',  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
+<Icon name="md-add" />
+</Button>
+</View>
+      <FooterGlobal navigation={this.props.navigation}/>
+
+
       </Container>
     )
   }
@@ -111,7 +142,8 @@ function mapStateToProps(state, props) {
     return {
         nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosGuardadosReducer.loading,
-        pensamientos: state.pensamientosGuardadosReducer.data
+        pensamientos: state.pensamientosGuardadosReducer.data,
+        url: state.urlReducer.url
 
     }
 }

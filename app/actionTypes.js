@@ -5,6 +5,7 @@ export const PUT_NICKNAME = "PUT_NICKNAME";
 export const REMOVE_DATA = 'REMOVE_DATA';
 export const PUT_MI_DATA = 'PUT_MI_DATA';
 export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
+export const REMOVE_LOC_DATA = 'REMOVE_LOC_DATA';
 export const UPDATE_FOOTER = "UPDATE_FOOTER";
 export const CONTACTOS_UPDATE = "CONTACTOS_UPDATE";
 

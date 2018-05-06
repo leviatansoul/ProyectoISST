@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { View, TextInput, ListView, Alert, Picker } from 'react-native'
 import { Icon, Container, Header,  Content, Left, Right, Body, Title, Text, Button, Input, Footer} from 'native-base'
-
+import ImagePicker from 'react-native-image-picker';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions'; //Import your actions
+
 
 
 class PublicarScreen extends Component {
@@ -18,9 +19,12 @@ class PublicarScreen extends Component {
     this.state = {
       pensamiento: null,
       autor: 'Autor',
-      tema:"General"
+      tema:"General",
+      image: ""
     };
    this.putData = this.putData.bind(this)
+this.uploadImage = this.uploadImage.bind(this)
+
 }
 
 onValueChange(value: string) {
@@ -52,7 +56,11 @@ onValueChange(value: string) {
 
 //this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
 
+<<<<<<< HEAD
 fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+=======
+fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+>>>>>>> e3b1eccaa1aa1f2c3a63d280ee18b4f39ead721c
 
 
 
@@ -65,6 +73,28 @@ fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&
       });
 
   }
+
+uploadImage(){
+var options = {
+  title: 'Select Avatar',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+}
+  ImagePicker.showImagePicker(options, (response) => {
+    if(response.didCancel){
+
+    }else if(response.error){
+
+    }else if (response.customButton){
+
+    }else{
+      this.setState({image: response.uri})
+    }
+  })
+}
+
 
   render () {
 
@@ -84,6 +114,7 @@ fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&
       <Text>{this.props.latitude}</Text>
       <Text>{this.props.longitude}</Text>
       <Text>{this.props.error}</Text>
+     
           <Picker
                 iosHeader="Temas"
                 iosIcon={<Icon name="ios-arrow-down-outline" />}
@@ -99,6 +130,9 @@ fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&
               </Picker>
         <Input onChangeText={(text) => this.setState({pensamiento: text})}
         placeholder='Escribe un pensamiento'/>
+        
+       
+
 </Content>
   <Button block onPress={() => {
       if (this.props.latitude === null || this.props.longitude === null){
@@ -131,7 +165,8 @@ function mapStateToProps(state, props) {
       nickname: state.nicknameReducer.nickname,
       latitude: state.locationReducer.latitude,
       longitude: state.locationReducer.longitude,
-      error: state.locationReducer.error
+      error: state.locationReducer.error,
+      url: state.urlReducer.url
     }
 }
 

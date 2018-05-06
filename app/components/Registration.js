@@ -3,6 +3,10 @@ import { View, Alert  } from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast} from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions'; //Import your actions
+
 class Registration extends Component {
 
     constructor(props) {
@@ -11,7 +15,7 @@ class Registration extends Component {
             nombre: '',
             apellidos: '',
             correo: '',
-            nickname: '',
+
             contraseña1: '',
             contraseña2: '',
             facebook: '',
@@ -31,7 +35,11 @@ registrarUsuario(){
 password = this.state.contraseña1
 nickname = this.state.nickname
 
+<<<<<<< HEAD
  url = "http://192.168.1.130:8080/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+=======
+ url = "http://"+this.props.url+"/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+>>>>>>> e3b1eccaa1aa1f2c3a63d280ee18b4f39ead721c
 
  fetch(url)
       .then((response)=> {
@@ -48,8 +56,12 @@ nickname = this.state.nickname
          this.props.navigation.navigate('authenticationShow')
       }
       else if (data == "already exists"){
+<<<<<<< HEAD
 
          console.log("ya existe el usuario")
+=======
+         console.log("ya esxiste el usuario")
+>>>>>>> e3b1eccaa1aa1f2c3a63d280ee18b4f39ead721c
 
          this.props.navigation.navigate('registrationShow')
       }
@@ -122,4 +134,20 @@ nickname = this.state.nickname
     }
 }
 
-export default Registration
+function mapStateToProps(state, props) {
+    return {
+        url: state.urlReducer.url
+
+    }
+}
+
+// Doing this merges our actions into the component’s props,
+// while wrapping them in dispatch() so that they immediately dispatch an Action.
+// Just by doing this, we will have access to the actions defined in out actions file (action/PruebaRedux.js)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Actions, dispatch);
+}
+
+//Connect everything
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
+

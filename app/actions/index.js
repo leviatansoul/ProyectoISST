@@ -4,6 +4,7 @@ export const PUT_DATA = 'PUT_DATA';
 export const PUT_NICKNAME = 'PUT_NICKNAME';
 export const SAVE_DATA = 'SAVE_DATA';
 export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
+export const REMOVE_LOC_DATA = 'REMOVE_LOC_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
 export const UPDATE_FOOTER = "UPDATE_FOOTER";
 export const CONTACTOS_UPDATE = "CONTACTOS_UPDATE";
@@ -46,6 +47,18 @@ export function removeData(data){
     //delay the retrieval [Sample reasons only]
 
      dispatch({type: REMOVE_DATA, data: data});
+
+
+ };
+}
+export function removeLocData(data){
+  return (dispatch) => {
+
+    //Make API Call
+    //For this example, I will be using the sample data in the json file
+    //delay the retrieval [Sample reasons only]
+
+     dispatch({type: REMOVE_LOC_DATA, data: data});
 
 
  };
@@ -138,11 +151,11 @@ export function updateFooter(itemSelected, navigation){
     }
 
     if(itemSelected === 2){
-      navigation.navigate('Publicar');
+      navigation.navigate('Publicados');
     }
 
     if(itemSelected === 3){
-      navigation.navigate('Pensamientos');
+      navigation.navigate('Favoritos');
     }
 
     if(itemSelected === 4){
