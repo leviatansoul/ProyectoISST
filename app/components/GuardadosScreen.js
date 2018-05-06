@@ -96,13 +96,9 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
                           //hay que hacer algo si no hay nada guardado
 
-<<<<<<< HEAD
-                        <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={true}/>
-                      }
-=======
                         <Pensamiento likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={true}/>
-}
->>>>>>> e3b1eccaa1aa1f2c3a63d280ee18b4f39ead721c
+                      }
+
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />

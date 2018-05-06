@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { View, Text, Alert } from 'react-native'
 import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
@@ -93,7 +94,7 @@ console.log(url);
                 <Content>
                     <Form>
                         <Item floatingLabel>
-                            <Label>Nick</Label>
+                            <Label>Nombre de usuario</Label>
                             <Input onChangeText={(text) => this.setState({nickname: text})} />
                         </Item>
                         <Item floatingLabel last>

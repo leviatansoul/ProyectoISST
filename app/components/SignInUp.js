@@ -4,7 +4,7 @@ import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title
 import SafariView from 'react-native-safari-view'
 import Expo from 'expo'
 
-import { handleFbLogin } from '../facebook/Auth';
+import { HandleFBLogin } from '../facebook/HandleFBLogin.js';
 
 
 class SignInUp extends Component {
@@ -117,7 +117,9 @@ class SignInUp extends Component {
                         </Button>
                     </View>
                     <View style={{flex:1}}>
-                        <Button block onPress={handleFbLogin} color="#3c50e8">Registrarse con Facebook</Button>
+                        <Button block onPress={handleFbLogin} color="#3c50e8">
+                          <Text style={{color: 'white'}}>Registrarse con Facebook</Text>
+                        </Button>
                     </View>
                 </View>
             </Container>
