@@ -45,6 +45,8 @@ export default class Pensamiento extends Component {
             <Left>
             <Button transparent>
             <Icon name={this.state.icon2} style={[this.state.enabled]} />
+            <Icon name="md-sad" style={[this.state.enabled]} />
+            
             </Button>
                 <Body>
                   <Text>{this.props.text}</Text>
@@ -53,6 +55,7 @@ export default class Pensamiento extends Component {
               </Left>
               <Right>
               <Button transparent>
+              <Icon name="md-happy" style={[this.state.enabled]} />
             <Icon name={this.state.icon} style={[this.state.enabled]} />
             </Button>
                 </Right>
@@ -75,7 +78,7 @@ export default class Pensamiento extends Component {
               <Right>
               <Button transparent>
                   <Icon active name="md-heart" />
-                  <Text note style={{color:'lightgrey'}}>{this.props.autor}</Text>
+                  <Text note style={{color:'lightgrey'}}>{this.props.likes}</Text>
                 </Button>
             
               </Right>

@@ -24,12 +24,12 @@ import {
 
 let locationState = { latitude: null, longitude: null, error: null };
 
-let misPensamientosState = { data:[{id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
-let pensamientosGuardadosState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
+let misPensamientosState = { data:[{id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella', likes:0}]};
+let pensamientosGuardadosState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella', likes:0}]};
 let footerState = {itemSelected:1, badgeHome:0};
 let nicknameState = {nickname: ""};
 let urlState = {url: "192.168.1.49"};
-let pensamientosLocState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella',}]};
+let pensamientosLocState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella', likes: 0}]};
 
 let ContactosState = {id: 18, data:[
   {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'}

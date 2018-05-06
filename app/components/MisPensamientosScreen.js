@@ -96,7 +96,7 @@ fetch(url)
 
               //hay que hacer algo si no hay nada guardado
 
-              <Pensamiento autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={false} />
+              <Pensamiento likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={false} />
 }
             //  renderLeftHiddenRow={data =>
              //<Button full onPress={() => alert(data)}>
