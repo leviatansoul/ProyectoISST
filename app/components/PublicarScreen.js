@@ -56,11 +56,7 @@ onValueChange(value: string) {
 
 //this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
 
-<<<<<<< HEAD
-fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
-=======
 fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
->>>>>>> e3b1eccaa1aa1f2c3a63d280ee18b4f39ead721c
 
 
 
@@ -114,7 +110,7 @@ var options = {
       <Text>{this.props.latitude}</Text>
       <Text>{this.props.longitude}</Text>
       <Text>{this.props.error}</Text>
-     
+
           <Picker
                 iosHeader="Temas"
                 iosIcon={<Icon name="ios-arrow-down-outline" />}
@@ -130,8 +126,8 @@ var options = {
               </Picker>
         <Input onChangeText={(text) => this.setState({pensamiento: text})}
         placeholder='Escribe un pensamiento'/>
-        
-       
+
+
 
 </Content>
   <Button block onPress={() => {
