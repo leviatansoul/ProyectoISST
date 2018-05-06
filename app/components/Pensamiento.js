@@ -11,6 +11,24 @@ import { Icon, Text, Button, Container, Header, Content, Left, Right, Badge, Tit
 
 
 export default class Pensamiento extends Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {icon:"md-heart-outline",
+      enabled:styles.none};
+  }
+
+  async componentWillMount () {
+    if(this.props.enabled){
+      this.setState({icon: "md-heart-outline"});
+      this.setState({enabled: styles.visible});
+      if(this.props.like){
+        this.setState({icon: "md-heart"});
+      }
+    }
+
+  }
+
   render() {
     return (
 
@@ -21,6 +39,8 @@ export default class Pensamiento extends Component {
         </Body>
         <Right>
           <Text note style={{color:'lightgrey'}}>{this.props.autor}</Text>
+
+          <Icon name={this.state.icon} style={[this.state.enabled]} />
         </Right>
 
       </ListItem>
@@ -29,3 +49,12 @@ export default class Pensamiento extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  none: {
+    display: "none"
+  },
+  visible: {
+    display: "flex"
+  }
+});

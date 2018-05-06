@@ -36,6 +36,26 @@ class MisPensamientosScreen extends Component {
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
     this.setState({loading: false})
+
+    var url = "http://192.168.1.130:8080/PCG/PensamientosPropiosServlet?nick="+this.props.nickname;
+console.log(url);
+
+fetch(url)
+.then((response)=> {
+
+    if (response.status >= 400) {
+        throw new Error("Bad response from server");
+    }
+    return response.json();
+})
+.then((data)=> {
+    console.log(data);
+
+
+    this.props.putMiData(data);
+
+});
+
   }
 
   render () {
@@ -50,7 +70,7 @@ class MisPensamientosScreen extends Component {
 
               //hay que hacer algo si no hay nada guardado
 
-              <Pensamiento autor={data.autor} text={data.text}/>
+              <Pensamiento autor={data.autor} text={data.text} enabled={true} like={false}/>
             }
             //  renderLeftHiddenRow={data =>
             //  <Button full onPress={() => alert(data)}>
@@ -74,7 +94,8 @@ class MisPensamientosScreen extends Component {
 function mapStateToProps(state, props) {
   return {
     loading: state.misPensamientosReducer.loading,
-    pensamientos: state.misPensamientosReducer.data
+    pensamientos: state.misPensamientosReducer.data,
+    nickname: state.nicknameReducer.nickname
 
   }
 }

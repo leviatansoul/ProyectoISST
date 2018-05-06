@@ -47,6 +47,12 @@ class FooterGlobal extends Component {
               <Text>Contactos</Text>
             </Button>
 
+            <Button vertical onPress={() =>
+              this.props.updateFooter(5, this.props.navigation)}
+                    active ={this.props.itemSelected === 5}>
+              <Icon name="person" active ={this.props.itemSelected === 5} />
+              <Text>PruebaChat</Text>
+            </Button>
 
 
 

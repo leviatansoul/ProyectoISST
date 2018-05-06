@@ -24,11 +24,27 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
 
   }
-  deleteRow(secId, rowId, rowMap) {
+  deleteRow(secId, rowId, rowMap, data) {
    rowMap[`${secId}${rowId}`].props.closeRow();
    const newData = [...this.props.pensamientos];
    newData.splice(rowId, 1);
   this.props.removeSavedData(newData);
+
+  fetch("http://192.168.1.130:8080/PCG/BorrarPensamientosGuardadosServlet?nick="+this.props.nickname+"&pensId="+data.id)
+
+
+.then((response)=> {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        console.log("ok")
+        console.log(response)
+    });
+
+
+
+
+
  }
 
   async componentWillMount () {
@@ -36,6 +52,25 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     })
+
+      var url = "http://192.168.1.130:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          console.log(data);
+
+
+          this.props.saveData(data);
+         }
+      );
     this.setState({loading: false})
   }
 
@@ -51,14 +86,14 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
                           //hay que hacer algo si no hay nada guardado
 
-                        <Pensamiento autor={data.autor} text={data.text}/>
+                        <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={true}/>
                       }
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />
                         //</Button>}
                       renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap, data)}>
                           <Icon active name="trash" />
                         </Button>}
                       //leftOpenValue={75}
@@ -74,6 +109,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+        nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosGuardadosReducer.loading,
         pensamientos: state.pensamientosGuardadosReducer.data
 

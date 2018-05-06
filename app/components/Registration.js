@@ -31,7 +31,7 @@ registrarUsuario(){
 password = this.state.contraseña1
 nickname = this.state.nickname
 
- url = "http://192.168.1.40/PCG/RegistroServlet?nick="+nickname+"&password="+password;
+ url = "http://192.168.1.130:8080/PCG/RegistroServlet?nick="+nickname+"&password="+password;
 
  fetch(url)
       .then((response)=> {
@@ -48,7 +48,8 @@ nickname = this.state.nickname
          this.props.navigation.navigate('authenticationShow')
       }
       else if (data == "already exists"){
-         console.log("ya existe el usuario")    
+
+         console.log("ya existe el usuario")
 
          this.props.navigation.navigate('registrationShow')
       }
@@ -77,19 +78,7 @@ nickname = this.state.nickname
 
                     <Form>
                         <Item floatingLabel>
-                            <Label>Nombre</Label>
-                            <Input onChangeText={(text) => this.setState({nombre: text})}/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Apellidos</Label>
-                            <Input onChangeText={(text) => this.setState({apellidos: text})}/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Correo electrónico</Label>
-                            <Input onChangeText={(text) => this.setState({correo: text})}/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Nickname</Label>
+                            <Label>Nombre de usuario</Label>
                             <Input onChangeText={(text) => this.setState({nickname: text})}/>
                         </Item>
                         <Item floatingLabel>

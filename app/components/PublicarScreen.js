@@ -47,7 +47,14 @@ onValueChange(value: string) {
   }
 
   putData (pensamiento){
-fetch("http://192.168.1.40/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+
+
+
+//this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
+
+fetch("http://192.168.1.130:8080/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+
+
 
 .then((response)=> {
           if (response.status >= 400) {

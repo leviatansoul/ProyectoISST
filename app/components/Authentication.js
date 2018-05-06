@@ -19,8 +19,10 @@ class Authentication extends Component {
 
 
 autenticarUsuario(nickname, password){
+//  this.props.navigation.navigate('navigatorStack'); //POR SI NO FUNCIONA EL FETCH
 
-      var url = "http://192.168.1.40/PCG/LoginServlet?nick="+nickname+"&password="+password;
+
+      var url = "http://192.168.1.130:8080/PCG/LoginServlet?nick="+nickname+"&password="+password;
 console.log(url);
   fetch(url)
       .then((response)=> {
@@ -32,13 +34,22 @@ console.log(url);
       .then((data)=> {
           console.log(data);
           if (data == "ok"){
+            this.props.putNickname(nickname);
          this.props.navigation.navigate('navigatorStack')
       }
       else{
+        Alert.alert(
+'Error',
+'Nickname o password incorrectos',
+[
+ {text: 'OK', onPress: () => console.log('OK Pressed')},
+],
+{ cancelable: false }
+)
        this.props.navigation.navigate('authenticationShow')
       }
 
-      });
+      }); 
       }
       /*const requestOptions = {
               method: 'POST',
