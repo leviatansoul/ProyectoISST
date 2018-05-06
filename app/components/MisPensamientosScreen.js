@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, ListView, FlatList} from 'react-native'
+import { View, ListView, ScrollView} from 'react-native'
 import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
+import FooterGlobal from "./FooterGlobal";
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions';
@@ -76,18 +77,26 @@ fetch(url)
   }
 
   render () {
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return (
-      <Container scrollEnabled={true}>
+      
+      <Container>
+<Header>
 
-        <Content scrollEnabled={true} >
+<Body>
+<Title>LO QUE PIENSAS</Title>
+</Body>
+<Right />
+</Header>
+        <Content scrollEnabled={true}>
+        <ScrollView>
           <List 
-            DataSource={this.ds.cloneWithRows(this.props.pensamientos)}
-            renderRow={(data) =>
+            dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
+            renderRow={data =>
 
               //hay que hacer algo si no hay nada guardado
 
-              <Pensamiento autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
+              <Pensamiento autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={false} />
 }
             //  renderLeftHiddenRow={data =>
              //<Button full onPress={() => alert(data)}>
@@ -100,8 +109,24 @@ fetch(url)
             leftOpenValue={75}
            rightOpenValue={-75}
           />
+       </ScrollView>
         </Content>
+        <View style={{
+   position: 'absolute',
+   bottom: 30,
+   right: 10,
+   width: 100, 
+   height: 100
+  
+}}>
+<Button style={{marginRight:0, backgroundColor: '#5067FF',  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
+<Icon name="md-add" />
+</Button>
+</View>        
+      <FooterGlobal navigation={this.props.navigation}/>
+    
       </Container>
+      
     )
   }
 }

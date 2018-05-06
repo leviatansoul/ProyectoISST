@@ -151,11 +151,11 @@ export function updateFooter(itemSelected, navigation){
     }
 
     if(itemSelected === 2){
-      navigation.navigate('Publicar');
+      navigation.navigate('Publicados');
     }
 
     if(itemSelected === 3){
-      navigation.navigate('Pensamientos');
+      navigation.navigate('Favoritos');
     }
 
     if(itemSelected === 4){

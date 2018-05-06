@@ -110,7 +110,7 @@ var options = {
       <Text>{this.props.latitude}</Text>
       <Text>{this.props.longitude}</Text>
       <Text>{this.props.error}</Text>
-      <Button onPress={this.uploadImage}><Text>Imagen</Text></Button>
+     
           <Picker
                 iosHeader="Temas"
                 iosIcon={<Icon name="ios-arrow-down-outline" />}

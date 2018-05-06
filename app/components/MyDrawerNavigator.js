@@ -7,7 +7,8 @@ import { DrawerNavigator, DrawerItems } from 'react-navigation'
 import ConfigurationScreen from './ConfigurationScreen'
 import PublicarScreen from './PublicarScreen'
 import HomeScreen from './HomeScreen'
-import PensamientosScreen from './PensamientosScreen'
+import MisPensamientosScreen from './MisPensamientosScreen'
+
 import GuardadosScreen from './GuardadosScreen'
 import ContactosScreen from './ContactosScreen'
 import ChatLogin from './ChatLogin'
@@ -51,8 +52,11 @@ const MyNavigator = DrawerNavigator({
     Configuracion: {
         screen: ConfigurationScreen
     },
-    Pensamientos: {
-        screen: PensamientosScreen
+    Publicados: {
+        screen: MisPensamientosScreen
+    },
+    Favoritos: {
+        screen: GuardadosScreen
     },
     Contactos: {
         screen: ContactosScreen

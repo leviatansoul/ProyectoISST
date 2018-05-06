@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View,  ListView} from 'react-native'
-import { Icon, Segment, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
+import { View,  ListView, ScrollView} from 'react-native'
+import { Icon, Fab, Segment, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import haversine from 'haversine-distance';
@@ -9,6 +9,7 @@ import Pensamiento from "./Pensamiento"
 
 import * as Actions from '../actions'; //Import your actions
 import Expo from 'expo'
+import PublicarScreen from './PublicarScreen';
 
 class HomeScreen extends Component {
 
@@ -44,6 +45,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
  async putLike (data, secId, rowId, rowMap){
     var url = "http://"+this.props.url+"/PCG/ValorarServlet?nick="+this.props.nickname+"&pens="+data.id+"&valor=true";
 console.log(url);
+
 
   fetch(url)
       .then((response)=> {
@@ -188,9 +190,10 @@ console.log(url);
           </Button>
         </Segment>
 <Content scrollEnabled={true}>
+<ScrollView>
   <List
               dataSource={this.ds.cloneWithRows(this.props.pensamientosLoc)}
-              renderRow={data =>
+              renderRow={(data) =>
 
 
             <Pensamiento autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
@@ -209,8 +212,24 @@ console.log(url);
                 </Button>}
               leftOpenValue={75}
             />
-</Content>
+            
+            </ScrollView>
 
+           
+           
+</Content>
+<View style={{
+   position: 'absolute',
+   bottom: 30,
+   right: 10,
+   width: 100, 
+   height: 100
+  
+}}>
+<Button style={{marginRight:0, backgroundColor: '#5067FF',  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
+<Icon name="md-add" />
+</Button>
+</View>        
         <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 
