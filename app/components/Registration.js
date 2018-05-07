@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import { View } from 'react-native'
-import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
+import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast } from 'native-base'
 import PasswordInputText from 'react-native-hide-show-password-input';
 
 class Registration extends Component {
@@ -16,8 +16,7 @@ class Registration extends Component {
             contraseña2: '',
             facebook: '',
             whatsapp: '',
-
-        };
+        }
     }
 
 
@@ -71,7 +70,7 @@ class Registration extends Component {
                         </Item>
                     </Form>
                 </Content>
-                    <Button block onPress={() => this.props.navigation.navigate('signInUpStack')}>
+                    <Button block onPress={() => this.props.navigation.goBack()}>
                         <Text style={{color: 'white'}}>REGISTRARSE</Text>
                     </Button>
             </Container>

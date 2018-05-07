@@ -9,6 +9,7 @@ let locationState = { latitude: 0, longitude: 0, error: null };
 let misPensamientosState = {id: 1, data: [], loading:true};
 let pensamientosGuardadosState = {id: 1, data: [], loading:true};
 let footerState = {itemSelected:1, badgeHome:0};
+let userDataState = {id: 1, data: []}
 
 let pensamientosLocState = {id: 18, data:[
   {id: 1, text: 'Mi primer pensamiento', autor: 'Mirella', latitude:40.3385100, longitude: -3.38045, date: '01/03/2018'},
@@ -111,6 +112,21 @@ const footerReducer = (state = footerState, action) => {
 
       state = Object.assign({}, state, { itemSelected: action.itemSelected});
 
+      return state;
+    default:
+      return state;
+  }
+};
+
+const userDataReducer = (state = userDataState, action) => {
+  switch (action.type) {
+    case SAVE_USER_DATA:
+      newState = state.data;
+      pensamiento = action.item;
+      pensamiento.id = state.id;
+      newState.push(pensamiento);
+      state = Object.assign({}, state, { id: state.id++, data: newState, loading:false});
+      console.log(state);
       return state;
     default:
       return state;

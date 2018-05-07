@@ -75,3 +75,10 @@ export function updateFooter(itemSelected, navigation){
 
   };
 }
+
+export function saveUserData(data){
+  return (dispatch) => {
+    dispatch({type: SAVE_USER_DATA, data: data});
+
+  };
+}

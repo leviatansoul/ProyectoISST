@@ -57,4 +57,3 @@ const MyNavigator = DrawerNavigator({
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle'
 })
-
