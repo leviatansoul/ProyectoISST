@@ -50,7 +50,7 @@ class MapScreen extends Component {
         console.log(position.coords.longitude);
         this.props.updateLocation(position.coords.latitude, position.coords.longitude);
 
-          var url = "http://192.168.1.130:8080/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude;
+          var url = "http://192.168.1.130:8080/PCG/PensamientosCercanosServlet?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&dist=20&nick="+this.props.nickname;
   console.log(url);
 
   fetch(url)

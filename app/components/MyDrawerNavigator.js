@@ -75,7 +75,7 @@ const MyNavigator = DrawerNavigator({
   },
   Chat: {
       screen: Chat
-  }
+  },
   Mapa: {
         screen: MapScreen
   }
