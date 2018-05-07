@@ -15,7 +15,7 @@ class Registration extends Component {
             nombre: '',
             apellidos: '',
             correo: '',
-            nickname: '',
+
             contraseña1: '',
             contraseña2: '',
             facebook: '',
@@ -81,19 +81,7 @@ nickname = this.state.nickname
 
                     <Form>
                         <Item floatingLabel>
-                            <Label>Nombre</Label>
-                            <Input onChangeText={(text) => this.setState({nombre: text})}/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Apellidos</Label>
-                            <Input onChangeText={(text) => this.setState({apellidos: text})}/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Correo electrónico</Label>
-                            <Input onChangeText={(text) => this.setState({correo: text})}/>
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Nickname</Label>
+                            <Label>Nombre de usuario</Label>
                             <Input onChangeText={(text) => this.setState({nickname: text})}/>
                         </Item>
                         <Item floatingLabel>
@@ -153,4 +141,3 @@ function mapDispatchToProps(dispatch) {
 
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);
-

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, ListView} from 'react-native'
+import { View, ListView, ScrollView} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import {bindActionCreators} from 'redux';
+import FooterGlobal from "./FooterGlobal";
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
@@ -25,7 +26,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
   }
   deleteRow(secId, rowId, rowMap, data) {
-  
+
 
   fetch("http://"+this.props.url+"/PCG/BorrarValoracionServlet?nick="+this.props.nickname+"&pens="+data.id)
 
@@ -78,17 +79,26 @@ console.log(url);
 render () {
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
-      <Container>
 
+      <Container>
+<Header>
+
+      <Body>
+      <Title>TUS FAVORITOS</Title>
+      </Body>
+      <Right />
+    </Header>
         <Content scrollEnabled={true}>
+        <ScrollView>
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
                       renderRow={data =>
 
                           //hay que hacer algo si no hay nada guardado
 
-                        <Pensamiento autor={data.autor} text={data.text}  enabled={true} like={true}/>
+                        <Pensamiento likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={true}/>
                       }
+
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />
@@ -100,7 +110,23 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
                       //leftOpenValue={75}
                       rightOpenValue={-75}
                     />
+                    </ScrollView>
         </Content>
+        <View style={{
+   position: 'absolute',
+   bottom: 30,
+   right: 10,
+   width: 100,
+   height: 100
+
+}}>
+<Button style={{marginRight:0, backgroundColor: '#5067FF',  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
+<Icon name="md-add" />
+</Button>
+</View>
+      <FooterGlobal navigation={this.props.navigation}/>
+
+
       </Container>
     )
   }
