@@ -1,11 +1,19 @@
 import { sbGetOpenChannel } from './openChannel';
+import { sbGetGroupChannelUrl } from './user';
 import SendBird from 'sendbird';
 
-export const sbCreatePreviousMessageListQuery = (channelUrl) => {
+export const sbCreatePreviousMessageListQuery = (channelUrl,tipo) => {
   return new Promise((resolve, reject) => {
-    sbGetOpenChannel(channelUrl)
-      .then( (channel) => resolve(channel.createPreviousMessageListQuery()) )
-      .catch( (error) => reject(error) )
+    if(tipo === "Open"){
+      sbGetOpenChannel(channelUrl)
+        .then( (channel) => resolve(channel.createPreviousMessageListQuery()) )
+        .catch( (error) => reject(error) )
+    }else {
+      sbGetGroupChannelUrl(channelUrl)
+        .then( (channel) => resolve(channel.createPreviousMessageListQuery()) )
+        .catch( (error) => reject(error) )
+    }
+
   });
 }
 

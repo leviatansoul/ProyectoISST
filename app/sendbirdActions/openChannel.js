@@ -11,6 +11,8 @@ export const sbGetOpenChannelList = (openChannelListQuery) => {
       if (error) {
         reject(error);
       } else {
+        console.log(channels);
+
         resolve(channels);
       }
     });

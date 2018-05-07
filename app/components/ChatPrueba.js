@@ -16,7 +16,8 @@ import SendBird from 'sendbird';
 import {
   sbGetOpenChannel,
   sbCreatePreviousMessageListQuery,
-  sbAdjustMessageList
+  sbAdjustMessageList,
+  sbGetGroupChannelUrl
 } from '../sendbirdActions';
 
 class ChatPrueba extends Component {
@@ -55,12 +56,13 @@ class ChatPrueba extends Component {
     this.props.initChatScreen();
     console.log("entra al did");
     const { channelUrl } = this.props.navigation.state.params;
-    sbGetOpenChannel(channelUrl)
-      .then((channel) => {
+    console.log(channelUrl);
+   // sbGetGroupChannelUrl(channelUrl)
+    //  .then((channel) => {
         console.log("consigue el channel");
        // this.props.navigation.setParams({ title: channel.name });
         this._componentInit();
-      })
+     // })
   }
 
 
@@ -85,7 +87,7 @@ class ChatPrueba extends Component {
 
 
     if (init) {
-      sbCreatePreviousMessageListQuery(channelUrl)
+      sbCreatePreviousMessageListQuery(channelUrl, "Group")
         .then((previousMessageListQuery) => {
           this.setState({ previousMessageListQuery }, () => {
 
@@ -169,6 +171,12 @@ class ChatPrueba extends Component {
                 // dataSource={this.ds.cloneWithRows(this.props.contactos)}
 
                 renderRow={data =>{
+                  console.log("data");
+
+
+                    console.log(data.sender);
+
+
                   if (this.state.previousMessageListQuery !== null){
                     return(
                       <ListItem Rr >

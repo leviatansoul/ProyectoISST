@@ -33,10 +33,10 @@ export const MESSAGE_DELETED = 'MESSAGE_DELETED';
 
 
 import { sbConnect, sbDisconnect, sbCreateOpenChannelListQuery, sbGetOpenChannelList, sbAddChannel, sbGetOpenChannel,
-  sbOpenChannelEnter,
+  sbOpenChannelEnter, sbGetGroupChannelUrl,
   sbGetMessageList,
   sbSendTextMessage,
-  sbOpenChannelExit} from '../sendbirdActions';
+  sbOpenChannelExit, sbGetGroupChannel, sbCreateGroupChannel} from '../sendbirdActions';
 import SendBird from 'sendbird';
 
 export function removeData(data){
@@ -134,7 +134,7 @@ export function updateContactos(data){
 
 
   var data2 = [
-    {id: 1, nick: 'Mi primer Contacto', img: 'xxxx'},{id: 2, nick: 'Diego Gallu', img: 'xxxx'}
+    {id: 1, nick: 'leviatansoul', img: 'xxxx'},{id: 2, nick: 'Gallu', img: 'xxxx'}
   ];
 
   return (dispatch) => {
@@ -161,9 +161,9 @@ export function updateFooter(itemSelected, navigation){
     if(itemSelected === 4){
       navigation.navigate('Contactos');
     }
-    if(itemSelected === 5){
+  /*  if(itemSelected === 5){
       navigation.navigate('ChatLogin');
-    }
+    }*/
 
     dispatch({type: UPDATE_FOOTER, itemSelected: itemSelected});
 
@@ -182,7 +182,7 @@ export function sendbirdLogin( userId, nickname, navigation ) {
         sbAddChannel()
       })
       .catch((error) => {
-        navigation.navigate('Contactos');
+       // navigation.navigate('Contactos');
         dispatch({
           type: LOGIN_FAIL,
           payload: error
@@ -200,6 +200,33 @@ export function initMenu (){
 
 }
 
+export function createGroupChannelPeticiones (user1, user2){ //Action para crear nuevo group channel
+  return (dispatch) => {
+    sbCreateGroupChannel(user1, user2);
+    dispatch({type: "CREATE_GROUPCHANNEL"});
+
+  };
+
+}
+
+export function getGroupChannel (user1, user2, navigation){ //Action para abrir chat
+  return (dispatch) => {
+
+    sbGetGroupChannel(user1,user2)
+      .then((url)=>{
+        navigation.navigate(
+          'Chat',
+          { channelUrl: url }
+        );
+        }
+      );
+
+    dispatch({type: "CHAT_GROUPCHANNEL"});
+
+  };
+
+}
+
 export function sendbirdLogout (navigation)  {
   return (dispatch) => {
     sbDisconnect()
@@ -210,7 +237,7 @@ export function sendbirdLogout (navigation)  {
   }
 }
 
-export function getOpenChannelList  (openChannelListQuery)  {
+export function getOpenChannelList  (openChannelListQuery)  { //Este sobra
   return (dispatch) => {
     if (openChannelListQuery.hasNext) {
       sbGetOpenChannelList(openChannelListQuery)
@@ -236,16 +263,18 @@ export function initChatScreen ()  {
 
 export function createChatHandler (channelUrl)  {
   return (dispatch) => {
-    sbGetOpenChannel(channelUrl)
+   /* sbGetOpenChannel(channelUrl)
       .then((channel) => {
         sbOpenChannelEnter(channel)
-          .then((channel) => {
+          .then((channel) => { */
+    sbGetGroupChannelUrl(channelUrl)
+      .then((channel) => {
+
             registerHandler(channelUrl, dispatch);
 
             console.log("crea el handler succes");
             dispatch({ type: CREATE_CHAT_HANDLER_SUCCESS });
-          })
-          .catch( (error) => dispatch({ type: CREATE_CHAT_HANDLER_FAIL }) );
+
       })
       .catch( (error) => dispatch({ type: CREATE_CHAT_HANDLER_FAIL }) );
   }
@@ -306,7 +335,7 @@ export function getPrevMessageList (previousMessageListQuery) {
 
 export function onSendButtonPress  (channelUrl, textMessage) {
   return (dispatch) => {
-    sbGetOpenChannel(channelUrl)
+    sbGetGroupChannelUrl(channelUrl)
       .then((channel) => {
         const messageTemp = sbSendTextMessage(channel, textMessage, (message, error) => {
           if (error) {
