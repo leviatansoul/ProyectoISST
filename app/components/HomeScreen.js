@@ -28,7 +28,10 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
   appClick(data) {
 
-    fetch("http://192.168.1.130:8080/PCG/GuardarPensamientoServlet?nick="+this.props.nickname+"&pensId="+data.id)
+    var url = "http://"+this.props.url+"/PCG/GuardarPensamientoServlet?nick="+this.props.nickname+"&pensId="+data.id;
+
+
+    fetch(url)
 
 
 .then((response)=> {

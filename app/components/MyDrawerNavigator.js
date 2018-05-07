@@ -16,6 +16,8 @@ import Menu from './Menu'
 import OpenChannel from './OpenChannel'
 import Chat from './ChatPrueba'
 
+import MapScreen from './MapScreen'
+
 
 export default class MyDrawerNavigator extends Component {
     render() {
@@ -61,6 +63,7 @@ const MyNavigator = DrawerNavigator({
     Contactos: {
         screen: ContactosScreen
     },
+
   ChatLogin: {
     screen: ChatLogin
   },
@@ -73,6 +76,10 @@ const MyNavigator = DrawerNavigator({
   Chat: {
       screen: Chat
   }
+  Mapa: {
+        screen: MapScreen
+  }
+
 }, {
     initialRouteName: 'Home',
     drawerPosition: 'left',
@@ -81,4 +88,3 @@ const MyNavigator = DrawerNavigator({
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle'
 })
-

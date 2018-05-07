@@ -43,8 +43,15 @@ class FooterGlobal extends Component {
 
             <Button vertical onPress={() =>
               this.props.updateFooter(4, this.props.navigation)}
-                    active ={this.props.itemSelected === 4}>
-              <Icon name="person" active ={this.props.itemSelected === 4} />
+              active ={this.props.itemSelected === 4}>
+              <Icon name="map" active ={this.props.itemSelected === 4} />
+              <Text>Mapa</Text>
+            </Button>
+
+            <Button vertical onPress={() =>
+              this.props.updateFooter(5, this.props.navigation)}
+                    active ={this.props.itemSelected === 5}>
+              <Icon name="person" active ={this.props.itemSelected === 5} />
               <Text>Contactos</Text>
             </Button>
 
