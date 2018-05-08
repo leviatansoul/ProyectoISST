@@ -22,10 +22,18 @@ class Authentication extends Component {
 autenticarUsuario(nickname, password){
 //  this.props.navigation.navigate('navigatorStack'); //POR SI NO FUNCIONA EL FETCH
 
+const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nick: nickname, password: password })
+    };
 
-      var url = "http://"+this.props.url+"/PCG/LoginServlet?nick="+nickname+"&password="+password;
+
+
+
+      var url = "http://"+this.props.url+"/PCG/LoginServlet";
 console.log(url);
-  fetch(url)
+  fetch(url, requestOptions)
       .then((response)=> {
           if (response.status >= 400) {
               throw new Error("Bad response from server");
@@ -49,7 +57,7 @@ console.log(url);
 ],
 { cancelable: false }
 )
-       this.props.navigation.navigate('authenticationShow')
+       //this.props.navigation.navigate('authenticationShow')
       }
 
       });
@@ -57,10 +65,10 @@ console.log(url);
       /*const requestOptions = {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: { 'nickname': nickname, 'password': password }
+              body: JSON.stringify({ 'nickname': nickname, 'password': password })
           };
 
-          return fetch('http://192.168.1.40/PCG/LoginServlet', requestOptions)
+          return fetch('http://'+this.props.url+'/PCG/LoginServlet', requestOptions)
           .then((response)=> {
 
               if (response.status >= 400) {
