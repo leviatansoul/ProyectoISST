@@ -44,8 +44,7 @@ console.log(url);
           console.log(data);
           if (data == "ok"){
             this.props.putNickname(nickname);
-
-           // this.props.sendbirdLogin( nickname, nickname, this.props.navigation );
+            this.props.sendbirdLogin( nickname, nickname, this.props.navigation );
          this.props.navigation.navigate('navigatorStack')
       }
       else{

@@ -133,12 +133,12 @@ export function updateContactos(data){
 
 
 
-  var data2 = [
+  /*var data2 = [
     {id: 1, nick: 'leviatansoul', img: 'xxxx'},{id: 2, nick: 'Gallu', img: 'xxxx'}
-  ];
+  ]; */
 
   return (dispatch) => {
-    dispatch({type: CONTACTOS_UPDATE, data: data2});
+    dispatch({type: CONTACTOS_UPDATE, data: data});
 
   };
 }

@@ -63,8 +63,8 @@ class ContactosScreen extends Component {
     </ListItem>
   );
   async componentWillMount () {
-/*
-    var url = "http://192.168.1.130:8080/PCG/PensamientosGuardadosServlet?nick="+this.props.nickname;
+
+    var url = "http://"+this.props.url+"/PCG/ContactosServlet?nick="+this.props.nickname;
     console.log(url);
 
     fetch(url)
@@ -76,14 +76,12 @@ class ContactosScreen extends Component {
         return response.json();
     })
     .then((data)=> {
-        console.log(data);
 
         this.props.updateContactos(data);
 
        }
      );
-     */
-this.props.updateContactos();
+
 
      this.setState({loading: false})
 
@@ -169,7 +167,8 @@ function mapStateToProps(state, props) {
   return {
     loading: state.contactosReducer.loading,
     contactos: state.contactosReducer.data,
-    nickname: state.nicknameReducer.nickname
+    nickname: state.nicknameReducer.nickname,
+    url: state.urlReducer.url
 
   }
 }
