@@ -27,7 +27,6 @@
     "react-native": "0.52.0",
     "react-native-easy-grid": "^0.1.17",
     "react-native-fbsdk": "^0.7.0",
-    "react-native-firebase": "^4.0.7",
     "react-native-hide-show-password-input": "^1.0.7",
 
     "react-native-image-picker": "^0.26.7",
