@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,  ListView, ScrollView} from 'react-native'
+import { View,  ListView, Alert, ScrollView} from 'react-native'
 import { Icon, Fab, Segment, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -25,6 +25,7 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.actualizaLista = this.actualizaLista.bind(this);
     this.putLike = this.putLike.bind(this);
     this.putDislike = this.putDislike.bind(this);
+    this.contactar = this.contactar.bind(this);
   }
   appClick(data) {
 
@@ -44,6 +45,51 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 
 
+  }
+  async contactar (autor){
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick1: this.props.nickname, nick2: autor })
+  };
+
+
+
+
+    var url = "http://"+this.props.url+"/PCG/ContactarServlet";
+console.log(url);
+fetch(url, requestOptions)
+    .then((response)=> {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+    })
+    .then((data)=> {
+        console.log(data);
+        if (data == "creada"){
+         
+            Alert.alert(
+      'Genial',
+      'Peticion enviada',
+      [
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+      )
+    }
+    else {
+      Alert.alert(
+'Error',
+'Ya has contactado con el usuario',
+[
+{text: 'OK', onPress: () => console.log('OK Pressed')},
+],
+{ cancelable: false }
+)
+     }
+
+    });
   }
  async putLike (data, secId, rowId, rowMap){
     var url = "http://"+this.props.url+"/PCG/ValorarServlet?nick="+this.props.nickname+"&pens="+data.id+"&valor=true";
@@ -199,7 +245,7 @@ console.log(url);
               renderRow={(data) =>
 
 
-            <Pensamiento likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
+            <Pensamiento contactar={this.contactar} likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
 
 
 

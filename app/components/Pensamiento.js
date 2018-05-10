@@ -70,7 +70,7 @@ export default class Pensamiento extends Component {
                 </Button>
               </Left>
               <Body>
-                <Button transparent style={[this.state.enabled2]}>
+                <Button transparent style={[this.state.enabled2]}  onPress={() => this.props.contactar(this.props.autor)}>
                   <Icon active name="chatbubbles"  />
                   <Text note style={{color:'lightgrey'}}>{this.props.autor}</Text>
                 </Button>
