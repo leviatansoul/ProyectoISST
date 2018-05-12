@@ -145,7 +145,8 @@ function mapStateToProps(state, props) {
       longitude: state.locationReducer.longitude,
       error: state.locationReducer.error,
       pensamientosLoc: state.pensamientosLocReducer.data,
-      loading: state.pensamientosLocReducer.loading
+      loading: state.pensamientosLocReducer.loading,
+      url: state.urlReducer.url
     }
 }
 

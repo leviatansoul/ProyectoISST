@@ -8,6 +8,8 @@ export const REMOVE_LOC_DATA = 'REMOVE_LOC_DATA';
 export const LOCATION_UPDATE = 'LOCATION_UPDATE';
 export const UPDATE_FOOTER = "UPDATE_FOOTER";
 export const CONTACTOS_UPDATE = "CONTACTOS_UPDATE";
+
+export const PETICIONES_UPDATE = "PETICIONES_UPDATE";
 export const PUT_MI_DATA = "PUT_MI_DATA";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
@@ -119,26 +121,53 @@ export function updateLocation(latitude,longitude){
 export function updateContactos(data){
 
   //Hacer peticiones asíncronas
- /* var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
-  console.log(url);
+  /* var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
+   console.log(url);
 
-  fetch(url)
-    .then((response)=> {
+   fetch(url)
+   .then((response)=> {
 
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    }) */
+   if (response.status >= 400) {
+   throw new Error("Bad response from server");
+   }
+   return response.json();
+   }) */
 
 
 
   /*var data2 = [
-    {id: 1, nick: 'leviatansoul', img: 'xxxx'},{id: 2, nick: 'Gallu', img: 'xxxx'}
-  ]; */
+   {id: 1, nick: 'leviatansoul', img: 'xxxx'},{id: 2, nick: 'Gallu', img: 'xxxx'}
+   ]; */
 
   return (dispatch) => {
     dispatch({type: CONTACTOS_UPDATE, data: data});
+
+  };
+}
+
+export function updatePeticiones(data){
+
+  //Hacer peticiones asíncronas
+  /* var url = "http://192.168.1.137/PCG/LoginServlet?nick="+nickname+"&password="+password;
+   console.log(url);
+
+   fetch(url)
+   .then((response)=> {
+
+   if (response.status >= 400) {
+   throw new Error("Bad response from server");
+   }
+   return response.json();
+   }) */
+
+
+
+  /*var data2 = [
+   {id: 1, nick: 'leviatansoul', img: 'xxxx'},{id: 2, nick: 'Gallu', img: 'xxxx'}
+   ]; */
+
+  return (dispatch) => {
+    dispatch({type: PETICIONES_UPDATE, data: data});
 
   };
 }

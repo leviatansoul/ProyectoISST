@@ -23,8 +23,54 @@ class ContactosScreen extends Component {
     this._renderItem = this._renderItem.bind(this);
     this._renderItemPeticiones = this._renderItemPeticiones.bind(this);
 
+    this._updateContactos = this._updateContactos.bind(this);
+    this._updatePeticiones = this._updatePeticiones.bind(this);
+
   }
 
+  _updateContactos () {
+
+    console.log("contact");
+    var url = "http://"+this.props.url+"/PCG/ContactosServlet?nick="+this.props.nickname;
+    console.log(url);
+
+    fetch(url)
+      .then((response)=> {
+
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then((data)=> {
+
+          this.props.updateContactos(data);
+
+        }
+      );
+
+  }
+
+  _updatePeticiones () {
+    console.log("entrapet");
+    var urlpet = "http://"+this.props.url+"/PCG/PeticionesServlet?nick="+this.props.nickname;
+    console.log(urlpet);
+
+    fetch(urlpet)
+      .then((response)=> {
+
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then((data)=> {
+
+          this.props.updatePeticiones(data);
+
+        }
+      );
+  }
   _keyExtractor = (item, index) => item.id;
 
   _renderItem = ({item}) => (
@@ -64,23 +110,10 @@ class ContactosScreen extends Component {
   );
   async componentWillMount () {
 
-    var url = "http://"+this.props.url+"/PCG/ContactosServlet?nick="+this.props.nickname;
-    console.log(url);
 
-    fetch(url)
-    .then((response)=> {
+    this._updatePeticiones();
 
-        if (response.status >= 400) {
-            throw new Error("Bad response from server");
-        }
-        return response.json();
-    })
-    .then((data)=> {
-
-        this.props.updateContactos(data);
-
-       }
-     );
+    this._updateContactos();
 
 
      this.setState({loading: false})
@@ -99,7 +132,38 @@ class ContactosScreen extends Component {
     // updater functions are preferred for transactional updates
     console.log(id);
     console.log(this.props.nickname);
-    this.props.createGroupChannelPeticiones(id,this.props.nickname);
+
+    //Aceptar peticion
+
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick1: this.props.nickname, nick2: id, action: "true" })
+    };
+
+
+
+
+    var url = "http://"+this.props.url+"/PCG/AceptarServlet";
+    console.log(url);
+
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then((data)=> {
+        console.log(data);
+
+        this.props.createGroupChannelPeticiones(id,this.props.nickname);
+        console.log("Creado");
+
+
+
+      });
+
   };
 
 
@@ -135,7 +199,7 @@ class ContactosScreen extends Component {
             </Tab>
             <Tab heading="Peticiones">
               <FlatList
-                data={this.props.contactos}
+                data={this.props.peticiones}
 
                 keyExtractor={this._keyExtractor}
                 renderItem={ this._renderItemPeticiones  }
@@ -167,6 +231,7 @@ function mapStateToProps(state, props) {
   return {
     loading: state.contactosReducer.loading,
     contactos: state.contactosReducer.data,
+    peticiones: state.peticionesReducer.data,
     nickname: state.nicknameReducer.nickname,
     url: state.urlReducer.url
 

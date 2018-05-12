@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import {LOCATION_UPDATE, PUT_DATA, PUT_NICKNAME, REMOVE_DATA,
   SAVE_DATA, REMOVE_SAVED_DATA, REMOVE_LOC_DATA, UPDATE_FOOTER,
-  CONTACTOS_UPDATE, PUT_MI_DATA, LOGIN_SUCCESS,
+  CONTACTOS_UPDATE,PETICIONES_UPDATE, PUT_MI_DATA, LOGIN_SUCCESS,
   LOGIN_FAIL, INIT_MENU, DISCONNECT_SUCCESS, OPEN_CHANNEL_LIST_SUCCESS, OPEN_CHANNEL_LIST_FAIL} from "../actions/" //Import the actions types constant we defined in our actions
 
 import {
@@ -29,11 +29,15 @@ let pensamientosGuardadosState = { data:[ {id: 0, date: "", idPens: 0, latitude:
 let footerState = {itemSelected:1, badgeHome:0};
 let nicknameState = {nickname: ""};
 
-let urlState = {url: "192.168.1.49"};
+let urlState = {url: "192.168.1.141:8080"};
 let pensamientosLocState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella', likes: 0}]};
 
 
 let ContactosState = {id: 18, data:[
+  {id: 1, nick: 'leviatansoul', img: 'xxxx'}
+], loading:true};
+
+let PeticionesState = {id: 18, data:[
   {id: 1, nick: 'leviatansoul', img: 'xxxx'}
 ], loading:true};
 
@@ -124,6 +128,19 @@ const pensamientosLocReducer = (state = pensamientosLocState, action) => {
 const contactosReducer = (state = ContactosState, action) => {
   switch (action.type) {
     case CONTACTOS_UPDATE:
+
+      state = Object.assign({}, state, { id: state.id++, data: action.data, loading:false});
+      console.log(state);
+      return state;
+    default:
+      return state;
+  }
+};
+
+//Peticiones
+const peticionesReducer = (state = PeticionesState, action) => {
+  switch (action.type) {
+    case PETICIONES_UPDATE:
 
       state = Object.assign({}, state, { id: state.id++, data: action.data, loading:false});
       console.log(state);
@@ -308,6 +325,7 @@ const rootReducer = combineReducers({
     misPensamientosReducer,
     pensamientosLocReducer,
     contactosReducer,
+    peticionesReducer,
     urlReducer,
     footerReducer,
     sendBirdReducer,

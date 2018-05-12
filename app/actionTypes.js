@@ -8,6 +8,7 @@ export const REMOVE_SAVED_DATA = 'REMOVE_SAVED_DATA';
 export const REMOVE_LOC_DATA = 'REMOVE_LOC_DATA';
 export const UPDATE_FOOTER = "UPDATE_FOOTER";
 export const CONTACTOS_UPDATE = "CONTACTOS_UPDATE";
+export const PETICIONES_UPDATE = "PETICIONES_UPDATE";
 
 //SendBird Actions
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -15,6 +16,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 
 export const DISCONNECT_SUCCESS = "DISCONNECT_SUCCESS";
 export const INIT_MENU = "INIT_MENU";
+
 
 
 export const OPEN_CHANNEL_LIST_SUCCESS = 'open_channel_list_success';
