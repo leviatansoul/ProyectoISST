@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ListView, ActivityIndicator, StyleSheet } from 'react-native'
+import { View, ListView, ActivityIndicator, StyleSheet, Alert } from 'react-native'
 import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 import Expo from 'expo'
 import { MapView } from 'expo';
@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
 //import {Marker} from 'react-native-maps'
+import PensamientoCallout from "./PensamientoCallout"
 
 import * as Actions from '../actions';
 
@@ -38,9 +39,56 @@ const styles = StyleSheet.create({
 class MapScreen extends Component {
   constructor (props) {
     super(props)
+    this.contactar = this.contactar.bind(this);
+
     this.state = {pensamientosLoc: [],
       loading: true };
 
+  }
+  async contactar (autor){
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick1: this.props.nickname, nick2: autor })
+  };
+
+
+
+
+    var url = "http://"+this.props.url+"/PCG/ContactarServlet";
+console.log(url);
+fetch(url, requestOptions)
+    .then((response)=> {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+    })
+    .then((data)=> {
+        console.log(data);
+        if (data == "creada"){
+
+            Alert.alert(
+      'Genial',
+      'Peticion enviada',
+      [
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+      )
+    }
+    else {
+      Alert.alert(
+'Error',
+'Ya has contactado con el usuario',
+[
+{text: 'OK', onPress: () => console.log('OK Pressed')},
+],
+{ cancelable: false }
+)
+     }
+
+    });
   }
 
   async componentWillMount () {
@@ -116,7 +164,15 @@ return (
       title={marker.text}
       description={marker.autor}
       key={marker.id}
-      />
+      >
+      <MapView.Callout onPress={() => this.contactar(marker.autor)}>
+
+        <PensamientoCallout likes={marker.likes} autor={marker.autor} text={marker.text} date={marker.date} topic={marker.topic} enabled={true} like={false}/>
+
+
+      </MapView.Callout>
+
+    </MapView.Marker>
   )
 )}
 
