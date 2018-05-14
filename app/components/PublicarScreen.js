@@ -52,23 +52,29 @@ onValueChange(value: string) {
 
   putData (pensamiento){
 
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick: pensamiento.autor, text: pensamiento.text, lat: pensamiento.latitude, lon: pensamiento.longitude, topic: pensamiento.tema})
+    };
 
 
-//this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
-
-fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
 
 
+    var url = "http://"+this.props.url+"/PCG/PublicarServlet";
+    console.log(url);
 
-.then((response)=> {
-          if (response.status >= 400) {
-              throw new Error("Bad response from server");
-          }
-          console.log(response.json())
-
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+       console.log(response.json());
       });
 
-  }
+
+    }
+
 
 uploadImage(){
 var options = {

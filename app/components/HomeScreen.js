@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,  ListView, Alert, ScrollView} from 'react-native'
+import { View,  ListView, ScrollView} from 'react-native'
 import { Icon, Fab, Segment, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -92,12 +92,20 @@ fetch(url, requestOptions)
     });
   }
  async putLike (data, secId, rowId, rowMap){
-    var url = "http://"+this.props.url+"/PCG/ValorarServlet?nick="+this.props.nickname+"&pens="+data.id+"&valor=true";
-console.log(url);
+  const requestOptionsPet = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nick: this.props.nickname, pens: data.id, valor:"true"})
+  };
 
 
-  fetch(url)
-      .then((response)=> {
+
+
+  var url = "http://"+this.props.url+"/PCG/ValorarServlet";
+  console.log(url);
+
+  fetch(url, requestOptionsPet)
+    .then((response)=> {
 
           if (response.status >= 400) {
               throw new Error("Bad response from server");
@@ -112,10 +120,20 @@ console.log(url);
  }
 
  async putDislike (data, secId, rowId, rowMap){
-    var url = "http://"+this.props.url+"/PCG/ValorarServlet?nick="+this.props.nickname+"&pens="+data.id+"&valor=false";
+  const requestOptionsPet = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nick: this.props.nickname, pens: data.id, valor:"false"})
+  };
 
-  fetch(url)
-      .then((response)=> {
+
+
+
+  var url = "http://"+this.props.url+"/PCG/ValorarServlet";
+  console.log(url);
+
+  fetch(url, requestOptionsPet)
+    .then((response)=> {
 
           if (response.status >= 400) {
               throw new Error("Bad response from server");

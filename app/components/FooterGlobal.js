@@ -52,7 +52,7 @@ class FooterGlobal extends Component {
               this.props.updateFooter(5, this.props.navigation)}
                     active ={this.props.itemSelected === 5}>
               <Icon name="person" active ={this.props.itemSelected === 5} />
-              <Text>Contactos</Text>
+              <Text>Chat</Text>
             </Button>
 
 

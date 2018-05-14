@@ -25,7 +25,6 @@ class ContactosScreen extends Component {
 
     this._updateContactos = this._updateContactos.bind(this);
     this._updatePeticiones = this._updatePeticiones.bind(this);
-
   }
 
   _updateContactos () {
@@ -138,7 +137,7 @@ class ContactosScreen extends Component {
     const requestOptionsPet = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nick1: this.props.nickname, nick2: id, action: "true" })
+      body: JSON.stringify({ nick2: this.props.nickname, nick1: id, action: "true" })
     };
 
 
@@ -203,10 +202,10 @@ class ContactosScreen extends Component {
 
                 keyExtractor={this._keyExtractor}
                 renderItem={ this._renderItemPeticiones  }
-                //  renderLeftHiddenRow={data =>
-                //  <Button full onPress={() => alert(data)}>
-                //    <Icon active name="information-circle" />
-                //</Button>}
+               //  renderLeftHiddenRow={data =>
+                // <Button full onPress={_ => deletePeticion(data)}>
+                 // <Icon active name="information-circle" />
+              //</Button>}
 
               />
             </Tab>

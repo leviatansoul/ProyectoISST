@@ -26,11 +26,20 @@ class MisPensamientosScreen extends Component {
   }
   deleteRow(secId, rowId, rowMap, data) {
 
-
-  fetch("http://"+this.props.url+"/PCG/BorrarPensamientosPropiosServlet?nick="+this.props.nickname+"&pensId="+data.id)
-
-
-.then((response)=> {
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick: this.props.nickname, pensId: data.id})
+    };
+  
+  
+  
+  
+    var url = "http://"+this.props.url+"/PCG/BorrarPensamientosPropiosServlet";
+    console.log(url);
+  
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
         if (response.status >= 400) {
             throw new Error("Bad response from server");
         }

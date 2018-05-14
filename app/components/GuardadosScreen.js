@@ -27,11 +27,20 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   }
   deleteRow(secId, rowId, rowMap, data) {
 
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick: this.props.nickname, pens: data.id})
+    };
 
-  fetch("http://"+this.props.url+"/PCG/BorrarValoracionServlet?nick="+this.props.nickname+"&pens="+data.id)
 
 
-.then((response)=> {
+
+    var url = "http://"+this.props.url+"/PCG/BorrarValoracionServlet";
+    console.log(url);
+
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
         if (response.status >= 400) {
             throw new Error("Bad response from server");
         }
