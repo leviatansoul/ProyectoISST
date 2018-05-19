@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {View,  Alert, BackHandler, Linking} from 'react-native'
+import {View,  Alert, BackHandler, Linking, Image} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form } from 'native-base'
 import SafariView from 'react-native-safari-view'
 import Expo from 'expo'
-
+import colors from './colors';
 //import { HandleFBLogin } from '../facebook/HandleFBLogin.js';
 
 
@@ -96,31 +96,38 @@ class SignInUp extends Component {
         return <Expo.AppLoading />
       }
         return (
-            <Container>
-                <Header>
-                    <Body >
-                    <Title>PCG</Title>
-                    </Body>
-                </Header>
-                <View style={{flex:1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', paddingTop:40}}>
-                    <View style={{flex:1, paddingTop:20}}>
-                        <Text>ICONO</Text>
+            <Container style={{backgroundColor:colors.gray}}>
+
+                <View style={{flex:1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', padding:50}}>
+                  <View style={{flex:1 }}>
+
+                  </View>
+                    <View style={{flex:1,   flexDirection: 'column',
+                      alignItems: 'center'}}>
+                      <Image style={{height:100, width:80}}
+                             source={require('../images/logoblanco.png')}
+                      />
+                      <Text style={{color:"white", fontSize:24}}>Pienso, luego me ubico</Text>
+                    </View>
+                    <View style={{flex:1 }}>
+
                     </View>
                     <View style={{flex:1}}>
-                        <Button block onPress={() => this.props.navigation.navigate('authenticationShow')}>
-                            <Text style={{color: 'white'}}>Identificarse</Text>
-                        </Button>
+
                     </View>
-                    <View style={{flex:1}}>
-                        <Button block onPress={() => this.props.navigation.navigate('registrationShow')}>
-                            <Text style={{color: 'white'}}>Registrarse</Text>
-                        </Button>
+                    <View style={{flex:1,    flexDirection: 'column',
+                      alignItems: 'center'}}>
+                      <View style={{marginTop:50}}>
+                      <Button block rounded style={{backgroundColor:"#00cc99", width:"100%"}} onPress={() => this.props.navigation.navigate('registrationShow')}>
+                        <Text style={{color: 'white'}}>Empieza ahora</Text>
+                      </Button>
+
+                      <Button block transparent onPress={() => this.props.navigation.navigate('authenticationShow')}>
+                        <Text style={{color: 'white'}}>Ya tengo una cuenta</Text>
+                      </Button>
+                      </View>
                     </View>
-                    <View style={{flex:1}}>
-                        <Button block color="#3c50e8">
-                          <Text style={{color: 'white'}}>Registrarse con Facebook</Text>
-                        </Button>
-                    </View>
+
                 </View>
             </Container>
         );

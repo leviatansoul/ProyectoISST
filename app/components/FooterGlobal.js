@@ -5,6 +5,7 @@ import * as Actions from '../actions'; //Import your actions
 
 
 import {View, Fab, Icon, Text, Button, Container, Header, Content, Left, Right, Badge, Title, List, ListItem, Footer, FooterTab} from 'native-base'
+import colors from './colors';
 
 
 
@@ -13,42 +14,42 @@ class FooterGlobal extends Component {
   render() {
     return (
 
-        <Footer>
+        <Footer style={{backgroundColor:colors.logo}}>
         
-          <FooterTab >
+          <FooterTab style={{backgroundColor:colors.logo}} >
 
 
-            <Button vertical  onPress={() =>
+            <Button style={{backgroundColor:colors.logo}} vertical  onPress={() =>
              this.props.updateFooter(1, this.props.navigation)
             }  active ={this.props.itemSelected === 1}>
 
-              <Icon name="eye" active ={this.props.itemSelected === 1}/>
+              <Icon color="#FFFF00" name="eye" active ={this.props.itemSelected === 1}/>
               <Text>Home</Text>
             </Button>
 
 
-            <Button vertical onPress={() =>
+            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
               this.props.updateFooter(2, this.props.navigation)
             }  active ={this.props.itemSelected === 2} >
               <Icon  name="md-finger-print" active ={this.props.itemSelected === 2} />
               <Text>Mios</Text>
             </Button>
 
-            <Button vertical onPress={() =>
+            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
               this.props.updateFooter(3, this.props.navigation)}
               active ={this.props.itemSelected === 3}>
               <Icon name="star-half" active ={this.props.itemSelected === 3} />
               <Text>Favs</Text>
             </Button>
 
-            <Button vertical onPress={() =>
+            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
               this.props.updateFooter(4, this.props.navigation)}
               active ={this.props.itemSelected === 4}>
               <Icon name="map" active ={this.props.itemSelected === 4} />
               <Text>Mapa</Text>
             </Button>
 
-            <Button vertical onPress={() =>
+            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
               this.props.updateFooter(5, this.props.navigation)}
                     active ={this.props.itemSelected === 5}>
               <Icon name="person" active ={this.props.itemSelected === 5} />

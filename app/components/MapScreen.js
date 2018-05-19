@@ -6,6 +6,8 @@ import { MapView } from 'expo';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
+import colors from './colors';
+
 //import {Marker} from 'react-native-maps'
 import PensamientoCallout from "./PensamientoCallout"
 
@@ -157,7 +159,7 @@ return (
       longitudeDelta: 0.0421,
     }}
   >
-  <MapView.Circle center={{latitude: this.props.latitude, longitude: this.props.longitude}} radius={20000} strokeColor={'#0000ff'} />
+  <MapView.Circle center={{latitude: this.props.latitude, longitude: this.props.longitude}} radius={20000} strokeColor={colors.logo} />
   {this.state.pensamientosLoc.map(marker => (
     <MapView.Marker
       coordinate={{latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude)}}

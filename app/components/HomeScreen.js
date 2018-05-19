@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View,  ListView, ScrollView, ActivityIndicator, StyleSheet} from 'react-native'
+import { View,  ListView, ScrollView, ActivityIndicator, StyleSheet, Image} from 'react-native'
 import { Icon, Fab, Segment, Text, Button, Container,DeckSwiper,Card, CardItem, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -10,6 +10,8 @@ import Pensamiento from "./PensamientoTinder"
 import * as Actions from '../actions'; //Import your actions
 import Expo from 'expo'
 import PublicarScreen from './PublicarScreen';
+import colors from './colors';
+
 
 class HomeScreen extends Component {
 
@@ -242,14 +244,14 @@ console.log(url);
     if (this.state.loadingPens) {
       return (
         <Container>
-          <Header>
+          <Header style={{backgroundColor: colors.logo}}>
 
             <Body>
-            <Title>CERCA DE TI</Title>
+            <Title>PENSAMIENTOS CERCANOS</Title>
             </Body>
             <Right />
           </Header>
-          <Segment>
+          <Segment style={{backgroundColor: colors.logo}}>
             <Button first active={this.state.active === 1} onPress={() => this.actualizaLista(1)}>
               <Text>1 km</Text>
             </Button>
@@ -262,7 +264,7 @@ console.log(url);
           </Segment>
           <View style={styles.container}>
 
-            <ActivityIndicator size="large" color="#0000ff" style={styles.loading}/>
+            <ActivityIndicator size="large" color="#00cc99" style={styles.loading}/>
             <View style={{
               position: 'absolute',
               bottom: 30,
@@ -271,9 +273,11 @@ console.log(url);
               height: 100
 
             }}>
-              <Button style={{marginRight: 0, backgroundColor: '#5067FF', borderRadius: 100}}
+              <Button rounded style={{marginRight: 0, backgroundColor: colors.logo, borderRadius: 100}}
                       onPress={() => this.props.navigation.navigate('Publicar')}>
-                <Icon name="md-add"/>
+                <Image style={{height:50, width:40}}
+                       source={require('../images/logoblanco.png')}
+                />
               </Button>
             </View>
 
@@ -286,16 +290,16 @@ console.log(url);
 
     return (
       <Container>
-        <Header>
+        <Header style={{backgroundColor:colors.logo}}>
 
           <Body>
-          <Title>CERCA DE TI</Title>
+          <Title>PENSAMIENTOS CERCANOS</Title>
           </Body>
           <Right />
         </Header>
-        <Segment>
+        <Segment style={{backgroundColor:colors.logo}}>
           <Button first active={this.state.active === 1} onPress={() => this.actualizaLista(1)}>
-            <Text>1 km</Text>
+            <Text >1 km</Text>
           </Button>
           <Button active={this.state.active === 2} onPress={() => this.actualizaLista(5)}>
             <Text>5 km</Text>
@@ -350,9 +354,11 @@ console.log(url);
           height: 100
 
         }}>
-          <Button style={{marginRight: 0, backgroundColor: '#5067FF', borderRadius: 100}}
+          <Button rounded style={{marginRight: 0, backgroundColor: colors.logo, borderRadius: 100}}
                   onPress={() => this.props.navigation.navigate('Publicar')}>
-            <Icon name="md-add"/>
+            <Image style={{height:50, width:40}}
+                   source={require('../images/logoblanco.png')}
+            />
           </Button>
         </View>
         <FooterGlobal navigation={this.props.navigation}/>

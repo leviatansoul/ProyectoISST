@@ -6,7 +6,9 @@ import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
-import FooterGlobal from "./FooterGlobal"
+import FooterGlobal from "./FooterGlobal";
+import colors from './colors';
+
 
 import { sbCreateGroupChannel, sbGetGroupChannel} from '../sendbirdActions';
 
@@ -213,17 +215,17 @@ class ContactosScreen extends Component {
 
     return(
       <Container>
-        <Header>
+        <Header style={{backgroundColor: colors.logo}}>
 
           <Body>
-          <Title>ContactosScreen</Title>
+          <Title>CHAT</Title>
           </Body>
           <Right />
         </Header>
         <Content >
 
-          <Tabs initialPage={0}>
-            <Tab heading="Contactos">
+          <Tabs initialPage={0} >
+            <Tab heading="Contactos" >
               <Container scrollEnabled={true}>
               <FlatList
                 data={this.props.contactos}

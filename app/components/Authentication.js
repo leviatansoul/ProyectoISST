@@ -91,7 +91,7 @@ console.log(url);
 
         return (
             <Container>
-                <Header>
+                <Header style={{backgroundColor:"#00cc99"}}>
                     <Left>
                         <Button transparent>
                             <Icon name='arrow-back' onPress={() => this.props.navigation.goBack()}/>
@@ -101,6 +101,7 @@ console.log(url);
                         <Title>Inicio de sesión</Title>
                     </Body>
                 </Header>
+              <Container style={{padding:50}}>
                 <Content>
                     <Form>
                         <Item floatingLabel>
@@ -113,7 +114,7 @@ console.log(url);
                         </Item>
                     </Form>
                 </Content>
-                    <Button block onPress={() =>{
+                    <Button block rounded style={{backgroundColor:"#00cc99"}} onPress={() =>{
                       if (this.state.nickname == "" || this.state.password == ""){
                          Alert.alert(
                 'Error',
@@ -131,6 +132,7 @@ console.log(url);
                     } }>
                         <Text style={{color: 'white'}}>IDENTIFICARSE</Text>
                     </Button>
+              </Container>
             </Container>
         );
     }

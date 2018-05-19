@@ -8,7 +8,7 @@ import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions'; //Import your actions
 
-
+import colors from './colors';
 
 class PublicarScreen extends Component {
 
@@ -103,15 +103,7 @@ var options = {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
-        <Header>
-          <Left>
-
-          </Left>
-          <Body>
-          <Title>Publicar</Title>
-          </Body>
-          <Right />
-        </Header>
+        <Container style={{padding:40}}>
         <Content padder>
       <Text>{this.props.latitude}</Text>
       <Text>{this.props.longitude}</Text>
@@ -136,7 +128,7 @@ var options = {
 
 
 </Content>
-  <Button block onPress={() => {
+  <Button block rounded style={{backgroundColor:colors.logo}} onPress={() => {
       if (this.props.latitude === null || this.props.longitude === null){
           Alert.alert(
             'Error',
@@ -153,7 +145,7 @@ var options = {
     }}}>
     <Text>Publicar</Text>
   </Button>
-
+        </Container>
       <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 

@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
 
+import colors from './colors';
+
 import Pensamiento from './Pensamiento'
 
 class GuardadosScreen extends Component {
@@ -90,7 +92,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
 
       <Container>
-<Header>
+<Header style={{backgroundColor: colors.logo}}>
 
       <Body>
       <Title>TUS FAVORITOS</Title>
@@ -129,7 +131,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
    height: 100
 
 }}>
-<Button style={{marginRight:0, backgroundColor: '#5067FF',  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
+<Button style={{marginRight:0, backgroundColor: colors.logo,  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
 <Icon name="md-add" />
 </Button>
 </View>
