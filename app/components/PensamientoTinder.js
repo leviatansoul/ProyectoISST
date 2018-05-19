@@ -38,17 +38,61 @@ export default class Pensamiento extends Component {
   render() {
     return (
 
-      <ListItem style={{borderBottomWidth:0, margin:"auto"}}>
 
-       <Card style={{marginLeft:18}}  >
+       <Card  >
             <CardItem>
+            <Left>
+            <Button transparent>
+            <Icon name={this.state.icon2} style={[this.state.enabled]} />
+            <Icon name="md-sad" style={[this.state.enabled]} />
 
-              <View>
-                <Text>{this.props.text}</Text>
-                <Text note style={{marginTop:5}}>{this.props.topic}</Text>
-              </View>
+            </Button>
 
+              </Left>
+              <Body>
+                <Text/>
+
+              </Body>
+              <Right>
+              <Button transparent>
+              <Icon name="md-happy" style={[this.state.enabled]} />
+            <Icon name={this.state.icon} style={[this.state.enabled]} />
+            </Button>
+                </Right>
             </CardItem>
+         <CardItem>
+
+           <Body>
+           <Text/>
+           <Text/>
+           <Text/>
+           <Text/>
+           <Text/>
+           </Body>
+         </CardItem>
+            <CardItem cardBody>
+              <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                alignItems: 'center',
+                padding: 10
+
+              }}>
+                <Text style={{fontSize:32}}>{this.props.text}</Text>
+                <Text note>{this.props.topic}</Text>
+              </View>
+             </CardItem>
+
+         <CardItem>
+
+           <Body>
+           <Text/>
+           <Text/>
+           <Text/>
+           <Text/>
+           </Body>
+         </CardItem>
+
             <CardItem>
               <Left>
               <Button transparent>
@@ -70,9 +114,9 @@ export default class Pensamiento extends Component {
 
               </Right>
             </CardItem>
+
           </Card>
 
-      </ListItem>
 
 
     );

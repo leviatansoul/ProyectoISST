@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View,  ListView, ScrollView} from 'react-native'
-import { Icon, Fab, Segment, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
+import { View,  ListView, ScrollView, ActivityIndicator, StyleSheet} from 'react-native'
+import { Icon, Fab, Segment, Text, Button, Container,DeckSwiper,Card, CardItem, Header, Content, Left, Right, Body, Title, List, ListItem} from 'native-base'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import haversine from 'haversine-distance';
 import FooterGlobal from "./FooterGlobal";
-import Pensamiento from "./Pensamiento"
+import Pensamiento from "./PensamientoTinder"
 
 import * as Actions from '../actions'; //Import your actions
 import Expo from 'expo'
@@ -19,7 +19,7 @@ class HomeScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {pensamientosLoc: [],
-      loading: true, active: 3 };
+      loading: true, active: 3, loadingPens:true };
 this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
     this.actualizaLista = this.actualizaLista.bind(this);
@@ -91,7 +91,7 @@ fetch(url, requestOptions)
 
     });
   }
- async putLike (data, secId, rowId, rowMap){
+ async putLike (data){
   const requestOptionsPet = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -111,15 +111,14 @@ fetch(url, requestOptions)
               throw new Error("Bad response from server");
           }
           else {
-             rowMap[`${secId}${rowId}`].props.closeRow();
-    const newData = [...this.props.pensamientosLoc];
-    newData.splice(rowId, 1);
-    this.props.removeLocData(newData);
+   /* const newData = [...this.props.pensamientosLoc];
+    newData.splice(0, 1);
+    this.props.removeLocData(newData); */
           }
       });
  }
 
- async putDislike (data, secId, rowId, rowMap){
+ async putDislike (data){
   const requestOptionsPet = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -139,15 +138,16 @@ fetch(url, requestOptions)
               throw new Error("Bad response from server");
           }
           else {
-             rowMap[`${secId}${rowId}`].props.closeRow();
+  /*           rowMap[`${secId}${rowId}`].props.closeRow();
     const newData = [...this.props.pensamientosLoc];
     newData.splice(rowId, 1);
-    this.props.removeLocData(newData);
+    this.props.removeLocData(newData); */
           }
       });
  }
 
   async actualizaLista (dis) {
+   this.setState({loadingPens:true});
     if (dis === 1){
       this.setState({active: 1});
     }
@@ -172,6 +172,8 @@ console.log(url);
       .then((data)=> {
           this.props.putData(data);
           this.setState({pensamientosLoc: this.props.pensamientosLoc});
+
+          this.setState({loadingPens:false});
      }
       );
 
@@ -200,7 +202,7 @@ console.log(url);
 
 
           this.props.putData(data);
-          this.setState({pensamientosLoc: this.props.pensamientosLoc, loading: false});
+          this.setState({pensamientosLoc: this.props.pensamientosLoc, loadingPens: false});
      }
       );
         /*var pens = [];
@@ -232,10 +234,56 @@ console.log(url);
 
 
   render () {
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     if (this.state.loading && this.props.loading) {
       return <Expo.AppLoading />
     }
+
+    if (this.state.loadingPens) {
+      return (
+        <Container>
+          <Header>
+
+            <Body>
+            <Title>CERCA DE TI</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Segment>
+            <Button first active={this.state.active === 1} onPress={() => this.actualizaLista(1)}>
+              <Text>1 km</Text>
+            </Button>
+            <Button active={this.state.active === 2} onPress={() => this.actualizaLista(5)}>
+              <Text>5 km</Text>
+            </Button>
+            <Button last active={this.state.active === 3} onPress={() => this.actualizaLista(20)}>
+              <Text>20 km</Text>
+            </Button>
+          </Segment>
+          <View style={styles.container}>
+
+            <ActivityIndicator size="large" color="#0000ff" style={styles.loading}/>
+            <View style={{
+              position: 'absolute',
+              bottom: 30,
+              right: 5,
+              width: 100,
+              height: 100
+
+            }}>
+              <Button style={{marginRight: 0, backgroundColor: '#5067FF', borderRadius: 100}}
+                      onPress={() => this.props.navigation.navigate('Publicar')}>
+                <Icon name="md-add"/>
+              </Button>
+            </View>
+
+
+            <FooterGlobal navigation={this.props.navigation}/>
+          </View>
+        </Container>
+      );
+    } else {
+
     return (
       <Container>
         <Header>
@@ -256,51 +304,62 @@ console.log(url);
             <Text>20 km</Text>
           </Button>
         </Segment>
-<Content scrollEnabled={true} style={{backgroundColor:"white"}}>
-<ScrollView>
-  <List
-              dataSource={this.ds.cloneWithRows(this.props.pensamientosLoc)}
-              renderRow={(data) =>
+        <Container style={{padding: 20, flex: 1}}>
+          <View style={{
+            flex: 1,
+            flexDirection: 'column'
+          }}>
+            <View style={{flex: 3}}>
+              <DeckSwiper style={{flex: 1, borderWidth: 5}}
+                          dataSource={this.props.pensamientosLoc}
+                          looping={false}
+                          renderEmpty={() =>
+                            console.log("Fin")
+                          }
+
+                          onSwipeRight={(data) => {
+                            console.log("Derecha")
+                            this.putLike(data)
+                          }
+                          }
+                          onSwipeLeft={(data) => {
+                            console.log("Izquierda")
+                             this.putDislike(data)
+                          }
+                          }
+                          renderItem={data =>
+
+                            <Pensamiento contactar={this.contactar} likes={data.likes} autor={data.autor}
+                                         text={data.text} date={data.date} topic={data.topic} enabled={true}
+                                         like={false}/>
 
 
-            <Pensamiento contactar={this.contactar} likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={true} like={false}/>
+                          }
+              />
+            </View>
+            <View style={{flex: 1}}/>
+          </View>
 
 
+        </Container>
+        <View style={{
+          position: 'absolute',
+          bottom: 30,
+          right: 5,
+          width: 100,
+          height: 100
 
-              }
-              renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                <Button full light onPress={_ => this.putLike(data, secId, rowId, rowMap)}>
-                  <Icon active name="ios-thumbs-up" />
-                </Button>}
-              rightOpenValue={-75}
-               renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
-                <Button full light onPress={_ => this.putDislike(data, secId, rowId, rowMap)}>
-                  <Icon active name="ios-thumbs-down" />
-                </Button>}
-              leftOpenValue={75}
-            />
-
-            </ScrollView>
-
-
-
-</Content>
-<View style={{
-   position: 'absolute',
-   bottom: 30,
-   right: 5,
-   width: 100,
-   height: 100
-
-}}>
-<Button style={{marginRight:0, backgroundColor: '#5067FF',  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
-<Icon name="md-add" />
-</Button>
-</View>
+        }}>
+          <Button style={{marginRight: 0, backgroundColor: '#5067FF', borderRadius: 100}}
+                  onPress={() => this.props.navigation.navigate('Publicar')}>
+            <Icon name="md-add"/>
+          </Button>
+        </View>
         <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 
     )
+  }
   }
 }
 // The function takes data from the app current state,
@@ -326,3 +385,26 @@ function mapDispatchToProps(dispatch) {
 
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  loading: {
+    flex: 2,
+    justifyContent: 'center'
+  },
+});
