@@ -96,9 +96,13 @@ class SignInUp extends Component {
         return <Expo.AppLoading />
       }
         return (
-            <Container style={{backgroundColor:colors.gray}}>
-
+            <Container >
+              <Image style={{position:"absolute",
+                resizeMode: 'cover', height:"100%"}}
+                     source={require('../images/fondointro4.png')}
+              />
                 <View style={{flex:1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', padding:50}}>
+
                   <View style={{flex:1 }}>
 
                   </View>
