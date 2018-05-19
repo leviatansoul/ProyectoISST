@@ -149,6 +149,7 @@ var options = {
       } else {
       pensamiento = {text: this.state.pensamiento, autor: this.props.nickname, tema: this.state.tema, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
       this.putData(pensamiento);
+      this.props.navigation.goBack();
     }}}>
     <Text>Publicar</Text>
   </Button>
