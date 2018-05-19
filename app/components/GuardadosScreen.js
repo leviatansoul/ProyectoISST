@@ -97,7 +97,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
       </Body>
       <Right />
     </Header>
-        <Content scrollEnabled={true}>
+        <Content scrollEnabled={true} style={{backgroundColor:"white"}}>
         <ScrollView>
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
@@ -124,7 +124,7 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         <View style={{
    position: 'absolute',
    bottom: 30,
-   right: 10,
+   right: 5,
    width: 100,
    height: 100
 

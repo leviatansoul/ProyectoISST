@@ -93,13 +93,14 @@ fetch(url)
 <Header>
 
 <Body>
-<Title>LO QUE PIENSAS</Title>
+<Title>TUS PENSAMIENTOS</Title>
 </Body>
 <Right />
 </Header>
-        <Content scrollEnabled={true}>
-        <ScrollView>
-          <List
+        <Container scrollEnabled={true} style={{backgroundColor:"white"}} >
+          <Content >
+        <ScrollView style={{width:"100%", height:"100%"}} >
+          <List style={{width:"100%", height:"100%"}}
             dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
             renderRow={data =>
 
@@ -119,11 +120,12 @@ fetch(url)
            rightOpenValue={-75}
           />
        </ScrollView>
-        </Content>
+          </Content>
+        </Container>
         <View style={{
    position: 'absolute',
    bottom: 30,
-   right: 10,
+   right: 5,
    width: 100,
    height: 100
 

@@ -256,7 +256,7 @@ console.log(url);
             <Text>20 km</Text>
           </Button>
         </Segment>
-<Content scrollEnabled={true}>
+<Content scrollEnabled={true} style={{backgroundColor:"white"}}>
 <ScrollView>
   <List
               dataSource={this.ds.cloneWithRows(this.props.pensamientosLoc)}
@@ -288,7 +288,7 @@ console.log(url);
 <View style={{
    position: 'absolute',
    bottom: 30,
-   right: 10,
+   right: 5,
    width: 100,
    height: 100
 

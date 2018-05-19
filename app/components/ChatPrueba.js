@@ -142,7 +142,7 @@ class ChatPrueba extends Component {
         <Header>
 
           <Body>
-          <Title>CHAT_PRUEBA</Title>
+          <Title>CHAT</Title>
           </Body>
           <Right />
         </Header>
@@ -159,7 +159,7 @@ class ChatPrueba extends Component {
 
               onPress={() =>
                 this._onSendButtonPress()}
-              name='swap'
+              name='ios-arrow-dropright'
             />
           </Item>
 

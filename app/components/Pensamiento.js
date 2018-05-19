@@ -38,9 +38,9 @@ export default class Pensamiento extends Component {
   render() {
     return (
 
-      <ListItem Rr>
+      <ListItem style={{borderBottomWidth:0, margin:"auto"}}>
 
-       <Card>
+       <Card style={{marginLeft:18}}  >
             <CardItem>
             <Left>
             <Button transparent>
@@ -48,11 +48,12 @@ export default class Pensamiento extends Component {
             <Icon name="md-sad" style={[this.state.enabled]} />
 
             </Button>
-                <Body>
-                  <Text>{this.props.text}</Text>
-                  <Text note>{this.props.topic}</Text>
-                </Body>
+
               </Left>
+              <Body>
+                <Text>{this.props.text}</Text>
+                <Text note>{this.props.topic}</Text>
+              </Body>
               <Right>
               <Button transparent>
               <Icon name="md-happy" style={[this.state.enabled]} />

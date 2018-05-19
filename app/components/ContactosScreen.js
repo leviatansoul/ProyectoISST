@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View,  ListView, FlatList} from 'react-native'
-import { Icon, Button, Text, Container, Header,  Content, Left, Right, Body, Title, List,Segment, ListItem, Tab, Tabs  } from 'native-base'
+import { Icon, Button, Text, Container, Header,  Content, Left, Right, Body, Title, List, Segment, ListItem, Tab, Tabs  } from 'native-base'
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -92,18 +92,20 @@ class ContactosScreen extends Component {
 
   _renderItemPeticiones = ({item}) => (
 
-    <ListItem Rr onPress={() =>
-      this._onPressItemPeticiones(item.nick)}>
+    <ListItem  >
+      <Left>
+        <Button danger onPress={() =>
+          this._onPressDeleteItemPeticiones(item.nick)}><View><Icon name="close" active  /></View></Button>
+      </Left>
 
       <Body>
-
       <Text>{item.nick}</Text>
-
       </Body>
-      <Right>
-        <Text note style={{color:'lightgrey'}}>{item.img}</Text>
-      </Right>
 
+      <Right>
+        <Button success style={{overflow:"visible"}} onPress={() =>
+          this._onPressItemPeticiones(item.nick)}><View ><Icon name="md-checkmark" active /></View></Button>
+      </Right>
 
     </ListItem>
   );
@@ -157,7 +159,45 @@ class ContactosScreen extends Component {
         console.log(data);
 
         this.props.createGroupChannelPeticiones(id,this.props.nickname);
+        this._updatePeticiones();
+        this._updateContactos();
+
         console.log("Creado");
+
+
+
+      });
+
+  };
+
+  _onPressDeleteItemPeticiones = (id: string) => {
+    // updater functions are preferred for transactional updates
+    console.log(id);
+    console.log(this.props.nickname);
+
+    //Aceptar peticion
+
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick2: this.props.nickname, nick1: id, action: "true" })
+    };
+
+
+    var url = "http://"+this.props.url+"/PCG/BorrarContactoServlet";
+    console.log(url);
+
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+        return response.json();
+      })
+      .then((data)=> {
+        console.log(data);
+        this._updatePeticiones();
+        console.log("Borrado");
 
 
 
@@ -180,10 +220,11 @@ class ContactosScreen extends Component {
           </Body>
           <Right />
         </Header>
-        <Content scrollEnabled={true}>
+        <Content >
 
           <Tabs initialPage={0}>
             <Tab heading="Contactos">
+              <Container scrollEnabled={true}>
               <FlatList
                 data={this.props.contactos}
 
@@ -195,8 +236,10 @@ class ContactosScreen extends Component {
                 //</Button>}
 
               />
+              </Container>
             </Tab>
             <Tab heading="Peticiones">
+              <Container scrollEnabled={true}>
               <FlatList
                 data={this.props.peticiones}
 
@@ -208,6 +251,7 @@ class ContactosScreen extends Component {
               //</Button>}
 
               />
+              </Container>
             </Tab>
 
           </Tabs>
