@@ -12,60 +12,337 @@ import colors from './colors';
 
 class FooterGlobal extends Component {
   render() {
-    return (
-
+    console.log(this.props.itemSelectede);
+    if(this.props.itemSelectede === "1"){
+      return(
         <Footer style={{backgroundColor:colors.logo}}>
-        
-          <FooterTab style={{backgroundColor:colors.logo}} >
+
+          <Container>
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical  onPress={() =>
+                this.props.updateFooter(1, this.props.navigation)
+              }  >
+
+                <Icon style={{color:colors.logo}} name="eye" active />
+                <Text style={{color:colors.logo}}>Home</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(2, this.props.navigation)
+              }   >
+                <Icon style={{color:colors.gray}} name="md-finger-print"  />
+                <Text style={{color:colors.gray}}>Mios</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(3, this.props.navigation)}
+                     >
+                <Icon style={{color:colors.gray}} name="star-half"  />
+                <Text style={{color:colors.gray}}>Favs</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(4, this.props.navigation)}
+                      >
+                <Icon style={{color:colors.gray}} name="map"/>
+                <Text style={{color:colors.gray}}>Mapa</Text>
+              </Button>
+
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(5, this.props.navigation)}
+                     >
+                <Icon style={{color:colors.gray}} name="person"  />
+                <Text style={{color:colors.gray}}>Chat</Text>
+              </Button>
+
+            </View>
 
 
-            <Button style={{backgroundColor:colors.logo}} vertical  onPress={() =>
-             this.props.updateFooter(1, this.props.navigation)
-            }  active ={this.props.itemSelected === 1}>
-
-              <Icon color="#FFFF00" name="eye" active ={this.props.itemSelected === 1}/>
-              <Text>Home</Text>
-            </Button>
-
-
-            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
-              this.props.updateFooter(2, this.props.navigation)
-            }  active ={this.props.itemSelected === 2} >
-              <Icon  name="md-finger-print" active ={this.props.itemSelected === 2} />
-              <Text>Mios</Text>
-            </Button>
-
-            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
-              this.props.updateFooter(3, this.props.navigation)}
-              active ={this.props.itemSelected === 3}>
-              <Icon name="star-half" active ={this.props.itemSelected === 3} />
-              <Text>Favs</Text>
-            </Button>
-
-            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
-              this.props.updateFooter(4, this.props.navigation)}
-              active ={this.props.itemSelected === 4}>
-              <Icon name="map" active ={this.props.itemSelected === 4} />
-              <Text>Mapa</Text>
-            </Button>
-
-            <Button style={{backgroundColor:colors.logo}} vertical onPress={() =>
-              this.props.updateFooter(5, this.props.navigation)}
-                    active ={this.props.itemSelected === 5}>
-              <Icon name="person" active ={this.props.itemSelected === 5} />
-              <Text>Chat</Text>
-            </Button>
 
 
 
 
-
-          </FooterTab>
-        
+          </View>
+          </Container>
         </Footer>
+      );
+    } else if (this.props.itemSelectede === "2"){
+      return(
+      <Footer style={{backgroundColor:colors.logo}}>
+
+        <Container>
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical  onPress={() =>
+                this.props.updateFooter(1, this.props.navigation)
+              }  >
+
+                <Icon style={{color:colors.gray}} name="eye" active />
+                <Text style={{color:colors.gray}}>Home</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(2, this.props.navigation)
+              }   >
+                <Icon style={{color:colors.logo}} name="md-finger-print"  />
+                <Text style={{color:colors.logo}}>Mios</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(3, this.props.navigation)}
+                      >
+                <Icon style={{color:colors.gray}} name="star-half" />
+                <Text style={{color:colors.gray}}>Favs</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(4, this.props.navigation)}
+                     >
+                <Icon style={{color:colors.gray}} name="map"  />
+                <Text style={{color:colors.gray}}>Mapa</Text>
+              </Button>
+
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(5, this.props.navigation)}
+                     >
+                <Icon style={{color:colors.gray}} name="person"  />
+                <Text style={{color:colors.gray}}>Chat</Text>
+              </Button>
+
+            </View>
 
 
-    );
+
+
+
+
+          </View>
+        </Container>
+      </Footer>)
+    }else if (this.props.itemSelectede === "3"){
+      return(
+      <Footer style={{backgroundColor:colors.logo}}>
+
+        <Container>
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical  onPress={() =>
+                this.props.updateFooter(1, this.props.navigation)
+              }  >
+
+                <Icon style={{color:colors.gray}} name="eye" active />
+                <Text style={{color:colors.gray}}>Home</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(2, this.props.navigation)
+              }   >
+                <Icon style={{color:colors.gray}} name="md-finger-print"  />
+                <Text style={{color:colors.gray}}>Mios</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(3, this.props.navigation)}
+                      >
+                <Icon style={{color:colors.logo}} name="star-half"  />
+                <Text style={{color:colors.logo}}>Favs</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(4, this.props.navigation)}
+                    >
+                <Icon style={{color:colors.gray}} name="map"  />
+                <Text style={{color:colors.gray}}>Mapa</Text>
+              </Button>
+
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(5, this.props.navigation)}
+                      >
+                <Icon style={{color:colors.gray}} name="person" />
+                <Text style={{color:colors.gray}}>Chat</Text>
+              </Button>
+
+            </View>
+
+
+
+
+
+
+          </View>
+        </Container>
+      </Footer> )
+    }else if (this.props.itemSelectede === "4"){
+      return(
+      <Footer style={{backgroundColor:colors.logo}}>
+
+        <Container>
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical  onPress={() =>
+                this.props.updateFooter(1, this.props.navigation)
+              }  >
+
+                <Icon style={{color:colors.gray}} name="eye" active />
+                <Text style={{color:colors.gray}}>Home</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(2, this.props.navigation)
+              }  active ={this.props.itemSelected === 2} >
+                <Icon style={{color:colors.gray}} name="md-finger-print" active ={this.props.itemSelected === 2} />
+                <Text style={{color:colors.gray}}>Mios</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(3, this.props.navigation)}
+                      active ={this.props.itemSelected === 3}>
+                <Icon style={{color:colors.gray}} name="star-half" active ={this.props.itemSelected === 3} />
+                <Text style={{color:colors.gray}}>Favs</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(4, this.props.navigation)}
+                      active ={this.props.itemSelected === 4}>
+                <Icon style={{color:colors.logo}} name="map" active ={this.props.itemSelected === 4} />
+                <Text style={{color:colors.logo}}>Mapa</Text>
+              </Button>
+
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(5, this.props.navigation)}
+                      active ={this.props.itemSelected === 5}>
+                <Icon style={{color:colors.gray}} name="person" active ={this.props.itemSelected === 5} />
+                <Text style={{color:colors.gray}}>Chat</Text>
+              </Button>
+
+            </View>
+
+
+
+
+
+
+          </View>
+        </Container>
+      </Footer>
+      );
+    }else if (this.props.itemSelectede === "5"){
+      return(
+      <Footer style={{backgroundColor:colors.logo}}>
+
+        <Container>
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical  onPress={() =>
+                this.props.updateFooter(1, this.props.navigation)
+              }  >
+
+                <Icon style={{color:colors.gray}} name="eye" active />
+                <Text style={{color:colors.gray}}>Home</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(2, this.props.navigation)
+              }   >
+                <Icon style={{color:colors.gray}} name="md-finger-print"  />
+                <Text style={{color:colors.gray}}>Mios</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(3, this.props.navigation)}
+                      >
+                <Icon style={{color:colors.gray}} name="star-half"  />
+                <Text style={{color:colors.gray}}>Favs</Text>
+              </Button>
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+              <Button transparent  vertical onPress={() =>
+                this.props.updateFooter(4, this.props.navigation)}
+                      >
+                <Icon style={{color:colors.gray}} name="map"  />
+                <Text style={{color:colors.gray}}>Mapa</Text>
+              </Button>
+
+            </View>
+
+            <View style={{flex:1, alignItems:"center"}}>
+
+              <Button transparent vertical onPress={() =>
+                this.props.updateFooter(5, this.props.navigation)}
+                     >
+                <Icon style={{color:colors.logo}} name="person"  />
+                <Text style={{color:colors.logo}}>Chat</Text>
+              </Button>
+
+            </View>
+
+
+
+
+
+
+          </View>
+        </Container>
+      </Footer>
+      );
+    }
+
   }
 }
 

@@ -21,7 +21,7 @@ class HomeScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {pensamientosLoc: [],
-      loading: true, active: 3, loadingPens:true };
+      loading: true, active: 3, loadingPens:true, itemSelected: 1 };
 this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.appClick = this.appClick.bind(this);
     this.actualizaLista = this.actualizaLista.bind(this);
@@ -265,24 +265,29 @@ console.log(url);
           <View style={styles.container}>
 
             <ActivityIndicator size="large" color="#00cc99" style={styles.loading}/>
-            <View style={{
-              position: 'absolute',
-              bottom: 30,
-              right: 5,
-              width: 100,
-              height: 100
-
-            }}>
-              <Button rounded style={{marginRight: 0, backgroundColor: colors.logo, borderRadius: 100}}
-                      onPress={() => this.props.navigation.navigate('Publicar')}>
-                <Image style={{height:50, width:40}}
-                       source={require('../images/logoblanco.png')}
-                />
-              </Button>
-            </View>
 
 
-            <FooterGlobal navigation={this.props.navigation}/>
+
+            <FooterGlobal navigation={this.props.navigation} itemSelectede="1"/>
+          </View>
+
+
+          <View style={{
+            position: 'absolute',
+            bottom: 30,
+            width: 100,
+            height: 100,
+            right:5,
+            alignItems:"center"
+
+          }}>
+            <Button rounded  large style={{width:60, height:60, backgroundColor: colors.logo}}
+                    onPress={() => this.props.navigation.navigate('Publicar',
+                      { itemSelectede: "1" })}>
+              <Image style={{height:50, width:40, marginLeft:10}}
+                     source={require('../images/logoblanco.png')}
+              />
+            </Button>
           </View>
         </Container>
       );
@@ -346,22 +351,26 @@ console.log(url);
 
 
         </Container>
+
+        <FooterGlobal navigation={this.props.navigation} itemSelectede="1"/>
+
+
         <View style={{
           position: 'absolute',
           bottom: 30,
-          right: 5,
           width: 100,
-          height: 100
+          height: 100,
+          right:5,
+          alignItems:"center"
 
         }}>
-          <Button rounded style={{marginRight: 0, backgroundColor: colors.logo, borderRadius: 100}}
-                  onPress={() => this.props.navigation.navigate('Publicar')}>
-            <Image style={{height:50, width:40}}
+          <Button rounded  large style={{width:60, height:60, backgroundColor: colors.logo}}
+                  onPress={() => this.props.navigation.navigate('Publicar',  { itemSelectede: "1" })}>
+            <Image style={{height:50, width:40, marginLeft:10}}
                    source={require('../images/logoblanco.png')}
             />
           </Button>
         </View>
-        <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 
     )

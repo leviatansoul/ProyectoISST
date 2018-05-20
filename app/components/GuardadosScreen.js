@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, ListView, ScrollView} from 'react-native'
+import { View, ListView, ScrollView, Image} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 //import Expo from 'expo'
 import {bindActionCreators} from 'redux';
@@ -123,20 +123,25 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
                     />
                     </ScrollView>
         </Content>
+
+      <FooterGlobal navigation={this.props.navigation} itemSelectede="3"/>
+
         <View style={{
-   position: 'absolute',
-   bottom: 30,
-   right: 5,
-   width: 100,
-   height: 100
+          position: 'absolute',
+          bottom: 30,
+          width: 100,
+          height: 100,
+          right:5,
+          alignItems:"center"
 
-}}>
-<Button style={{marginRight:0, backgroundColor: colors.logo,  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
-<Icon name="md-add" />
-</Button>
-</View>
-      <FooterGlobal navigation={this.props.navigation}/>
-
+        }}>
+          <Button rounded  large style={{width:60, height:60, backgroundColor: colors.logo}}
+                  onPress={() => this.props.navigation.navigate('Publicar', { itemSelectede: "3" })}>
+            <Image style={{height:50, width:40, marginLeft:10}}
+                   source={require('../images/logoblanco.png')}
+            />
+          </Button>
+        </View>
 
       </Container>
     )

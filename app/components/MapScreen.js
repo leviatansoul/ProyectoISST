@@ -140,9 +140,9 @@ fetch(url, requestOptions)
 
 <View style= {styles.container}>
 
-  <ActivityIndicator size="large" color="#0000ff" style= {styles.loading}/>
+  <ActivityIndicator size="large" color="#00cc99" style= {styles.loading}/>
 
-  <FooterGlobal navigation={this.props.navigation}/>
+  <FooterGlobal navigation={this.props.navigation} itemSelectede="4"/>
 
 
 </View>
@@ -181,7 +181,7 @@ return (
 
   </MapView>
 
-  <FooterGlobal navigation={this.props.navigation}/>
+  <FooterGlobal navigation={this.props.navigation} itemSelectede="4"/>
 
 </View>
 );
