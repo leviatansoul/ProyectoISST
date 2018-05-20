@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun May 20 17:24:31 CEST 2018
+#Sun May 20 17:53:56 CEST 2018
 5.base=/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/assets/debug
 22.path=lib/armeabi-v7a/libgnustl_shared.so
 32.set=NATIVE_RESOURCE

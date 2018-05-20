@@ -624,12 +624,12 @@
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-xxhdpi/abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_list_selector_disabled_holo_dark.9.png.flat",
-        "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-xhdpi/abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
         "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-hdpi_abc_btn_rating_star_off_mtrl_alpha.png.flat",
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-hdpi/abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_list_selector_disabled_holo_dark.9.png.flat",
+        "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-xhdpi/abc_list_selector_disabled_holo_dark.9.png"
     },
     {
         "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-hdpi_abc_list_focused_holo.9.png.flat",
@@ -1252,6 +1252,10 @@
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/color/abc_primary_text_disable_only_material_light.xml"
     },
     {
+        "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/layout_list_item.xml.flat",
+        "source": "/Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/packaged_res/debug/layout/list_item.xml"
+    },
+    {
         "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-hdpi_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-hdpi/abc_btn_radio_to_on_mtrl_000.png"
     },
@@ -1406,6 +1410,10 @@
     {
         "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-xhdpi_abc_ic_ab_back_mtrl_am_alpha.png.flat",
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-xhdpi/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/xml_provider_paths.xml.flat",
+        "source": "/Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/packaged_res/debug/xml/provider_paths.xml"
     },
     {
         "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/anim_abc_popup_exit.xml.flat",

@@ -4,6 +4,7 @@ ADDED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifes
 INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:1:1-36:12
 INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:1:1-36:12
 INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:1:1-36:12
+MERGED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-23:12
 MERGED from [:react-native-vector-icons] /Users/manueljimenez/ProyectoISST/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/26e4f50ed177fa71d7b848566bd773ed/AndroidManifest.xml:2:1-15:12
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/AndroidManifest.xml:17:1-24:12
@@ -62,6 +63,8 @@ uses-sdk
 ADDED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:10:5-12:41
 INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:10:5-12:41
 INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:10:5-12:41
+MERGED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/manueljimenez/ProyectoISST/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/manueljimenez/ProyectoISST/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/26e4f50ed177fa71d7b848566bd773ed/AndroidManifest.xml:7:5-9:41
@@ -112,6 +115,8 @@ INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidMani
 		INJECTED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml
 application
 ADDED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:14:5-34:19
+MERGED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-21:19
+MERGED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-21:19
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/26e4f50ed177fa71d7b848566bd773ed/AndroidManifest.xml:13:5-20
 MERGED from [com.facebook.react:react-native:0.52.0] /Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/react-native-0.52.0.aar/26e4f50ed177fa71d7b848566bd773ed/AndroidManifest.xml:13:5-20
 MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/AndroidManifest.xml:22:5-20
@@ -172,6 +177,22 @@ activity#com.facebook.react.devsupport.DevSettingsActivity
 ADDED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:33:7-84
 	android:name
 		ADDED from /Users/manueljimenez/ProyectoISST/android/app/src/main/AndroidManifest.xml:33:17-81
+provider#com.imagepicker.FileProvider
+ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:16:13-47
+	android:authorities
+		ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:14:13-60
+	android:exported
+		ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:13:13-56
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:17:13-19:58
+	android:resource
+		ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:19:17-55
+	android:name
+		ADDED from [:react-native-image-picker] /Users/manueljimenez/ProyectoISST/node_modules/react-native-image-picker/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:18:17-67
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from [:react-native-maps] /Users/manueljimenez/ProyectoISST/node_modules/react-native-maps/lib/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:10:5-81
 	android:name
