@@ -1,4 +1,4 @@
-#Sun May 20 02:53:37 CEST 2018
+#Sun May 20 03:16:40 CEST 2018
 base.0=/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

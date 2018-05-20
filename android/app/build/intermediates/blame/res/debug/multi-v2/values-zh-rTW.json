@@ -4,6 +4,23 @@
             "outputFile": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml",
             "map": [
                 {
+                    "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/play-services-basement-10.0.1.aar/dcce8935b3ccfa7dd903f63d657c30e2/res/values-zh-rTW/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "289",
+                        "endColumns": "161",
+                        "endOffsets": "450"
+                    },
+                    "to": {
+                        "startLines": "26",
+                        "startColumns": "4",
+                        "startOffsets": "2666",
+                        "endColumns": "161",
+                        "endOffsets": "2823"
+                    }
+                },
+                {
                     "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/values-zh-rTW/values-zh-rTW.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
@@ -13,11 +30,28 @@
                         "endOffsets": "374,481,604,697,797,879,976,1084,1162,1258,1354,1449,1546,1641,1741,1854,1948,2049"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,257,380,473,573,655,752,860,938,1034,1130,1225,1322,1417,1517,1630,1724",
+                        "startOffsets": "105,200,307,430,523,623,705,802,910,988,1084,1180,1275,1372,1467,1567,1680,3952",
                         "endColumns": "94,106,122,92,99,81,96,107,77,95,95,94,96,94,99,112,93,100",
-                        "endOffsets": "145,252,375,468,568,650,747,855,933,1029,1125,1220,1317,1412,1512,1625,1719,1820"
+                        "endOffsets": "195,302,425,518,618,700,797,905,983,1079,1175,1270,1367,1462,1562,1675,1769,4048"
+                    }
+                },
+                {
+                    "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/play-services-base-10.0.1.aar/5822db10ef819ab74cd6cd0c1b2c5655/res/values-zh-rTW/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "287,386,546,659,759,925,1039,1159,1328,1427,1587,1700,1861,1995,2077,2160",
+                        "endColumns": "98,159,112,99,165,113,119,168,98,159,112,160,133,81,82,98",
+                        "endOffsets": "385,545,658,758,924,1038,1158,1327,1426,1586,1699,1860,1994,2076,2159,2258"
+                    },
+                    "to": {
+                        "startLines": "19,20,21,22,23,24,25,27,28,29,30,31,32,33,34,35",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1774,1877,2037,2154,2258,2424,2542,2828,2997,3100,3260,3377,3538,3676,3762,3849",
+                        "endColumns": "102,159,116,103,165,117,123,168,102,159,116,160,137,85,86,102",
+                        "endOffsets": "1872,2032,2149,2253,2419,2537,2661,2992,3095,3255,3372,3533,3671,3757,3844,3947"
                     }
                 }
             ]

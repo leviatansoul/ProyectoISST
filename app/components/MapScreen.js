@@ -3,7 +3,7 @@ import { View, ListView, ActivityIndicator, StyleSheet, Alert } from 'react-nati
 import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
 //import Expo from 'expo'
 //import { MapView } from 'expo';
-import { MapView } from 'react-native-maps';
+import MapView, { Marker, Callout, Circle, ProviderPropType } from 'react-native-maps';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
@@ -160,22 +160,22 @@ return (
       longitudeDelta: 0.0421,
     }}
   >
-  <MapView.Circle center={{latitude: this.props.latitude, longitude: this.props.longitude}} radius={20000} strokeColor={colors.logo} />
+  <Circle center={{latitude: this.props.latitude, longitude: this.props.longitude}} radius={20000} strokeColor={colors.logo} />
   {this.state.pensamientosLoc.map(marker => (
-    <MapView.Marker
+    <Marker
       coordinate={{latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude)}}
       title={marker.text}
       description={marker.autor}
       key={marker.id}
       >
-      <MapView.Callout onPress={() => this.contactar(marker.autor)}>
+      <Callout onPress={() => this.contactar(marker.autor)}>
 
         <PensamientoCallout likes={marker.likes} autor={marker.autor} text={marker.text} date={marker.date} topic={marker.topic} enabled={true} like={false}/>
 
 
-      </MapView.Callout>
+      </Callout>
 
-    </MapView.Marker>
+    </Marker>
   )
 )}
 
