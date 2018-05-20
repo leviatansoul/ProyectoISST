@@ -1,25 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React, {Component, Fragment} from 'react'
-import { View } from 'react-native'
-import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast } from 'native-base'
-=======
 ﻿import React, {Component, Fragment} from 'react'
 import { View, Alert  } from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast} from 'native-base'
->>>>>>> 60ebfdc0f05e72c82b4851dbade22f69b99cfc98
 import PasswordInputText from 'react-native-hide-show-password-input';
-=======
-﻿import React, {Component, Fragment} from 'react'
-import { View, Alert  } from 'react-native'
-import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer, Toast} from 'native-base'
-//import PasswordInputText from 'react-native-hide-show-password-input';
-
-import {bindActionCreators} from 'redux';
-import { connect } from 'react-redux';
-import * as Actions from '../actions'; //Import your actions
-import colors from './colors';
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -38,18 +20,10 @@ class Registration extends Component {
             contraseña2: '',
             facebook: '',
             whatsapp: '',
-<<<<<<< HEAD
-<<<<<<< HEAD
-        }
-=======
-=======
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
             showToast: false,
 
         };
         this.registrarUsuario = this.registrarUsuario.bind(this)
-<<<<<<< HEAD
->>>>>>> 60ebfdc0f05e72c82b4851dbade22f69b99cfc98
     }
 registrarUsuario(){
     if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
@@ -57,15 +31,6 @@ registrarUsuario(){
 
 
     }
-=======
-    }
-registrarUsuario(){
-    if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
-        this.setState({showToast: true});
-
-
-    }
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
     else{
 password = this.state.contraseña1
 nickname = this.state.nickname
@@ -82,24 +47,7 @@ nickname = this.state.nickname
       .then((data)=> {
           console.log(data);
            if (data == "hello from server"){
-<<<<<<< HEAD
-=======
 
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
-
-         this.props.navigation.navigate('authenticationShow')
-      }
-      else if (data == "already exists"){
-         console.log("ya esxiste el usuario")
-
-         this.props.navigation.navigate('registrationShow')
-      }
-      else {
-        this.props.navigation.navigate('registrationShow')
-      }
-
-      });
-}}
 
          this.props.navigation.navigate('authenticationShow')
       }
@@ -119,7 +67,7 @@ nickname = this.state.nickname
 
         return (
             <Container>
-                <Header style={{backgroundColor:colors.logo}}>
+                <Header>
                     <Left>
                         <Button transparent>
                             <Icon name='arrow-back' onPress={() => this.props.navigation.goBack()}/>
@@ -129,7 +77,6 @@ nickname = this.state.nickname
                         <Title>Registro</Title>
                     </Body>
                 </Header>
-              <Container style={{padding:50}}>
                 <Content>
 
                     <Form>
@@ -145,25 +92,19 @@ nickname = this.state.nickname
                             <Label>Repetir contraseña</Label>
                             <Input secureTextEntry={true} onChangeText={(text) => this.setState({contraseña2: text})}/>
                         </Item>
-
+                        <Item floatingLabel>
+                            <Label>Facebook (opcional)</Label>
+                            <Input onChangeText={(text) => this.setState({facebook: text})}/>
+                        </Item>
+                        <Item floatingLabel last>
+                            <Label>WhatsApp (opcional)</Label>
+                            <Input onChangeText={(text) => this.setState({whatsapp: text})}/>
+                        </Item>
                     </Form>
 
                 </Content>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <Button block onPress={() => this.props.navigation.goBack()}>
-                        <Text style={{color: 'white'}}>REGISTRARSE</Text>
-=======
 
                    <Button block onPress={() => {
-=======
-
-              <Button block rounded style={{marginBottom:20}} >
-                <Text style={{color: 'white'}}>Registrarse con Facebook</Text>
-              </Button>
-
-                   <Button block rounded style={{backgroundColor:colors.logo}} onPress={() => {
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
                   if (this.state.nickname == "" || this.state.contraseña1 == "" || this.state.contraseña2 == "" || this.state.contraseña1 != this.state.contraseña2)  {
                    Alert.alert(
                 'Error',
@@ -178,23 +119,12 @@ nickname = this.state.nickname
                   }}>
 
                     <Text style={{color: 'white'}}>REGISTRARSE</Text>
-<<<<<<< HEAD
->>>>>>> 60ebfdc0f05e72c82b4851dbade22f69b99cfc98
-=======
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
                     </Button>
-              </Container>
             </Container>
         );
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-export default Registration
-=======
-=======
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
 function mapStateToProps(state, props) {
     return {
         url: state.urlReducer.url
@@ -211,7 +141,3 @@ function mapDispatchToProps(dispatch) {
 
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);
-<<<<<<< HEAD
->>>>>>> 60ebfdc0f05e72c82b4851dbade22f69b99cfc98
-=======
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01

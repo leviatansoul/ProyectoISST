@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
-import {View,  Alert, BackHandler, Linking} from 'react-native'
-import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form } from 'native-base'
-import SafariView from 'react-native-safari-view'
-import Expo from 'expo'
-=======
 import {View,  Alert, BackHandler, Linking, Image} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form } from 'native-base'
 import SafariView from 'react-native-safari-view'
 //import Expo from 'expo'
 import colors from './colors';
 //import { HandleFBLogin } from '../facebook/HandleFBLogin.js';
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
 
 import { HandleFBLogin } from '../facebook/HandleFBLogin.js';
 
@@ -39,17 +32,10 @@ class SignInUp extends Component {
   async componentWillMount () {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
     Linking.removeEventListener('url', this.handleOpenURL);
-<<<<<<< HEAD
-    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
-      'Roboto': require('native-base/Fonts/Roboto.ttf'),
-      'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
-=======
   /*  await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
     }) */
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
 
     //vemos que pensamientos estan a menos de 20 km (20000 metros) y los metemos en el estado de esta clase
     //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
@@ -112,17 +98,6 @@ class SignInUp extends Component {
   //      return <Expo.AppLoading />
       }
         return (
-<<<<<<< HEAD
-            <Container>
-                <Header>
-                    <Body >
-                    <Title>PCG</Title>
-                    </Body>
-                </Header>
-                <View style={{flex:1, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', paddingTop:40}}>
-                    <View style={{flex:1, paddingTop:20}}>
-                        <Text>ICONO</Text>
-=======
             <Container >
               <Image style={{position:"absolute",
                 resizeMode: 'cover', height:"100%"}}
@@ -139,7 +114,6 @@ class SignInUp extends Component {
                              source={require('../images/logoblanco.png')}
                       />
                       <Text style={{color:"white", fontSize:24}}>Pienso, luego me ubico</Text>
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
                     </View>
                     <View style={{flex:1 }}>
 
@@ -147,13 +121,6 @@ class SignInUp extends Component {
                     <View style={{flex:1}}>
 
                     </View>
-<<<<<<< HEAD
-                    <View style={{flex:1}}>
-                        <Button block onPress={handleFbLogin} color="#3c50e8">
-                          <Text style={{color: 'white'}}>Registrarse con Facebook</Text>
-                        </Button>
-                    </View>
-=======
                     <View style={{flex:1,    flexDirection: 'column',
                       alignItems: 'center'}}>
                       <View style={{marginTop:50}}>
@@ -167,7 +134,6 @@ class SignInUp extends Component {
                       </View>
                     </View>
 
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
                 </View>
             </Container>
         );

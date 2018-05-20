@@ -53,25 +53,6 @@ onValueChange(value: string) {
 
   putData (pensamiento){
 
-<<<<<<< HEAD
-
-
-//this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
-
-fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
-
-
-
-.then((response)=> {
-          if (response.status >= 400) {
-              throw new Error("Bad response from server");
-          }
-          console.log(response.json())
-
-      });
-
-  }
-=======
     const requestOptionsPet = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -95,7 +76,6 @@ fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&
 
     }
 
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
 
 uploadImage(){
 var options = {
@@ -124,19 +104,7 @@ var options = {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
-<<<<<<< HEAD
-        <Header>
-          <Left>
-
-          </Left>
-          <Body>
-          <Title>Publicar</Title>
-          </Body>
-          <Right />
-        </Header>
-=======
         <Container style={{padding:40}}>
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
         <Content padder>
       <Text>{this.props.latitude}</Text>
       <Text>{this.props.longitude}</Text>
@@ -161,11 +129,7 @@ var options = {
 
 
 </Content>
-<<<<<<< HEAD
-  <Button block onPress={() => {
-=======
   <Button block rounded style={{backgroundColor:colors.logo}} onPress={() => {
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
       if (this.props.latitude === null || this.props.longitude === null){
           Alert.alert(
             'Error',
@@ -178,18 +142,11 @@ var options = {
       } else {
       pensamiento = {text: this.state.pensamiento, autor: this.props.nickname, tema: this.state.tema, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
       this.putData(pensamiento);
-<<<<<<< HEAD
-    }}}>
-    <Text>Publicar</Text>
-  </Button>
-
-=======
       this.props.navigation.goBack();
     }}}>
     <Text>Publicar</Text>
   </Button>
         </Container>
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
       <FooterGlobal navigation={this.props.navigation}/>
       </Container>
 

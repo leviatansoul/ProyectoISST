@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { View,  ListView} from 'react-native'
 import { Icon, Button, Text, Container, Header,  Content, Left, Right, Body, Title, List,Segment, ListItem, Label, Input, Item, Form} from 'native-base'
-<<<<<<< HEAD
-import Expo from 'expo'
-=======
 //import Expo from 'expo'
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 
@@ -165,5 +161,3 @@ function mapDispatchToProps(dispatch) {
 
 //Connect everything
 export default connect(mapStateToProps, mapDispatchToProps)(OpenChannel);
-
-

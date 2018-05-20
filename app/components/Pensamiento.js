@@ -38,32 +38,6 @@ export default class Pensamiento extends Component {
   render() {
     return (
 
-<<<<<<< HEAD
-      <ListItem Rr>
-
-       <Card>
-            <CardItem>
-            <Left>
-            <Button transparent>
-            <Icon name={this.state.icon2} style={[this.state.enabled]} />
-            <Icon name="md-sad" style={[this.state.enabled]} />
-
-            </Button>
-                <Body>
-                  <Text>{this.props.text}</Text>
-                  <Text note>{this.props.topic}</Text>
-                </Body>
-              </Left>
-              <Right>
-              <Button transparent>
-              <Icon name="md-happy" style={[this.state.enabled]} />
-            <Icon name={this.state.icon} style={[this.state.enabled]} />
-            </Button>
-                </Right>
-            </CardItem>
-            <CardItem cardBody>
-             </CardItem>
-=======
       <ListItem style={{borderBottomWidth:0, margin:"auto"}}>
 
        <Card style={{marginLeft:18}}  >
@@ -75,7 +49,6 @@ export default class Pensamiento extends Component {
               </View>
 
             </CardItem>
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
             <CardItem>
               <Left>
               <Button transparent>
@@ -84,11 +57,7 @@ export default class Pensamiento extends Component {
                 </Button>
               </Left>
               <Body>
-<<<<<<< HEAD
-                <Button transparent style={[this.state.enabled2]}>
-=======
                 <Button transparent style={[this.state.enabled2]}  onPress={() => this.props.contactar(this.props.autor)}>
->>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
                   <Icon active name="chatbubbles"  />
                   <Text note style={{color:'lightgrey'}}>{this.props.autor}</Text>
                 </Button>
