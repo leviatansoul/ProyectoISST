@@ -8,7 +8,7 @@ import FooterGlobal from "./FooterGlobal";
 import Pensamiento from "./PensamientoTinder"
 
 import * as Actions from '../actions'; //Import your actions
-import Expo from 'expo'
+//import Expo from 'expo'
 import PublicarScreen from './PublicarScreen';
 import colors from './colors';
 
@@ -70,7 +70,7 @@ fetch(url, requestOptions)
     .then((data)=> {
         console.log(data);
         if (data == "creada"){
-         
+
             Alert.alert(
       'Genial',
       'Peticion enviada',
@@ -223,10 +223,10 @@ console.log(url);
     },
       )
 
-    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
+  /*  await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
+    }) */
     //vemos que pensamientos estan a menos de 20 km (20000 metros) y los metemos en el estado de esta clase
     //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
     //probar a cambiar las latitudes y longitudes de los pensamientos definidos a unas cercanas a las vuestras para ver q os funciona
@@ -238,7 +238,7 @@ console.log(url);
   render () {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     if (this.state.loading && this.props.loading) {
-      return <Expo.AppLoading />
+//      return <Expo.AppLoading />
     }
 
     if (this.state.loadingPens) {

@@ -3,7 +3,7 @@ import { View,  ListView, FlatList} from 'react-native'
 import { Icon, Button, Text, Container, Header,  Content, Left, Right, Body, Title, List,Segment, ListItem, Label, Input, Item, Form, Footer} from 'native-base'
 
 import { Col, Row, Grid } from 'react-native-easy-grid'
-import Expo from 'expo'
+//import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 
