@@ -29,7 +29,7 @@ let pensamientosGuardadosState = { data:[ {id: 0, date: "", idPens: 0, latitude:
 let footerState = {itemSelected:1, badgeHome:0};
 let nicknameState = {nickname: ""};
 
-let urlState = {url: "192.168.1.136:8080"};
+let urlState = {url: "192.168.1.58:8080"};
 let pensamientosLocState = { data:[ {id: 0, date: "", idPens: 0, latitude:40.3385100, longitude: -3.38045, topic: "", text: 'Mi primer pensamiento', autor: 'Mirella', likes: 0}]};
 
 
