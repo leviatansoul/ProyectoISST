@@ -103,10 +103,9 @@ var options = {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
-        <Container style={{padding:40}}>
-        <Content padder>
-      <Text>{this.props.latitude}</Text>
-      <Text>{this.props.longitude}</Text>
+        <Container style={{padding:48, border:2, borderColor: colors.logo, borderBottom:0, borderRadius:2}}>
+        <Content  style={{ border:2, borderColor: colors.logo, borderBottom:0, borderRadius:2}}>
+      <Text>Elige un tema</Text>
       <Text>{this.props.error}</Text>
 
           <Picker
@@ -146,7 +145,7 @@ var options = {
     <Text>Publicar</Text>
   </Button>
         </Container>
-      <FooterGlobal navigation={this.props.navigation}/>
+      <FooterGlobal navigation={this.props.navigation} itemSelectede={this.props.navigation.state.params.itemSelectede}/>
       </Container>
 
     )

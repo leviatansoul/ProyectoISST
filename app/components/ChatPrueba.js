@@ -139,17 +139,18 @@ class ChatPrueba extends Component {
 
     return(
       <Container >
-        <Header>
+        <Header style={{backgroundColor:"#00cc99"}}>
 
           <Body>
-          <Title>CHAT</Title>
+          <Title>CHAT {this.props.navigation.state.params.nickR}</Title>
           </Body>
           <Right />
         </Header>
 
-        <Content   >
+        <Content  style={{padding:10, paddingTop:20}} >
           <Item rounded>
             <Input
+              style={{marginLeft:10}}
               placeholder={'Your message'}
               value={this.state.textMessage}
               onChangeText={this._onTextMessageChanged}
@@ -210,7 +211,7 @@ class ChatPrueba extends Component {
 
 
 
-        <FooterGlobal navigation={this.props.navigation}/>
+        <FooterGlobal navigation={this.props.navigation} itemSelectede="5"/>
       </Container>
     );
 

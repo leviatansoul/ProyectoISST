@@ -224,7 +224,7 @@ class ContactosScreen extends Component {
         </Header>
         <Content >
 
-          <Tabs initialPage={0} >
+          <Tabs  activeTabStyle={{backgroundColor:colors.logo}} tabBarUnderlineStyle={{backgroundColor:colors.logo}} initialPage={0} >
             <Tab heading="Contactos" >
               <Container scrollEnabled={true}>
               <FlatList
@@ -262,7 +262,7 @@ class ContactosScreen extends Component {
 
         </Content>
 
-        <FooterGlobal navigation={this.props.navigation}/>
+        <FooterGlobal navigation={this.props.navigation} itemSelectede="5"/>
       </Container>
     );
 

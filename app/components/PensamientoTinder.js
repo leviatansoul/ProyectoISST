@@ -7,6 +7,7 @@ import {StyleSheet,  View} from "react-native";
 
 import {Card, CardItem, Icon, Text, Button, Container, Header, Content, Left, Right, Badge, Title, List, ListItem, Footer, FooterTab, Body} from 'native-base'
 
+import colors from './colors';
 
 
 
@@ -75,10 +76,10 @@ export default class Pensamiento extends Component {
                 flex: 1,
                 flexDirection: 'column',
                 alignItems: 'center',
-                padding: 10
+                padding: 20
 
               }}>
-                <Text style={{fontSize:32}}>{this.props.text}</Text>
+                <Text style={{fontSize:28}}>{this.props.text}</Text>
                 <Text note>{this.props.topic}</Text>
               </View>
              </CardItem>
@@ -96,19 +97,19 @@ export default class Pensamiento extends Component {
             <CardItem>
               <Left>
               <Button transparent>
-                  <Icon active name="md-clock" />
+                  <Icon active name="md-clock" style={{color:colors.logo}}/>
                   <Text note style={{color:'lightgrey'}}>{this.props.date}</Text>
                 </Button>
               </Left>
               <Body>
                 <Button transparent style={[this.state.enabled2]}  onPress={() => this.props.contactar(this.props.autor)}>
-                  <Icon active name="chatbubbles"  />
+                  <Icon active name="chatbubbles" style={{color:colors.logo}} />
                   <Text note style={{color:'lightgrey'}}>{this.props.autor}</Text>
                 </Button>
               </Body>
               <Right>
               <Button transparent>
-                  <Icon active name="md-heart" />
+                  <Icon active name="md-heart" style={{color:colors.red}}/>
                   <Text note style={{color:'lightgrey'}}>{this.props.likes}</Text>
                 </Button>
 

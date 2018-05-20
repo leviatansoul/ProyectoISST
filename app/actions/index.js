@@ -249,7 +249,7 @@ export function getGroupChannel (user1, user2, navigation){ //Action para abrir 
       .then((url)=>{
         navigation.navigate(
           'Chat',
-          { channelUrl: url }
+          { channelUrl: url, nickR: user1 }
         );
         }
       );
