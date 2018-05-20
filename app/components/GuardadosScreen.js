@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { View, ListView} from 'react-native'
+import { View, ListView, ScrollView} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
-import Expo from 'expo'
+//import Expo from 'expo'
 import {bindActionCreators} from 'redux';
+import FooterGlobal from "./FooterGlobal";
 import { connect } from 'react-redux';
 
 import * as Actions from '../actions'; //Import your actions
+
+import colors from './colors';
+
+import Pensamiento from './Pensamiento'
 
 class GuardadosScreen extends Component {
   constructor (props) {
@@ -22,55 +27,117 @@ this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     //  this.props.navigation.navigate('Detalles', { indice: indice, visits: this.state.visitas });
 
   }
-  deleteRow(secId, rowId, rowMap) {
-   rowMap[`${secId}${rowId}`].props.closeRow();
+  deleteRow(secId, rowId, rowMap, data) {
+
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick: this.props.nickname, pens: data.id})
+    };
+
+
+
+
+    var url = "http://"+this.props.url+"/PCG/BorrarValoracionServlet";
+    console.log(url);
+
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
+        if (response.status >= 400) {
+            throw new Error("Bad response from server");
+        }
+       else {
+         rowMap[`${secId}${rowId}`].props.closeRow();
    const newData = [...this.props.pensamientos];
    newData.splice(rowId, 1);
   this.props.removeSavedData(newData);
+       }
+    });
+
+
+
+
+
  }
 
   async componentWillMount () {
-    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
+/*    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
+    }) */
+
+      var url = "http://"+this.props.url+"/PCG/PensamientosValoradosServlet?nick="+this.props.nickname;
+console.log(url);
+
+  fetch(url)
+      .then((response)=> {
+
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          return response.json();
+      })
+      .then((data)=> {
+          console.log(data);
+
+
+          this.props.saveData(data);
+         }
+      );
     this.setState({loading: false})
   }
 
 render () {
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
-      <Container>
 
-        <Content scrollEnabled={true}>
+      <Container>
+<Header style={{backgroundColor: colors.logo}}>
+
+      <Body>
+      <Title>TUS FAVORITOS</Title>
+      </Body>
+      <Right />
+    </Header>
+        <Content scrollEnabled={true} style={{backgroundColor:"white"}}>
+        <ScrollView>
           <List
                       dataSource={this.ds.cloneWithRows(this.props.pensamientos)}
                       renderRow={data =>
 
                           //hay que hacer algo si no hay nada guardado
-                          <ListItem Rr>
 
-                          <Body>
-                            <Text>{data.text}</Text>
-                              </Body>
-                            <Right>
-                              <Text note style={{color:'lightgrey'}}>{data.autor}</Text>
-                            </Right>
+                        <Pensamiento likes={data.likes} autor={data.autor} text={data.text} date={data.date} topic={data.topic} enabled={false} like={true}/>
+                      }
 
-
-                        </ListItem>}
                     //  renderLeftHiddenRow={data =>
                       //  <Button full onPress={() => alert(data)}>
                       //    <Icon active name="information-circle" />
                         //</Button>}
                       renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                        <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap, data)}>
                           <Icon active name="trash" />
                         </Button>}
                       //leftOpenValue={75}
                       rightOpenValue={-75}
                     />
+                    </ScrollView>
         </Content>
+        <View style={{
+   position: 'absolute',
+   bottom: 30,
+   right: 5,
+   width: 100,
+   height: 100
+
+}}>
+<Button style={{marginRight:0, backgroundColor: colors.logo,  borderRadius: 100}}  onPress={() => this.props.navigation.navigate('Publicar')}>
+<Icon name="md-add" />
+</Button>
+</View>
+      <FooterGlobal navigation={this.props.navigation}/>
+
+
       </Container>
     )
   }
@@ -80,8 +147,10 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+        nickname: state.nicknameReducer.nickname,
         loading: state.pensamientosGuardadosReducer.loading,
-        pensamientos: state.pensamientosGuardadosReducer.data
+        pensamientos: state.pensamientosGuardadosReducer.data,
+        url: state.urlReducer.url
 
     }
 }

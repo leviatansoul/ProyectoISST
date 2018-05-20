@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "685701796107",
+    "firebase_url": "https://pensamientogeolocalz.firebaseio.com",
+    "project_id": "pensamientogeolocalz",
+    "storage_bucket": "pensamientogeolocalz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685701796107:android:d3bdab002c438947",
+        "android_client_info": {
+          "package_name": "com.PensamientoGeolocalizado.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685701796107-ov33rj89guokdioeqie06gm0k5f9pd0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChiF3lLQC6uG9_9MRsMJlf0juJAZuJveo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

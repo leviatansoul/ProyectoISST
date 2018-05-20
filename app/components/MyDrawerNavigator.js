@@ -7,8 +7,16 @@ import { DrawerNavigator, DrawerItems } from 'react-navigation'
 import ConfigurationScreen from './ConfigurationScreen'
 import PublicarScreen from './PublicarScreen'
 import HomeScreen from './HomeScreen'
-import PensamientosScreen from './PensamientosScreen'
+import MisPensamientosScreen from './MisPensamientosScreen'
+
 import GuardadosScreen from './GuardadosScreen'
+import ContactosScreen from './ContactosScreen'
+import ChatLogin from './ChatLogin'
+import Menu from './Menu'
+import OpenChannel from './OpenChannel'
+import Chat from './ChatPrueba'
+
+import MapScreen from './MapScreen'
 
 
 export default class MyDrawerNavigator extends Component {
@@ -46,9 +54,32 @@ const MyNavigator = DrawerNavigator({
     Configuracion: {
         screen: ConfigurationScreen
     },
-    Pensamientos: {
-        screen: PensamientosScreen
-    }
+    Publicados: {
+        screen: MisPensamientosScreen
+    },
+    Favoritos: {
+        screen: GuardadosScreen
+    },
+    Contactos: {
+        screen: ContactosScreen
+    },
+
+  ChatLogin: {
+    screen: ChatLogin
+  },
+  Menu: {
+      screen: Menu
+  },
+  OpenChannel: {
+      screen: OpenChannel
+  },
+  Chat: {
+      screen: Chat
+  },
+  Mapa: {
+        screen: MapScreen
+  }
+
 }, {
     initialRouteName: 'Home',
     drawerPosition: 'left',

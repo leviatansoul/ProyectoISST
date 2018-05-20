@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, ListView, Button } from 'react-native'
-import { Icon, Container, Header,  Content, Left, Right, Body, Title} from 'native-base'
-
+import { View, TextInput, ListView, Alert, Picker } from 'react-native'
+import { Icon, Container, Header,  Content, Left, Right, Body, Title, Text, Button, Input, Footer} from 'native-base'
+import ImagePicker from 'react-native-image-picker';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import FooterGlobal from "./FooterGlobal"
 
 import * as Actions from '../actions'; //Import your actions
+
+import colors from './colors';
 
 
 class PublicarScreen extends Component {
@@ -17,10 +19,20 @@ class PublicarScreen extends Component {
     super(props);
     this.state = {
       pensamiento: null,
-      autor: 'Autor'
+      autor: 'Autor',
+      tema:"General",
+      image: ""
     };
+   this.putData = this.putData.bind(this)
+this.uploadImage = this.uploadImage.bind(this)
+
 }
 
+onValueChange(value: string) {
+  this.setState({
+    tema: value
+  });
+}
 
   componentDidMount() {
 
@@ -39,11 +51,80 @@ class PublicarScreen extends Component {
 
   }
 
+  putData (pensamiento){
+
+<<<<<<< HEAD
+
+
+//this.props.putData(pensamiento); POR SI NO FUNCIONA EL FETCH
+
+fetch("http://"+this.props.url+"/PCG/PublicarServlet?nick="+pensamiento.autor+"&text="+pensamiento.text+"&lat="+pensamiento.latitude+"&lon="+pensamiento.longitude+"&topic="+pensamiento.tema)
+
+
+
+.then((response)=> {
+          if (response.status >= 400) {
+              throw new Error("Bad response from server");
+          }
+          console.log(response.json())
+
+      });
+
+  }
+=======
+    const requestOptionsPet = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nick: pensamiento.autor, text: pensamiento.text, lat: pensamiento.latitude, lon: pensamiento.longitude, topic: pensamiento.tema})
+    };
+
+
+
+
+    var url = "http://"+this.props.url+"/PCG/PublicarServlet";
+    console.log(url);
+
+    fetch(url, requestOptionsPet)
+      .then((response)=> {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+        }
+       console.log(response.json());
+      });
+
+
+    }
+
+>>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
+
+uploadImage(){
+var options = {
+  title: 'Select Avatar',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+}
+  ImagePicker.showImagePicker(options, (response) => {
+    if(response.didCancel){
+
+    }else if(response.error){
+
+    }else if (response.customButton){
+
+    }else{
+      this.setState({image: response.uri})
+    }
+  })
+}
+
+
   render () {
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
+<<<<<<< HEAD
         <Header>
           <Left>
 
@@ -53,25 +134,65 @@ class PublicarScreen extends Component {
           </Body>
           <Right />
         </Header>
-
+=======
+        <Container style={{padding:40}}>
+>>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
         <Content padder>
-          <Text>{this.props.latitude}</Text>
-          <Text>{this.props.longitude}</Text>
-          <Text>{this.props.error}</Text>
-          <TextInput style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                     onChangeText={(text) => this.setState({pensamiento: text})}
-                     placeholder='Escribe un pensamiento'/>
-          <Button onPress={() => {
-            pensamiento = {text: this.state.pensamiento, autor: this.state.autor, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
-            console.log(pensamiento);
-            this.props.putData(pensamiento);
-          }} title="Publicar"
-          />
-        </Content>
+      <Text>{this.props.latitude}</Text>
+      <Text>{this.props.longitude}</Text>
+      <Text>{this.props.error}</Text>
+
+          <Picker
+                iosHeader="Temas"
+                iosIcon={<Icon name="ios-arrow-down-outline" />}
+                headerBackButtonText="Volver"
+                mode="dropdown"
+                selectedValue={this.state.tema}
+                onValueChange={this.onValueChange.bind(this)}
+              >
+                <Picker.Item label="General" value="General" />
+                <Picker.Item label="Humor" value="Humor" />
+                <Picker.Item label="Aficiones" value="Aficiones" />
+                <Picker.Item label="Tecnología" value="Tecnología" />
+              </Picker>
+        <Input onChangeText={(text) => this.setState({pensamiento: text})}
+        placeholder='Escribe un pensamiento'/>
 
 
-        <FooterGlobal navigation={this.props.navigation}/>
+
+</Content>
+<<<<<<< HEAD
+  <Button block onPress={() => {
+=======
+  <Button block rounded style={{backgroundColor:colors.logo}} onPress={() => {
+>>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
+      if (this.props.latitude === null || this.props.longitude === null){
+          Alert.alert(
+            'Error',
+            'No se ha podido obtener la localización, comprueba que tienes el GPS activado.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )
+      } else {
+      pensamiento = {text: this.state.pensamiento, autor: this.props.nickname, tema: this.state.tema, latitude: this.props.latitude, longitude: this.props.longitude, date: new Date()};
+      this.putData(pensamiento);
+<<<<<<< HEAD
+    }}}>
+    <Text>Publicar</Text>
+  </Button>
+
+=======
+      this.props.navigation.goBack();
+    }}}>
+    <Text>Publicar</Text>
+  </Button>
+        </Container>
+>>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
+      <FooterGlobal navigation={this.props.navigation}/>
       </Container>
+
     )
   }
 }
@@ -80,9 +201,11 @@ class PublicarScreen extends Component {
 // This function makes Redux know that this component needs to be passed a piece of the state
 function mapStateToProps(state, props) {
     return {
+      nickname: state.nicknameReducer.nickname,
       latitude: state.locationReducer.latitude,
       longitude: state.locationReducer.longitude,
-      error: state.locationReducer.error
+      error: state.locationReducer.error,
+      url: state.urlReducer.url
     }
 }
 

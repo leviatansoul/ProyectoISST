@@ -6,7 +6,6 @@ import {  Container,  Header,  Title,  Content,  Footer,  FooterTab,  Button,  L
 import store from './app/store'; //Import the store
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
 import { StackNavigator } from 'react-navigation';
-
 import ConfigurationScreen from './app/components/ConfigurationScreen'
 import PublicarScreen from './app/components/PublicarScreen'
 import HomeScreen from './app/components/HomeScreen'
@@ -16,12 +15,16 @@ import SignInUp from './app/components/SignInUp';
 import MyDrawerNavigator from './app/components/MyDrawerNavigator';
 import Authentication from './app/components/Authentication';
 import Registration from './app/components/Registration';
+import MapScreen from './app/components/MapScreen';
+
+
 
 export default class App extends Component {
+
     render() {
         return (
             <Provider store={store}>
-                <PrimaryNav />
+                <PrimaryNav  />
             </Provider>
     );
     }

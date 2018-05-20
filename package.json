@@ -25,11 +25,29 @@
     "native-base": "^2.3.9",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-easy-grid": "^0.1.17",
+<<<<<<< HEAD
+    "react-native-facebook-login": "^1.6.1",
+    "react-native-fbsdk": "^0.7.0",
+    "react-native-firebase": "^4.0.7",
     "react-native-hide-show-password-input": "^1.0.7",
+    "react-native-image-picker": "^0.26.7",
+    "react-native-safari-view": "^2.1.0",
+=======
+    "react-native-fbsdk": "^0.7.0",
+    "react-native-hide-show-password-input": "^1.0.7",
+
+    "react-native-image-picker": "^0.26.7",
+    "react-native-safari-view": "^2.1.0",
+
+    "react-native-maps": "^0.21.0",
+
+>>>>>>> 557fa05b3f5a6fcad3deba4614c43d805a161e01
     "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.4.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "sendbird": "^3.0.60"
   }
 }
