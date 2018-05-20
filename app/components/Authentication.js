@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { View, Text, Alert } from 'react-native'
 import { Icon, Button, Container, Header, Content, Left, Right, Body, Title, Form, Item, Label, Input, Footer } from 'native-base'
-import PasswordInputText from 'react-native-hide-show-password-input';
+//import PasswordInputText from 'react-native-hide-show-password-input';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions'; //Import your actions

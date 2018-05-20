@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, ListView, ScrollView, Image} from 'react-native'
 import { Icon, Text, Button, Container, Header, Content, Left, Right, Body, Title, List, ListItem } from 'native-base'
-import Expo from 'expo'
+//import Expo from 'expo'
 import {bindActionCreators} from 'redux';
 import FooterGlobal from "./FooterGlobal";
 import { connect } from 'react-redux';
@@ -32,13 +32,13 @@ class MisPensamientosScreen extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nick: this.props.nickname, pensId: data.id})
     };
-  
-  
-  
-  
+
+
+
+
     var url = "http://"+this.props.url+"/PCG/BorrarPensamientosPropiosServlet";
     console.log(url);
-  
+
     fetch(url, requestOptionsPet)
       .then((response)=> {
         if (response.status >= 400) {
@@ -59,10 +59,10 @@ class MisPensamientosScreen extends Component {
  }
 
   async componentWillMount () {
-    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
+  /*  await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
+    }) */
     this.setState({loading: false})
 
     var url = "http://"+this.props.url+"/PCG/PensamientosPropiosServlet?nick="+this.props.nickname;

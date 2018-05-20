@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {View,  Alert, BackHandler, Linking, Image} from 'react-native'
 import { Icon,Text, Button, Container, Header, Content, Left, Right, Body, Title, Form } from 'native-base'
 import SafariView from 'react-native-safari-view'
-import Expo from 'expo'
+//import Expo from 'expo'
 import colors from './colors';
 //import { HandleFBLogin } from '../facebook/HandleFBLogin.js';
 
@@ -30,10 +30,10 @@ class SignInUp extends Component {
   async componentWillMount () {
     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
     Linking.removeEventListener('url', this.handleOpenURL);
-    await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
+  /*  await Expo.Font.loadAsync({ //Se necesita hacer para que funcione NativeBase
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-    })
+    }) */
 
     //vemos que pensamientos estan a menos de 20 km (20000 metros) y los metemos en el estado de esta clase
     //eso en versiones posteriores sera sacarlo de la bbdd y meterlo en el reducer
@@ -93,7 +93,7 @@ class SignInUp extends Component {
 
     render () {
       if (this.state.loading ) {
-        return <Expo.AppLoading />
+  //      return <Expo.AppLoading />
       }
         return (
             <Container >
