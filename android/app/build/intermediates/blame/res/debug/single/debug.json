@@ -1204,6 +1204,10 @@
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-ldrtl-xxhdpi/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
+        "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/manueljimenez/ProyectoISST/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/manueljimenez/ProyectoISST/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/Users/manueljimenez/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/fd500a14fe6bc25e1868731cc79db74d/res/drawable-ldrtl-mdpi/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
