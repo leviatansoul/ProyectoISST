@@ -7,7 +7,7 @@ import {StyleSheet,  View, Dimensions} from "react-native";
 
 import {Card, CardItem, Icon, Text, Button, Container, Header, Content, Left, Right, Badge, Title, List, ListItem, Footer, FooterTab, Body} from 'native-base'
 
-
+import colors from './colors';
 
 
 export default class Pensamiento extends Component {
@@ -35,16 +35,16 @@ export default class Pensamiento extends Component {
          </View>
          <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Icon active name="md-clock" />
+                  <Icon active style={{color:colors.logo, marginRight:5}} name="md-clock" />
                   <Text note style={{color:'lightgrey'}}>{this.props.date}</Text>
          </View>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                      <Icon active name="chatbubbles"  />
+                      <Icon active style={{color:colors.logo, marginRight:5}} name="chatbubbles"  />
                       <Text note style={{color:'lightgrey'}}>{this.props.autor}</Text>
       </View>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                  <Icon active name="md-heart" />
+                  <Icon active style={{color:colors.red, marginRight:5}} name="md-heart" />
                   <Text note style={{color:'lightgrey'}}>{this.props.likes}</Text>
       </View>
       </View>

@@ -121,7 +121,7 @@ class SignInUp extends Component {
                     </View>
                     <View style={{flex:1,    flexDirection: 'column',
                       alignItems: 'center'}}>
-                      <View style={{marginTop:50}}>
+                      <View style={{marginTop:25}}>
                       <Button block rounded style={{backgroundColor:"#00cc99", width:"100%", height:50}} onPress={() => this.props.navigation.navigate('registrationShow')}>
                         <Text style={{color: 'white'}}>Empieza ahora</Text>
                       </Button>

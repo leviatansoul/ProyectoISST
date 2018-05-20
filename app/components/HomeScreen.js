@@ -258,7 +258,7 @@ console.log(url);
             <Button active={this.state.active === 2} onPress={() => this.actualizaLista(5)}>
               <Text>5 km</Text>
             </Button>
-            <Button last active={this.state.active === 3} onPress={() => this.actualizaLista(20)}>
+            <Button active={this.state.active === 3} onPress={() => this.actualizaLista(20)}>
               <Text>20 km</Text>
             </Button>
           </Segment>
@@ -309,7 +309,7 @@ console.log(url);
           <Button active={this.state.active === 2} onPress={() => this.actualizaLista(5)}>
             <Text>5 km</Text>
           </Button>
-          <Button last active={this.state.active === 3} onPress={() => this.actualizaLista(20)}>
+          <Button active={this.state.active === 3} onPress={() => this.actualizaLista(20)}>
             <Text>20 km</Text>
           </Button>
         </Segment>
