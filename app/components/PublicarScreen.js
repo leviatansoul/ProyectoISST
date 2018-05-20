@@ -103,8 +103,8 @@ var options = {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     return (
       <Container>
-        <Container style={{padding:48, border:2, borderColor: colors.logo, borderBottom:0, borderRadius:2}}>
-        <Content  style={{ border:2, borderColor: colors.logo, borderBottom:0, borderRadius:2}}>
+        <Container style={{padding:48, borderColor: colors.logo, borderBottom:0, borderRadius:2}}>
+        <Content  style={{borderColor: colors.logo, borderBottom:0, borderRadius:2}}>
       <Text>Elige un tema</Text>
       <Text>{this.props.error}</Text>
 

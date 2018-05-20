@@ -246,7 +246,7 @@ console.log(url);
         <Container>
           <Header style={{backgroundColor: colors.logo}}>
 
-            <Body>
+            <Body style={{flex:3}}>
             <Title>PENSAMIENTOS CERCANOS</Title>
             </Body>
             <Right />
@@ -297,7 +297,7 @@ console.log(url);
       <Container>
         <Header style={{backgroundColor:colors.logo}}>
 
-          <Body>
+          <Body style={{flex:3}}>
           <Title>PENSAMIENTOS CERCANOS</Title>
           </Body>
           <Right />

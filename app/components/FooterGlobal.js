@@ -18,7 +18,7 @@ class FooterGlobal extends Component {
         <Footer style={{backgroundColor:colors.logo}}>
 
           <Container>
-          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", justifyContent: 'space-between', paddingLeft:8}} >
 
             <View style={{flex:1, alignItems:"center"}}>
               <Button transparent  vertical  onPress={() =>
@@ -26,7 +26,7 @@ class FooterGlobal extends Component {
               }  >
 
                 <Icon style={{color:colors.logo}} name="eye" active />
-                <Text style={{color:colors.logo}}>Home</Text>
+                <Text style={{color:colors.logo, fontSize: 10}}>Home</Text>
               </Button>
             </View>
 
@@ -35,7 +35,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(2, this.props.navigation)
               }   >
                 <Icon style={{color:colors.gray}} name="md-finger-print"  />
-                <Text style={{color:colors.gray}}>Mios</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mios</Text>
               </Button>
             </View>
 
@@ -45,7 +45,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(3, this.props.navigation)}
                      >
                 <Icon style={{color:colors.gray}} name="star-half"  />
-                <Text style={{color:colors.gray}}>Favs</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Favs</Text>
               </Button>
             </View>
 
@@ -54,7 +54,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(4, this.props.navigation)}
                       >
                 <Icon style={{color:colors.gray}} name="map"/>
-                <Text style={{color:colors.gray}}>Mapa</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mapa</Text>
               </Button>
 
             </View>
@@ -65,7 +65,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(5, this.props.navigation)}
                      >
                 <Icon style={{color:colors.gray}} name="person"  />
-                <Text style={{color:colors.gray}}>Chat</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Chat</Text>
               </Button>
 
             </View>
@@ -84,7 +84,7 @@ class FooterGlobal extends Component {
       <Footer style={{backgroundColor:colors.logo}}>
 
         <Container>
-          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row",   justifyContent: 'space-between', paddingLeft:8}} >
 
             <View style={{flex:1, alignItems:"center"}}>
               <Button transparent  vertical  onPress={() =>
@@ -92,7 +92,7 @@ class FooterGlobal extends Component {
               }  >
 
                 <Icon style={{color:colors.gray}} name="eye" active />
-                <Text style={{color:colors.gray}}>Home</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Home</Text>
               </Button>
             </View>
 
@@ -101,7 +101,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(2, this.props.navigation)
               }   >
                 <Icon style={{color:colors.logo}} name="md-finger-print"  />
-                <Text style={{color:colors.logo}}>Mios</Text>
+                <Text style={{color:colors.logo, fontSize: 10}}>Mios</Text>
               </Button>
             </View>
 
@@ -111,7 +111,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(3, this.props.navigation)}
                       >
                 <Icon style={{color:colors.gray}} name="star-half" />
-                <Text style={{color:colors.gray}}>Favs</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Favs</Text>
               </Button>
             </View>
 
@@ -120,7 +120,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(4, this.props.navigation)}
                      >
                 <Icon style={{color:colors.gray}} name="map"  />
-                <Text style={{color:colors.gray}}>Mapa</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mapa</Text>
               </Button>
 
             </View>
@@ -131,7 +131,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(5, this.props.navigation)}
                      >
                 <Icon style={{color:colors.gray}} name="person"  />
-                <Text style={{color:colors.gray}}>Chat</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Chat</Text>
               </Button>
 
             </View>
@@ -149,7 +149,7 @@ class FooterGlobal extends Component {
       <Footer style={{backgroundColor:colors.logo}}>
 
         <Container>
-          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row",   justifyContent: 'space-between', paddingLeft:8}} >
 
             <View style={{flex:1, alignItems:"center"}}>
               <Button transparent  vertical  onPress={() =>
@@ -157,7 +157,7 @@ class FooterGlobal extends Component {
               }  >
 
                 <Icon style={{color:colors.gray}} name="eye" active />
-                <Text style={{color:colors.gray}}>Home</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Home</Text>
               </Button>
             </View>
 
@@ -166,7 +166,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(2, this.props.navigation)
               }   >
                 <Icon style={{color:colors.gray}} name="md-finger-print"  />
-                <Text style={{color:colors.gray}}>Mios</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mios</Text>
               </Button>
             </View>
 
@@ -176,7 +176,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(3, this.props.navigation)}
                       >
                 <Icon style={{color:colors.logo}} name="star-half"  />
-                <Text style={{color:colors.logo}}>Favs</Text>
+                <Text style={{color:colors.logo, fontSize: 10}}>Favs</Text>
               </Button>
             </View>
 
@@ -185,7 +185,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(4, this.props.navigation)}
                     >
                 <Icon style={{color:colors.gray}} name="map"  />
-                <Text style={{color:colors.gray}}>Mapa</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mapa</Text>
               </Button>
 
             </View>
@@ -196,7 +196,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(5, this.props.navigation)}
                       >
                 <Icon style={{color:colors.gray}} name="person" />
-                <Text style={{color:colors.gray}}>Chat</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Chat</Text>
               </Button>
 
             </View>
@@ -214,7 +214,7 @@ class FooterGlobal extends Component {
       <Footer style={{backgroundColor:colors.logo}}>
 
         <Container>
-          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row",   justifyContent: 'space-between', paddingLeft:8}} >
 
             <View style={{flex:1, alignItems:"center"}}>
               <Button transparent  vertical  onPress={() =>
@@ -222,7 +222,7 @@ class FooterGlobal extends Component {
               }  >
 
                 <Icon style={{color:colors.gray}} name="eye" active />
-                <Text style={{color:colors.gray}}>Home</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Home</Text>
               </Button>
             </View>
 
@@ -231,7 +231,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(2, this.props.navigation)
               }  active ={this.props.itemSelected === 2} >
                 <Icon style={{color:colors.gray}} name="md-finger-print" active ={this.props.itemSelected === 2} />
-                <Text style={{color:colors.gray}}>Mios</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mios</Text>
               </Button>
             </View>
 
@@ -241,7 +241,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(3, this.props.navigation)}
                       active ={this.props.itemSelected === 3}>
                 <Icon style={{color:colors.gray}} name="star-half" active ={this.props.itemSelected === 3} />
-                <Text style={{color:colors.gray}}>Favs</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Favs</Text>
               </Button>
             </View>
 
@@ -250,7 +250,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(4, this.props.navigation)}
                       active ={this.props.itemSelected === 4}>
                 <Icon style={{color:colors.logo}} name="map" active ={this.props.itemSelected === 4} />
-                <Text style={{color:colors.logo}}>Mapa</Text>
+                <Text style={{color:colors.logo, fontSize: 10}}>Mapa</Text>
               </Button>
 
             </View>
@@ -261,7 +261,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(5, this.props.navigation)}
                       active ={this.props.itemSelected === 5}>
                 <Icon style={{color:colors.gray}} name="person" active ={this.props.itemSelected === 5} />
-                <Text style={{color:colors.gray}}>Chat</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Chat</Text>
               </Button>
 
             </View>
@@ -280,7 +280,7 @@ class FooterGlobal extends Component {
       <Footer style={{backgroundColor:colors.logo}}>
 
         <Container>
-          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row", fontSize:10, justifyContent: 'space-between', paddingLeft:8}} >
+          <View style={{backgroundColor:"#ffffff", flex:1, flexDirection:"row",   justifyContent: 'space-between', paddingLeft:8}} >
 
             <View style={{flex:1, alignItems:"center"}}>
               <Button transparent  vertical  onPress={() =>
@@ -288,7 +288,7 @@ class FooterGlobal extends Component {
               }  >
 
                 <Icon style={{color:colors.gray}} name="eye" active />
-                <Text style={{color:colors.gray}}>Home</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Home</Text>
               </Button>
             </View>
 
@@ -297,7 +297,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(2, this.props.navigation)
               }   >
                 <Icon style={{color:colors.gray}} name="md-finger-print"  />
-                <Text style={{color:colors.gray}}>Mios</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mios</Text>
               </Button>
             </View>
 
@@ -307,7 +307,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(3, this.props.navigation)}
                       >
                 <Icon style={{color:colors.gray}} name="star-half"  />
-                <Text style={{color:colors.gray}}>Favs</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Favs</Text>
               </Button>
             </View>
 
@@ -316,7 +316,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(4, this.props.navigation)}
                       >
                 <Icon style={{color:colors.gray}} name="map"  />
-                <Text style={{color:colors.gray}}>Mapa</Text>
+                <Text style={{color:colors.gray, fontSize: 10}}>Mapa</Text>
               </Button>
 
             </View>
@@ -327,7 +327,7 @@ class FooterGlobal extends Component {
                 this.props.updateFooter(5, this.props.navigation)}
                      >
                 <Icon style={{color:colors.logo}} name="person"  />
-                <Text style={{color:colors.logo}}>Chat</Text>
+                <Text style={{color:colors.logo, fontSize: 10}}>Chat</Text>
               </Button>
 
             </View>

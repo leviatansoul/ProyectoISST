@@ -93,7 +93,7 @@ fetch(url)
       <Container>
 <Header style={{backgroundColor: colors.logo}}>
 
-<Body>
+<Body style={{flex:3}}>
 <Title>TUS PENSAMIENTOS</Title>
 </Body>
 <Right />
